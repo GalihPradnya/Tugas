@@ -1,0 +1,151 @@
+<!-- Header -->
+<header class="bg-white shadow sticky top-0 z-50">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+        <div class="flex items-center space-x-3">
+            <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=48&q=80"
+                alt="Logo Desa" class="h-12 w-12 rounded-full">
+            <div>
+                <h1 class="text-xl font-bold">Desa Kelating</h1>
+                <p class="text-sm text-gray-500">Bersama membangun desa yang mandiri dan sejahtera</p>
+            </div>
+        </div>
+        <!-- Hamburger button for mobile/tablet -->
+        <button id="menu-toggle"
+            class="lg:hidden flex items-center px-3 py-2 border rounded text-green-700 border-green-700 focus:outline-none"
+            aria-label="Toggle Menu">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+        <!-- Desktop Navigation -->
+        <nav class="items-center hidden lg:flex gap-6">
+            <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium">Beranda</a>
+            <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium">Profil
+                Desa</a>
+            <a href="<?php echo base_url('navbar/pemerintahan'); ?>"
+                class="hover:text-green-600 font-medium text-green-700 font-bold">Pemerintahan</a>
+            <a href="<?php echo base_url('navbar/layanan_publik'); ?>" class="hover:text-green-600 font-medium">Layanan
+                Publik</a>
+            <a href="<?php echo base_url('navbar/berita_pengumuman'); ?>"
+                class="hover:text-green-600 font-medium">Berita & Pengumuman</a>
+            <a href="<?php echo base_url('navbar/galeri'); ?>" class="hover:text-green-600 font-medium">Galeri</a>
+            <a href="<?php echo base_url('navbar/kontak'); ?>" class="hover:text-green-600 font-medium">Kontak</a>
+            <!-- Button Login -->
+            <a href="<?php echo base_url('auth/login'); ?>"
+                class="bg-green-600 text-white px-5 py-2 rounded-md font-semibold shadow hover:bg-green-700 transition duration-200">
+                Login
+            </a>
+        </nav>
+    </div>
+    <!-- Mobile/Tablet Navigation -->
+    <nav id="mobile-menu" class="lg:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white w-4/5 max-w-xs h-full shadow-lg p-6 flex flex-col gap-4 animate-slideInLeft">
+            <button id="menu-close" class="self-end mb-4 text-gray-700" aria-label="Tutup Menu">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+            <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium">Beranda</a>
+            <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium">Profil
+                Desa</a>
+            <a href="<?php echo base_url('navbar/pemerintahan'); ?>"
+                class="hover:text-green-600 font-medium text-green-700 font-bold">Pemerintahan</a>
+            <a href="<?php echo base_url('navbar/layanan_publik'); ?>" class="hover:text-green-600 font-medium">Layanan
+                Publik</a>
+            <a href="<?php echo base_url('navbar/berita_pengumuman'); ?>"
+                class="hover:text-green-600 font-medium">Berita & Pengumuman</a>
+            <a href="<?php echo base_url('navbar/galeri'); ?>" class="hover:text-green-600 font-medium">Galeri</a>
+            <a href="<?php echo base_url('navbar/kontak'); ?>" class="hover:text-green-600 font-medium">Kontak</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Pemerintahan Desa -->
+<main class="container mx-auto py-12 px-4 flex-1">
+    <h2 class="text-3xl font-bold mb-2 text-green-700 text-center">Struktur Pemerintahan Desa Kelating</h2>
+    <p class="text-gray-500 mb-6 text-base text-center">Informasi tentang perangkat desa, BPD, dan lembaga desa lainnya.
+    </p>
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h3 class="text-2xl font-semibold mb-4">Kepala Desa</h3>
+        <?php if($kepala_desa){ ?>
+        <div class="flex items-center space-x-4 mb-4">
+            <img src="<?= base_url('uploads/kepala_desa/'.$kepala_desa->foto); ?>"
+                alt="<?= $kepala_desa->nama_kepala_desa; ?>" class="rounded-full h-24 w-24 object-cover">
+            <div>
+                <p class="font-bold text-lg">
+                    <?= $kepala_desa->nama_kepala_desa; ?>
+                </p>
+                <p class="text-gray-500">Kepala Desa</p>
+            </div>
+        </div>
+        <?php } else { ?>
+        <div class="bg-yellow-100 text-yellow-700 p-4 rounded">Data Kepala Desa belum tersedia.
+        </div>
+        <?php } ?>
+        <h4 class="text-xl font-semibold mb-2 mt-6">Perangkat Desa</h4>
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+                <thead>
+                    <tr class="bg-green-100">
+                        <th class="py-2 px-4 text-left font-semibold">Jabatan</th>
+                        <th class="py-2 px-4 text-left font-semibold">Nama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="py-2 px-4">Sekretaris Desa</td>
+                        <td class="py-2 px-4">[Nama Sekretaris]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Kaur Keuangan</td>
+                        <td class="py-2 px-4">[Nama Kaur Keuangan]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Kaur Umum & Perencanaan</td>
+                        <td class="py-2 px-4">[Nama Kaur Umum]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Kasi Pemerintahan</td>
+                        <td class="py-2 px-4">[Nama Kasi Pemerintahan]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Kasi Kesejahteraan</td>
+                        <td class="py-2 px-4">[Nama Kasi Kesejahteraan]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Kasi Pelayanan</td>
+                        <td class="py-2 px-4">[Nama Kasi Pelayanan]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2 px-4">Kepala Dusun</td>
+                        <td class="py-2 px-4">[Nama Kepala Dusun]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bg-white rounded-lg shadow p-6 mb-8">
+        <h3 class="text-2xl font-semibold mb-4">Badan Permusyawaratan Desa (BPD)</h3>
+        <ul class="list-disc list-inside space-y-1">
+            <li><span class="font-medium">Ketua:</span> [Nama Ketua BPD]</li>
+            <li><span class="font-medium">Wakil Ketua:</span> [Nama Wakil Ketua BPD]</li>
+            <li><span class="font-medium">Sekretaris:</span> [Nama Sekretaris BPD]</li>
+            <li><span class="font-medium">Anggota:</span> [Nama-nama Anggota BPD]</li>
+        </ul>
+    </div>
+    <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-2xl font-semibold mb-4">Lembaga Desa Lainnya</h3>
+        <ul class="list-disc list-inside space-y-1">
+            <li>PKK (Pemberdayaan Kesejahteraan Keluarga)</li>
+            <li>Karang Taruna</li>
+            <li>LPMD (Lembaga Pemberdayaan Masyarakat Desa)</li>
+            <li>Posyandu</li>
+            <li>Kelompok Tani</li>
+            <li>Dan lain-lain</li>
+        </ul>
+    </div>
+</main>

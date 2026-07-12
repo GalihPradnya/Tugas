@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Desa Kelating - Website Resmi Pemerintah Desa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d6e3ff",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "primary": "#002045",
+                        "on-secondary-container": "#167249",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eef1f3",
+                        "secondary-container": "#9ff5c1",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001b3c",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#86a0cd",
+                        "background": "#f7fafc",
+                        "tertiary-fixed": "#ffdcc5",
+                        "surface": "#f7fafc",
+                        "secondary": "#0a6c44",
+                        "on-surface-variant": "#43474e",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "surface-tint": "#455f88",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#181c1e",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e0e3e5",
+                        "tertiary-container": "#572900",
+                        "on-secondary-fixed-variant": "#005231",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d7dadc",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#301400",
+                        "on-secondary-fixed": "#002111",
+                        "primary-container": "#1a365d",
+                        "secondary-fixed-dim": "#83d8a6",
+                        "surface-bright": "#f7fafc",
+                        "outline": "#74777f",
+                        "inverse-primary": "#adc7f7",
+                        "surface-container": "#ebeef0",
+                        "on-surface": "#181c1e",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "surface-container-low": "#f1f4f6",
+                        "tertiary": "#371800",
+                        "primary-fixed-dim": "#adc7f7",
+                        "secondary-fixed": "#9ff5c1",
+                        "on-tertiary-container": "#e88532",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-high": "#e5e9eb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "xl": "80px",
+                        "sm": "12px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "button": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant shadow-sm">
+<nav class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<img class="h-12 w-auto" data-alt="A professional, high-resolution graphic of the Desa Kelating official logo, featuring a dark navy blue hexagonal frame surrounding a lush green center with the white initials KLT. The design is modern, clean, and corporate, reflecting the authoritative yet environmentally conscious identity of a Balinese village government." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt8tEIddg9850Ypl5_TVJxHUcaI2rVKR-0DWyy4SjVd0aU9YFWXur2ymoq4X6PssVFl2BwiLYxp27oQPqxQIVWu7IHVNNiwbDl_0eSPB3AFdbH8fAdkU9XBxuGRZyFD4uUjAuYkQApatm0GQgLjrGSFVv2WwRCGX9Lu72-T7O_90bEA0MfOoebG09KVW0LDomIiCTO-mTkePXMNG9JtcrgpJP-HMzrQBbVg95A6RqIzFu779CWbQA13hy-BB15IRJeU4LQXJrUg9wj"/>
+<span class="font-headline-sm text-headline-sm font-bold text-primary">Desa Kelating</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-secondary border-b-2 border-secondary pb-1 cursor-pointer transition-all active:scale-95" href="#">Beranda</a>
+<a class="font-label-md text-label-md text-primary hover:text-secondary-fixed-variant cursor-pointer transition-all active:scale-95" href="#">Layanan</a>
+<a class="font-label-md text-label-md text-primary hover:text-secondary-fixed-variant cursor-pointer transition-all active:scale-95" href="#">Statistik</a>
+<a class="font-label-md text-label-md text-primary hover:text-secondary-fixed-variant cursor-pointer transition-all active:scale-95" href="#">Berita</a>
+<a class="font-label-md text-label-md text-primary hover:text-secondary-fixed-variant cursor-pointer transition-all active:scale-95" href="#">Struktur</a>
+</div>
+<button class="bg-primary text-on-primary px-lg py-2 rounded-lg font-button text-button hover:opacity-90 transition-all active:scale-95">
+                Login
+            </button>
+</nav>
+</header>
+<main class="mt-20">
+<!-- Hero Section -->
+<section class="relative h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-105 animate-[pulse_10s_ease-in-out_infinite]" data-alt="An expansive, high-angle aerial view of Desa Kelating in Bali during a golden sunrise. The landscape is filled with vibrant green terraced rice paddies, coconut palm trees, and traditional Balinese houses with terracotta roofs. A gentle morning mist rolls over the hills in the background, creating a serene, lush, and authoritative atmosphere that perfectly matches the civic modernist branding." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwHgEccdohqs8fWFrIh4RAXJiB0uVCwQgOuxxSAU2E-FWe7k_AjwR0uN_Gz8WxZdNHBNVK6Qpik0UwYbXQwaIhRClTWyNNirSWE3oZDfvz_dnjQHUhlFRPwf26hKyOftcapkL-CnwnYt-ptmiyndX9_zX4bSpE0xdKy2iho4k4hPmVmqHOjM4zYVyA92-oq-Dx4V3o5NYYUvMCvFdJv1i6r5AIb2aaQEVW1Sw3pAmCkQnC4WtNE9XCeeYBdSJtL-Psc8JafcTmYMyN')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/30"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto px-gutter text-on-primary w-full">
+<div class="max-w-3xl space-y-md">
+<h1 class="font-display-lg text-display-lg leading-tight">Selamat Datang di Website Resmi Pemerintah Desa Kelating</h1>
+<p class="font-body-lg text-body-lg opacity-90 max-w-2xl">Mewujudkan tata kelola desa yang transparan, inovatif, dan berdaya saing untuk kesejahteraan masyarakat Kelating yang berkelanjutan.</p>
+<div class="flex gap-md pt-base">
+<button class="bg-secondary-container text-on-secondary-container px-lg py-3 rounded-lg font-button text-button shadow-lg hover:translate-y-[-2px] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                            Ajukan Surat
+                        </button>
+<button class="bg-surface/20 backdrop-blur-md text-white border border-white/30 px-lg py-3 rounded-lg font-button text-button hover:bg-white/10 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">campaign</span>
+                            Laporkan Pengaduan
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Bento -->
+<section class="py-xl max-w-container-max mx-auto px-gutter">
+<div class="mb-lg text-center">
+<h2 class="font-headline-md text-headline-md text-primary">Layanan Publik Digital</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Akses layanan administrasi desa dengan lebih cepat dan mudah.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-all group border-t-4 border-secondary">
+<div class="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">contact_mail</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Pelayanan Surat</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Permohonan berbagai jenis surat keterangan secara online tanpa harus antri di kantor desa.</p>
+</div>
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-all group border-t-4 border-primary">
+<div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">forum</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Pengaduan Masyarakat</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Laporkan aspirasi atau keluhan infrastruktur dan layanan untuk tindak lanjut cepat dari pemerintah desa.</p>
+</div>
+<div class="glass-card p-lg rounded-xl shadow-sm hover:shadow-md transition-all group border-t-4 border-secondary">
+<div class="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center text-secondary mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">analytics</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-2">Data &amp; Transparansi</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Informasi penggunaan dana desa dan perkembangan pembangunan fisik secara terbuka bagi publik.</p>
+</div>
+</div>
+</section>
+<!-- Statistics Dashboard -->
+<section class="bg-surface-container py-xl">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg items-center">
+<div class="space-y-lg">
+<div class="space-y-base">
+<h2 class="font-headline-md text-headline-md text-primary">Statistik Desa Kelating</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Gambaran umum demografi dan kondisi sosial ekonomi masyarakat Kelating saat ini.</p>
+</div>
+<div class="grid grid-cols-3 gap-md">
+<div class="bg-surface p-md rounded-xl shadow-sm text-center">
+<p class="text-[36px] font-bold text-primary">3.482</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Penduduk</p>
+</div>
+<div class="bg-surface p-md rounded-xl shadow-sm text-center">
+<p class="text-[36px] font-bold text-secondary">982</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Kepala Keluarga</p>
+</div>
+<div class="bg-surface p-md rounded-xl shadow-sm text-center">
+<p class="text-[36px] font-bold text-primary">7</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Banjar</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Chart Mockups -->
+<div class="bg-surface p-md rounded-xl shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-md">Distribusi Gender</h4>
+<div class="relative w-32 h-32 mx-auto mb-md">
+<div class="absolute inset-0 rounded-full border-[12px] border-secondary border-r-primary-fixed"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="font-bold text-primary">52%</span>
+</div>
+</div>
+<div class="flex justify-between text-[12px] font-medium px-base">
+<span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-secondary"></i> Laki-laki</span>
+<span class="flex items-center gap-1"><i class="w-2 h-2 rounded-full bg-primary-fixed"></i> Perempuan</span>
+</div>
+</div>
+<div class="bg-surface p-md rounded-xl shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-md">Mata Pencaharian</h4>
+<div class="space-y-sm">
+<div class="space-y-xs">
+<div class="flex justify-between text-xs"><span class="font-bold">Petani</span> <span>65%</span></div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-xs"><span class="font-bold">Pariwisata</span> <span>20%</span></div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 20%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-xs"><span class="font-bold">Lainnya</span> <span>15%</span></div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-outline h-2 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- News & Agenda -->
+<section class="py-xl max-w-container-max mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-xl">
+<!-- News Column -->
+<div>
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Berita Terbaru</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Update informasi pembangunan dan kegiatan desa.</p>
+</div>
+<a class="text-secondary font-label-md hover:underline" href="#">Lihat Semua Berita</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+<img class="w-full h-48 object-cover" data-alt="A professional documentary-style photograph showing a village community meeting in Bali. Residents and local officials are gathered in a traditional open-air pavillion (wantilan), dressed in formal Balinese batik attire. The atmosphere is collaborative and productive, with clear daylight illuminating the scene, emphasizing civic engagement in Desa Kelating." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZAdcQWYuf2xhcqwxch1g_envsHDzrBUk_kKzNtVyZUw4ujXfRPvYLA0AtIvgolXtAX4xzetSUJi3HhJJlzlSdQGpaM1JO3g_TT8CiOG92zfQttCWCQ5Ow3zDXKcfB9EnvOL6MknE2jPWEIvcT09zdC4wVU4h01BkgA0SIb6ytbI83IE2cr-SVNkfzrW6YedssJ_TkGHUDRke0kNiuOmH0OzgAwAraznmTkMpPHTjOcCxH0hYLlWXhPZ8f_jhR_X_R77rissuoPhes"/>
+<div class="p-md space-y-base">
+<span class="text-[12px] font-bold text-secondary uppercase tracking-tighter">Pembangunan</span>
+<h3 class="font-headline-sm text-headline-sm text-primary line-clamp-2">Peresmian Sistem Irigasi Subak Kelating Timur</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Pemerintah desa bersama warga Subak Kelating Timur hari ini meresmikan sistem irigasi baru...</p>
+<div class="pt-base border-t border-outline-variant flex justify-between text-[12px] text-outline">
+<span>15 Okt 2024</span>
+<span>Admin Desa</span>
+</div>
+</div>
+</article>
+<article class="bg-surface border border-outline-variant rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+<img class="w-full h-48 object-cover" data-alt="A high-quality image of an educational session in a village school or community center in Bali. A health professional is demonstrating nutritious meal preparation for mothers and children. The room is bright, clean, and decorated with Indonesian health posters, representing the government's initiative in Desa Kelating to improve local health standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoG3RGaayh_hadmXdkXOjQnqt0KGXeowF6mrLCxXjj7_TsnOapI5UZMfTvn1IWJ-5sLLM6o6yL55hS-1TZCslie1jNQ5l0cnBaQEdT1XadSKom3Z9T5bhqqkNffoOtftj6G6cap5szfcuemdo2c5D11ysi8i_FPgnvM1xWach42dVHwS9fNggaGX9Mwkr5DSdhJhRzXVv6djXlU45gyq_6m7NjDIy4isBAhjhbqKooX89IEUnRtbGdKS4JnnjV9eSXselOCwyBGpJx"/>
+<div class="p-md space-y-base">
+<span class="text-[12px] font-bold text-secondary uppercase tracking-tighter">Kesehatan</span>
+<h3 class="font-headline-sm text-headline-sm text-primary line-clamp-2">Program Sosialisasi Penurunan Stunting Bagi Balita</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">Tim penggerak PKK Desa Kelating melaksanakan penyuluhan gizi seimbang untuk menekan angka stunting...</p>
+<div class="pt-base border-t border-outline-variant flex justify-between text-[12px] text-outline">
+<span>12 Okt 2024</span>
+<span>PKK Kelating</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Agenda Column -->
+<aside class="space-y-lg">
+<h3 class="font-headline-sm text-headline-sm text-primary">Agenda Desa</h3>
+<div class="space-y-md">
+<div class="flex gap-md group cursor-pointer">
+<div class="flex-shrink-0 w-16 h-16 bg-secondary-container rounded-lg flex flex-col items-center justify-center text-on-secondary-container">
+<span class="text-[18px] font-bold">20</span>
+<span class="text-[10px] uppercase font-bold">Okt</span>
+</div>
+<div class="space-y-xs">
+<h4 class="font-label-md text-label-md text-primary group-hover:text-secondary transition-colors">Posyandu Balita Melati</h4>
+<p class="text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 08:00 - Selesai
+                                </p>
+</div>
+</div>
+<div class="flex gap-md group cursor-pointer">
+<div class="flex-shrink-0 w-16 h-16 bg-primary-container rounded-lg flex flex-col items-center justify-center text-on-primary-container">
+<span class="text-[18px] font-bold">22</span>
+<span class="text-[10px] uppercase font-bold">Okt</span>
+</div>
+<div class="space-y-xs">
+<h4 class="font-label-md text-label-md text-primary group-hover:text-secondary transition-colors">Rapat Koordinasi Banjar</h4>
+<p class="text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 19:00 - Selesai
+                                </p>
+</div>
+</div>
+<div class="flex gap-md group cursor-pointer">
+<div class="flex-shrink-0 w-16 h-16 bg-secondary-container rounded-lg flex flex-col items-center justify-center text-on-secondary-container">
+<span class="text-[18px] font-bold">25</span>
+<span class="text-[10px] uppercase font-bold">Okt</span>
+</div>
+<div class="space-y-xs">
+<h4 class="font-label-md text-label-md text-primary group-hover:text-secondary transition-colors">Kerja Bakti Lingkungan</h4>
+<p class="text-[12px] text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 07:00 - Selesai
+                                </p>
+</div>
+</div>
+</div>
+<button class="w-full py-3 border-2 border-outline-variant text-primary rounded-lg font-label-md hover:bg-surface-container transition-colors">Lihat Kalender</button>
+</aside>
+</div>
+</section>
+<!-- Organization Section -->
+<section class="py-xl bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-xl">
+<h2 class="font-headline-md text-headline-md text-primary">Struktur Organisasi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Para abdi desa yang berdedikasi melayani masyarakat Kelating.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="text-center space-y-md group">
+<div class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-secondary/20 p-1 group-hover:border-secondary transition-all">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional studio portrait of a Balinese man in his 50s, wearing a formal black safari shirt and a traditional Balinese headcloth (udeng). He has a friendly and authoritative expression, representing I Wayan Sudarma, the Perbekel or Village Head of Desa Kelating. High-key professional lighting with a neutral gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh1TaUVyiE2UP8zn7q04UKrDSDQFZlB2EUd9LqVA4aQNJqG-TBNt0hDC25BSk0u35aFaHddJfStPkTMcX_Ouzi1K1DMGdL4SGdnJ56pFy3h3HJBjab_vIiChj_M7FH776m_vn2KNr4HPx6GYD_7J2P2d8XeySPqpSKBRovcPUphiOlGqSMA1as4DyQ9tiAk2Luzil2Qfnw3kAOKJxx6WlrP8uwyGa72NBOk3YQ7L9XwMxyOQcBZ_x5KdtLHin7f8SgQekaqawHrg20"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">I Wayan Sudarma, S.H.</h4>
+<p class="font-label-md text-label-md text-secondary uppercase tracking-widest">Perbekel (Kepala Desa)</p>
+</div>
+</div>
+<div class="text-center space-y-md group">
+<div class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-primary/20 p-1 group-hover:border-primary transition-all">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional studio portrait of a Balinese woman in her late 30s, wearing a formal batik blouse. She has a professional and welcoming smile, representing Ni Luh Putu Ariani, the Village Secretary. The image has high-end corporate lighting and a clean, minimalist background to maintain the design system's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdnhRQxbojl0-HGhGdqDyQQ-MAVpQrEEdOwYV6fOglImSMp40xnOscbkI2efUI9bPKGOMe9T5bLTeMZjJEZfp3W9C_584aMupnl4a-Nr2JMrD40jOmJfEb8VsRvCHLSXaKNyFQEY40apc8wzpf2YuBeaA93k-kOSWsMnGUIf-nyYtDIgFV8R2Z-_ZVVdBsU76cAi26Dvjaz8hJOoITqm7WfgOH3BCCCjicrOuXK4Gq61V2BkpUdmIYtmPnnDTybH5edsvhAEI-hY0V"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Ni Luh Putu Ariani</h4>
+<p class="font-label-md text-label-md text-primary uppercase tracking-widest">Sekretaris Desa</p>
+</div>
+</div>
+<div class="text-center space-y-md group">
+<div class="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-secondary/20 p-1 group-hover:border-secondary transition-all">
+<img class="w-full h-48 object-cover rounded-full" data-alt="A formal studio portrait of a Balinese man in his 40s wearing a clean, white uniform shirt. He looks trustworthy and capable, representing I Gede Made Artha, the Treasurer. Professional photography with soft shadows and sharp details, consistent with a modern civic digital experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvrS6ZO68gN_iWRdNForX2LUs6AvCPNMdaiuzvy_JalcGYbKTNS4RDFap6ioRgEhD9dJIODvpjdg9vRMstEqWQBfHXnbXHqp6Gr4Hnc0XW6Dbf3vHCepyrdQzz1Cts8sjr_DC_KfmhkFCVM0akT7RMx0vzaAjDvoimmsTkXjtbVn8wDjeF1KhUBZm1O0YuHdQDcfCS847G2kffGfn97BXtldYH9jBUAD1Vw-R5etgJn7vPFB0VpuA9mLoa0I-MLXlgJsMJyuj1LfGj"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">I Gede Made Artha</h4>
+<p class="font-label-md text-label-md text-secondary uppercase tracking-widest">Kaur Keuangan</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-tertiary text-inverse-on-surface py-xl">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Contact & Brand -->
+<div class="space-y-lg">
+<div class="flex items-center gap-base">
+<img class="h-10 opacity-80 brightness-0 invert" data-alt="A simplified, white-silhouette version of the Desa Kelating logo, optimized for a dark footer background. It retains the iconic hexagonal shape and KLT letters, appearing professional, institutional, and high-contrast against the dark navy blue base." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFTKMQmDJ05ntejWeatGRrCsHsP87KoessuaUv3tGhTzr6s9vKPHlFHw-4IAvlp6o8EV5g9yzS1D0Sioj8BvC968P6zJf_pMNWT_9yyPFOjHvfmJl1iHgbqmcQWpcptBp166O5JT26oIl03UY7gOOb1wpy45SJdOK4VJ6fbSGfvcbLDRqrddqyLbhb8Er8fDxCQLehMlhS1Ostn8nkn3FLcg14ycxKAR6pA4Oaalx8FnOU7w0TV-iSYdyXfA6L4v4p4RMYvmC5Be2A"/>
+<span class="font-headline-md text-headline-md text-surface-bright">Desa Kelating</span>
+</div>
+<p class="font-body-sm text-body-sm text-surface-variant">Kantor Perbekel Desa Kelating<br/>Jl. Raya Kelating No. 1, Kec. Kerambitan<br/>Kab. Tabanan, Bali 82161</p>
+<div class="space-y-sm">
+<p class="flex items-center gap-base text-surface-variant hover:text-surface-bright transition-colors">
+<span class="material-symbols-outlined text-[20px]">phone</span> (0361) 812XXX
+                    </p>
+<p class="flex items-center gap-base text-surface-variant hover:text-surface-bright transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span> info@desakelating.go.id
+                    </p>
+</div>
+<div class="flex gap-md">
+<a class="w-10 h-10 rounded-full border border-surface-variant flex items-center justify-center hover:bg-surface-bright hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-surface-variant flex items-center justify-center hover:bg-surface-bright hover:text-tertiary transition-all" href="#">
+<span class="material-symbols-outlined">alternate_email</span>
+</a>
+</div>
+</div>
+<!-- Links -->
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-md">
+<h5 class="font-label-md text-label-md text-surface-bright uppercase">Menu</h5>
+<ul class="space-y-sm font-body-sm text-surface-variant">
+<li><a class="hover:text-surface-bright transition-colors" href="#">Beranda</a></li>
+<li><a class="hover:text-surface-bright transition-colors" href="#">Layanan Publik</a></li>
+<li><a class="hover:text-surface-bright transition-colors" href="#">Statistik Desa</a></li>
+<li><a class="hover:text-surface-bright transition-colors" href="#">Berita Terkini</a></li>
+</ul>
+</div>
+<div class="space-y-md">
+<h5 class="font-label-md text-label-md text-surface-bright uppercase">Informasi</h5>
+<ul class="space-y-sm font-body-sm text-surface-variant">
+<li><a class="hover:text-surface-bright transition-colors" href="#">Kebijakan Privasi</a></li>
+<li><a class="hover:text-surface-bright transition-colors" href="#">Syarat &amp; Ketentuan</a></li>
+<li><a class="hover:text-surface-bright transition-colors" href="#">Peta Situs</a></li>
+<li><a class="hover:text-surface-bright transition-colors" href="#">Transparansi Dana</a></li>
+</ul>
+</div>
+</div>
+<!-- Map -->
+<div class="space-y-md">
+<h5 class="font-label-md text-label-md text-surface-bright uppercase">Lokasi Kami</h5>
+<div class="w-full h-48 rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A detailed, modern digital map interface highlighting the geographical boundaries of Desa Kelating in Tabanan, Bali. The map uses a minimalist aesthetic with navy blue and green accents, showing key landmarks like the village office, main roads, and proximity to the coastline, presented in a clean, data-viz style." data-location="Kelating, Tabanan, Bali" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9czvKZ3ie-IBvNU3lXbxQel-W1zW0FTistazV_ypR-aOKpbtFlg32vX2vljPuaWPilsdxiWmDMuIheP802yikz1PXyIAVXuH32pH7uh6OccckO9Vg8KeNm7T4M3Hw6qRg-FGSDr3OwkBXMlzeae9eh3g9xVN_rRae9KM7rlzgYwRTPxc6gcEMqV4qqFfiEmu0c3ufCRxnjZRwlArYe4ex0DNx_lXVO8yH64HECQlikqrs468dfRV2JmXLPpsarkWozkEwKe48IwQg"/>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter mt-xl pt-lg border-t border-surface-variant/20 flex flex-col md:flex-row justify-between items-center text-surface-variant gap-md">
+<p class="font-body-sm text-body-sm">© 2024 Pemerintah Desa Kelating. All Rights Reserved.</p>
+<div class="flex gap-lg font-body-sm text-body-sm">
+<span class="flex items-center gap-xs">Developed with <span class="material-symbols-outlined text-red-500 text-[16px]" style="font-variation-settings: 'FILL' 1;">favorite</span> for Kelating</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+                header.classList.add('bg-surface/100');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.remove('bg-surface/100');
+            }
+        });
+    </script>
+</body></html>

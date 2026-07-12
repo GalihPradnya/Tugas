@@ -1,0 +1,21 @@
+<!-- Footer -->
+    <footer class="bg-green-700 text-white py-6 mt-8">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4">
+            <div class="flex items-center space-x-2 mb-2 md:mb-0">
+                <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=32&q=80"
+                    alt="Logo Pemda" class="h-8 w-8 rounded-full">
+                <span class="font-semibold">Pemerintah Kabupaten Tabanan</span>
+            </div>
+            <div class="flex space-x-4 mb-2 md:mb-0">
+                <a href="<?php echo base_url(''); ?>instagram" class="hover:underline">Instagram</a>
+                <a href="<?php echo base_url(''); ?>facebook" class="hover:underline">Facebook</a>
+                <a href="<?php echo base_url(''); ?>youtube" class="hover:underline">YouTube</a>
+            </div>
+            <div class="text-sm">&copy; 2026 Desa Kelating. All rights reserved.</div>
+        </div>
+    </footer>
+    <script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/slide_gambar.js'); ?>"></script>
+</body>
+
+</html>
