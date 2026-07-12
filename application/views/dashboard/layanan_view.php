@@ -8,7 +8,7 @@
             <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-2xl font-semibold mb-4">Pengajuan Surat Online</h3>
                 <p class="mb-4">Ajukan permohonan surat keterangan, domisili, usaha, dan lainnya secara online tanpa harus datang ke kantor desa.</p>
-                <a href="<?php echo base_url('navbar/surat/ajukan_surat'); ?>" class="bg-green-600 text-white px-5 py-2 rounded font-semibold shadow hover:bg-green-700">Ajukan Surat</a>
+                <a href="<?php echo base_url('surat/pengajuan'); ?>" class="bg-green-600 text-white px-5 py-2 rounded font-semibold shadow hover:bg-green-700">Ajukan Surat</a>
             </div>
             <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-2xl font-semibold mb-4">Data Kependudukan</h3>
