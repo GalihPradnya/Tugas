@@ -14,4 +14,23 @@ class Pemerintahan_model extends CI_Model
     {
         return $this->db->order_by('urutan', 'ASC')->get('perangkat_desa')->result();
     }
+
+    // Mengambil data Lembaga Desa
+    public function getLembagaDesa()
+{
+    $lembaga = $this->db
+        ->order_by('urutan', 'ASC')
+        ->get('lembaga_desa')
+        ->result();
+
+    foreach ($lembaga as $item) {
+        $item->anggota = $this->db
+            ->where('lembaga_id', $item->id)
+            ->order_by('urutan', 'ASC')
+            ->get('anggota_lembaga')
+            ->result();
+    }
+
+    return $lembaga;
+}
 }

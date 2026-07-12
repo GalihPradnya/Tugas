@@ -14,8 +14,14 @@ class Pemerintahan extends CI_Controller {
     // Menampilkan halaman Pemerintahan Desa
     public function index()
     {
-        // Mengambil data Kepala Desa
+        // Data Kepala Desa
         $data['kepala_desa'] = $this->Pemerintahan_model->getKepalaDesa();
+
+        // Data Perangkat Desa
+        $data['perangkat_desa'] = $this->Pemerintahan_model->getPerangkatDesa();
+
+        // Data Lembaga Desa
+        $data['lembaga_desa'] = $this->Pemerintahan_model->getLembagaDesa();
 
         // Menampilkan view
         $this->load->view('templates/dashboard_header');
