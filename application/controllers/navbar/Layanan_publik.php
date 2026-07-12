@@ -11,12 +11,8 @@ class Layanan_publik extends CI_Controller {
             $this->load->view('templates/dashboard_footer');
     } 
     
-    public function ajukan_surat()
-    {
-        $this->load->view('templates/dashboard_header');
-        $this->load->view('layanan/ajukan_surat');
-        $this->load->view('templates/dashboard_footer');
-    }
+
+    
 
     public function data_kependudukan()
     {
