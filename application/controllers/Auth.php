@@ -44,9 +44,11 @@ class Auth extends CI_Controller {
                 //cek password
                 if(password_verify($password, $user['password'])){
                     $data = [
-                        'email' => $user['email'],
+                        'id'      => $user['id'],
+                        'email'   => $user['email'],
                         'role_id' => $user['role_id']
                     ];
+
                     $this->session->set_userdata($data);
                   if ($user['role_id'] == 1) {
                         redirect('superadmin');
@@ -129,14 +131,19 @@ class Auth extends CI_Controller {
             redirect('auth/login');
         }
     }
-    public function logout()
-    {
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
+        public function logout()
+        {
+            $this->session->unset_userdata('id');
+            $this->session->unset_userdata('email');
+            $this->session->unset_userdata('role_id');
 
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Anda Telah Logout!</div>');
-        redirect('beranda');
-    }
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success">Anda Telah Logout!</div>'
+            );
+
+            redirect('beranda');
+        }
     public function blocked()
     {
         $this->load->view('auth/blocked');
