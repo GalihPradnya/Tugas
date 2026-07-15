@@ -66,9 +66,9 @@ public function tambah()
 }
 public function simpan()
 {
-
     $data = [
-
+        'user_id' => $this->session->userdata('id'),
+        
         'nik' => $this->input->post('nik'),
         'nama' => $this->input->post('nama'),
         'hp' => $this->input->post('hp'),
@@ -80,36 +80,61 @@ public function simpan()
 
     ];
 
+    // Simpan data pengajuan
+        $pengajuan_id = $this->Pengajuan_model->simpan($data);
 
-    // simpan ke database
-    $pengajuan_id = $this->Pengajuan_model->simpan($data);
+        if($pengajuan_id)
+        {
+            // Konfigurasi upload
+            $config['upload_path']   = './uploads/persyaratan/';
+            $config['allowed_types'] = 'jpg|jpeg|png|pdf';
+            $config['max_size']      = 2048;
 
+            $this->load->library('upload');
 
-    // jika berhasil simpan
-    if($pengajuan_id)
-    {
+            // Upload semua file persyaratan
+            foreach($_FILES as $key => $file)
+            {
+                if(!empty($file['name']))
+                {
+                    $config['file_name'] = time().'_'.$file['name'];
 
-        $this->session->set_flashdata(
-            'success',
-            'Pengajuan berhasil dikirim'
-        );
+                    $this->upload->initialize($config);
 
+                    if($this->upload->do_upload($key))
+                    {
+                        $uploadData = $this->upload->data();
 
-        redirect('surat/pengajuan');
+                        $persyaratan_id = str_replace(
+                            'persyaratan_',
+                            '',
+                            $key
+                        );
 
+                        $this->Pengajuan_model->simpanFile([
+                            'pengajuan_id'   => $pengajuan_id,
+                            'persyaratan_id' => $persyaratan_id,
+                            'nama_file'      => $uploadData['file_name']
+                        ]);
+                    }
+                }
+            }
+
+            $this->session->set_flashdata(
+                'success',
+                'Pengajuan berhasil dikirim'
+            );
+
+            redirect('surat/pengajuan');
+        }
+        else
+        {
+            $this->session->set_flashdata(
+                'error',
+                'Pengajuan gagal dikirim'
+            );
+
+            redirect('surat/pengajuan');
+        }
     }
-    else
-    {
-
-        $this->session->set_flashdata(
-            'error',
-            'Pengajuan gagal dikirim'
-        );
-
-
-        redirect('surat/pengajuan');
-
-    }
-
-}
 }
