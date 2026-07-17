@@ -89,14 +89,14 @@ public function updateStatus()
         $id,
         $data
     );
-if(
-    $status == 'Selesai'
-    &&
-    !empty($data['file_hasil'])
-)
-{
-    $kirimEmail = true;
-}
+    if(
+        $status == 'Selesai'
+        &&
+        !empty($data['file_hasil'])
+    )
+    {
+        $kirimEmail = true;
+    }
 
     // ===========================
     // KIRIM EMAIL JIKA SELESAI
