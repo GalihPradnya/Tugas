@@ -46,7 +46,9 @@ public function updateStatus()
 
     $data = [
         'status' => $status
+        
     ];
+    $kirimEmail = false;
 
     // upload surat hasil jika ada
     if(!empty($_FILES['file_hasil']['name']))
@@ -65,6 +67,7 @@ public function updateStatus()
 
             $data['file_hasil'] =
                 $uploadData['file_name'];
+                  $kirimEmail = true;
         }
         else
         {
@@ -81,11 +84,68 @@ public function updateStatus()
         }
     }
 
-    // update ke database lewat model
+    // update database
     $this->Pengajuan_model->updatePengajuan(
         $id,
         $data
     );
+if(
+    $status == 'Selesai'
+    &&
+    !empty($data['file_hasil'])
+)
+{
+    $kirimEmail = true;
+}
+
+    // ===========================
+    // KIRIM EMAIL JIKA SELESAI
+    // ===========================
+    if($kirimEmail)
+    {
+        $pengajuan =
+            $this->Pengajuan_model->getPengajuanById($id);
+
+        $this->load->library('email');
+
+        $this->email->from(
+            'desakelating027@gmail.com',
+            'Pelayanan Surat Desa'
+        );
+
+        $this->email->to(
+            $pengajuan['email']
+        );
+
+        $this->email->subject(
+            'Pengajuan Surat Selesai'
+        );
+
+        $pesan = '
+            Halo <b>'.$pengajuan['name'].'</b>,<br><br>
+
+            Pengajuan surat <b>'.$pengajuan['nama_surat'].'</b>
+            telah selesai diproses.<br><br>
+
+            Anda dapat login ke Sistem Pelayanan Desa untuk melihat dan mengunduh salinan surat dalam format PDF.<br><br>
+
+            Untuk mengambil surat asli yang telah ditandatangani dan distempel, silakan datang ke Kantor Desa Kelating pada jam pelayanan.<br><br>
+
+            Terima kasih.<br><br>
+
+            <b>Pelayanan Surat Desa Kelating</b>
+        ';
+
+        $this->email->message($pesan);
+
+if(!$this->email->send())
+{
+    log_message(
+        'error',
+        $this->email->print_debugger()
+    );
+}
+    }
 
     $this->session->set_flashdata(
         'success',

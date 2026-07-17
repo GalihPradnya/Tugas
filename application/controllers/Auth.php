@@ -149,4 +149,46 @@ class Auth extends CI_Controller {
         $this->load->view('auth/blocked');
 
     }
+    public function testEmail()
+{
+    $config = array(
+        'protocol'    => 'smtp',
+        'smtp_host'   => 'ssl://smtp.gmail.com',
+        'smtp_port'   => 465,
+        'smtp_user'   => 'desakelating027@gmail.com',
+        'smtp_pass'   => 'xqlt baye nmqg pxdt',
+        'mailtype'    => 'html',
+        'charset'     => 'utf-8',
+        'newline'     => "\r\n",
+        'crlf'        => "\r\n"
+    );
+
+    $this->load->library('email');
+
+    $this->email->initialize($config);
+
+    $this->email->from(
+        'desakelating027@gmail.com',
+        'Sistem Surat Desa'
+    );
+
+    $this->email->to('ekapretz887@gmail.com');
+
+    $this->email->subject('Test Email');
+
+    $this->email->message(
+        '<h3>Email berhasil dikirim</h3>'
+    );
+
+    if($this->email->send())
+    {
+        echo 'BERHASIL';
+    }
+    else
+    {
+        echo '<pre>';
+        echo $this->email->print_debugger();
+        echo '</pre>';
+    }
+}
 }
