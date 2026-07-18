@@ -159,4 +159,29 @@ public function updatePengajuan($id, $data)
         $data
     );
 }
+public function getPengajuanById($id)
+{
+    $this->db->select('
+        pengajuan.*,
+        user.email,
+        user.name,
+        jenis_surat.nama_surat
+    ');
+
+    $this->db->from('pengajuan');
+
+    $this->db->join(
+        'user',
+        'user.id = pengajuan.user_id'
+    );
+
+    $this->db->join(
+        'jenis_surat',
+        'jenis_surat.id = pengajuan.jenis_surat_id'
+    );
+
+    $this->db->where('pengajuan.id', $id);
+
+    return $this->db->get()->row_array();
+}
 }

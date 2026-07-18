@@ -66,6 +66,7 @@ public function tambah()
 }
 public function simpan()
 {
+
     $data = [
         'user_id' => $this->session->userdata('id'),
         
