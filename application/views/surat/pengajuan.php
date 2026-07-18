@@ -1,7 +1,6 @@
-<main class="container mx-auto py-10 px-4">
+    <main class="container mx-auto py-12 px-4">
 
-
-    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-8 md:p-10">
 
         <h2 class="text-3xl font-bold text-center text-green-700 mb-2">
             Form Pengajuan Surat
@@ -23,7 +22,7 @@
         <form action="<?= base_url('surat/pengajuan/simpan') ?>" method="post" enctype="multipart/form-data">
 
             <!-- DATA PEMOHON -->
-            <h3 class="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">
+            <h3 class="text-xl font-semibold mb-6 text-gray-700 border-b pb-3">
                 Data Pemohon
             </h3>
 
@@ -59,7 +58,7 @@
             </div>
 
             <!-- ALAMAT -->
-            <div class="mt-5">
+            <div class="mt-8">
 
                 <label class="font-semibold">Alamat</label>
 
@@ -95,7 +94,7 @@
             </div>
 
             <!-- JENIS SURAT -->
-            <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-700 border-b pb-2">
+            <h3 class="text-xl font-semibold mt-10 mb-6 text-gray-700 border-b pb-3">
                 Jenis Surat
             </h3>
 
@@ -120,7 +119,7 @@
             </select>
 
             <!-- PERSYARATAN DINAMIS -->
-            <div id="persyaratan_container" class="mt-5"></div>
+            <div id="persyaratan_container" class="mt-8"></div>
 
             <!-- KEPERLUAN -->
             <div class="mt-5">
@@ -128,9 +127,9 @@
                 <label class="font-semibold">Keperluan</label>
 
                 <textarea
-                    name="keperluan"
-                    rows="4"
-                    class="w-full border rounded p-2 mt-1"></textarea>
+                name="keperluan"
+                rows="5"
+                class="w-full border rounded-lg p-3 mt-2"></textarea>
 
             </div>
 
@@ -140,9 +139,9 @@
                 <label class="font-semibold">Catatan</label>
 
                 <textarea
-                    name="catatan"
-                    rows="3"
-                    class="w-full border rounded p-2 mt-1"></textarea>
+                name="catatan"
+                rows="4"
+                class="w-full border rounded-lg p-3 mt-2"></textarea>
 
             </div>
 
@@ -163,22 +162,18 @@
             </div>
 
             <!-- TOMBOL -->
-            <div class="flex justify-end gap-3 mt-8">
+            <div class="flex justify-end gap-4 mt-10 border-t pt-6">
 
-                <a href="<?= base_url('navbar/layanan_publik') ?>"
-                    class="bg-gray-500 text-white px-5 py-2 rounded hover:bg-gray-600">
+            <a href="<?= base_url('navbar/layanan_publik') ?>"
+            class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition">
+                Batal
+            </a>
 
-                    Batal
-
-                </a>
-
-                <button
-                    type="submit"
-                    class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
-
-                    Ajukan Surat
-
-                </button>
+            <button
+                type="submit"
+                class="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                Ajukan Surat
+            </button>
 
             </div>
 
@@ -246,7 +241,7 @@ $('#jenis_surat').change(function(){
                         <input
                             type="file"
                             name="persyaratan_${row.id}"
-                            class="w-full border rounded p-2 mt-1"
+                            class="w-full border rounded-lg p-3 mt-2"
                             required>
 
                     </div>

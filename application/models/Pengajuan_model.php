@@ -45,28 +45,30 @@ class Pengajuan_model extends CI_Model
         return $this->db->insert('pengajuan_file', $data);
     }
     public function getAllPengajuan()
-    {
-        $this->db->select('
-            pengajuan.*,
-            jenis_surat.nama_surat,
-            user.name as nama_user,
-            user.email
-        ');
+{
+    $this->db->select('
+        pengajuan.*,
+        jenis_surat.nama_surat,
+        user.name as nama_user,
+        user.email
+    ');
 
-        $this->db->from('pengajuan');
+    $this->db->from('pengajuan');
 
-        $this->db->join(
-            'jenis_surat',
-            'jenis_surat.id = pengajuan.jenis_surat_id'
-        );
+    $this->db->join(
+        'jenis_surat',
+        'jenis_surat.id = pengajuan.jenis_surat_id'
+    );
 
-        $this->db->join(
-            'user',
-            'user.id = pengajuan.user_id'
-        );
+    $this->db->join(
+        'user',
+        'user.id = pengajuan.user_id'
+    );
 
-        return $this->db->get()->result_array();
-    }
+  $this->db->order_by('pengajuan.created_at', 'DESC');
+
+    return $this->db->get()->result_array();
+}
     public function getDetailPengajuan($id)
 {
     $this->db->select('

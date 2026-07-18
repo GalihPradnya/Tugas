@@ -42,20 +42,23 @@ class Auth extends CI_Controller {
             if($user['is_active'] == 1)
             {
                 //cek password
+                
                 if(password_verify($password, $user['password'])){
                     $data = [
-                        'id'      => $user['id'],
-                        'email'   => $user['email'],
-                        'role_id' => $user['role_id']
+                        'id'       => $user['id'],
+                        'email'    => $user['email'],
+                        'name'     => $user['name'],
+                        'image'    => $user['image'],
+                        'role_id'  => $user['role_id']
                     ];
 
                     $this->session->set_userdata($data);
-                  if ($user['role_id'] == 1) {
+                    if ($user['role_id'] == 1) {
                         redirect('superadmin');
                     } elseif ($user['role_id'] == 2) {
                         redirect('admin');
                     } elseif ($user['role_id'] == 3) {
-                        redirect('user');
+                        redirect('beranda');
                     } else {
                         redirect('auth/login');
                     }
@@ -133,8 +136,10 @@ class Auth extends CI_Controller {
     }
         public function logout()
         {
-            $this->session->unset_userdata('id');
+           $this->session->unset_userdata('id');
             $this->session->unset_userdata('email');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('image');
             $this->session->unset_userdata('role_id');
 
             $this->session->set_flashdata(

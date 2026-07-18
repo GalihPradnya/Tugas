@@ -16,6 +16,55 @@
     </footer>
     <script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/slide_gambar.js'); ?>"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const btn = document.getElementById('profileBtn');
+        const dropdown = document.getElementById('profileDropdown');
+
+        btn.addEventListener('click', function (e) {
+
+            e.stopPropagation();
+
+            dropdown.classList.toggle('hidden');
+
+        });
+
+        document.addEventListener('click', function () {
+
+            dropdown.classList.add('hidden');
+
+        });
+
+        dropdown.addEventListener('click', function (e) {
+
+            e.stopPropagation();
+
+        });
+
+    });
+    </script>
+    <script>
+    function logoutConfirm()
+    {
+        Swal.fire({
+            title: 'Logout?',
+            text: 'Apakah Anda yakin ingin keluar?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+
+            if(result.isConfirmed)
+            {
+                window.location.href =
+                    "<?= base_url('auth/logout'); ?>";
+            }
+
+        });
+    }
+    </script>
 </body>
 
 </html>

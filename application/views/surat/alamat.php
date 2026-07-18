@@ -4,16 +4,30 @@
         <?= $title; ?>
     </h1>
 
-    <button
-        class="btn btn-primary mb-3"
-        data-toggle="modal"
-        data-target="#tambahAlamat">
+    <div class="card shadow mb-4">
 
-        Tambah Alamat
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
 
-    </button>
+            <h6 class="m-0 font-weight-bold text-primary">
+                Data Alamat
+            </h6>
 
-    <table class="table table-bordered">
+            <button
+                class="btn btn-primary btn-sm"
+                data-toggle="modal"
+                data-target="#tambahAlamat">
+
+                Tambah Alamat
+
+            </button>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover">
 
         <thead>
 
@@ -69,6 +83,11 @@
         </tbody>
 
     </table>
+                </div>
+
+        </div>
+
+    </div>
 
 </div>
 <div class="modal fade" id="tambahAlamat">
@@ -93,34 +112,34 @@
 
                 <div class="modal-body">
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <label>Nama Alamat</label>
+                    <label>Nama Alamat</label>
 
-                        <input
-                            type="text"
-                            name="nama_alamat"
-                            class="form-control"
-                            required>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>Status</label>
-
-                        <select
-                            name="status"
-                            class="form-control">
-
-                            <option value="aktif">Aktif</option>
-                            <option value="nonaktif">Nonaktif</option>
-
-                        </select>
-
-                    </div>
+                    <input
+                        type="text"
+                        name="nama_alamat"
+                        class="form-control"
+                        required>
 
                 </div>
+
+                <div class="form-group">
+
+                    <label>Status</label>
+
+                    <select
+                        name="status"
+                        class="form-control">
+
+                        <option value="aktif">Aktif</option>
+                        <option value="nonaktif">Nonaktif</option>
+
+                    </select>
+
+                </div>
+
+            </div>
 
                 <div class="modal-footer">
 
@@ -165,45 +184,42 @@
 
                 <div class="modal-body">
 
-                    <div class="form-group">
+                <div class="form-group">
 
-                        <label>Nama Alamat</label>
+                <label>Nama Alamat</label>
 
-                    <?php foreach($alamat as $a): ?>
-
-                        <option value="<?= $a['id']; ?>">
-                            <?= $a['nama_alamat']; ?>
-                        </option>
-
-                    <?php endforeach; ?>
-
-                    <option value="lainnya">
-                        Lainnya
-                    </option>
-
-                    <div class="form-group">
-
-                        <label>Status</label>
-
-                        <select
-                            name="status"
-                            class="form-control">
-
-                            <option value="aktif"
-                                <?= $a['status']=='aktif' ? 'selected' : ''; ?>>
-                                Aktif
-                            </option>
-
-                            <option value="nonaktif"
-                                <?= $a['status']=='nonaktif' ? 'selected' : ''; ?>>
-                                Nonaktif
-                            </option>
-
-                        </select>
-
-                    </div>
+                    <input
+                        type="text"
+                        name="nama_alamat"
+                        class="form-control"
+                        value="<?= $a['nama_alamat']; ?>"
+                        required>
 
                 </div>
+
+                <div class="form-group">
+
+                    <label>Status</label>
+
+                    <select
+                        name="status"
+                        class="form-control">
+
+                        <option value="aktif"
+                            <?= $a['status']=='aktif' ? 'selected' : ''; ?>>
+                            Aktif
+                        </option>
+
+                        <option value="nonaktif"
+                            <?= $a['status']=='nonaktif' ? 'selected' : ''; ?>>
+                            Nonaktif
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
 
                 <div class="modal-footer">
 
