@@ -314,10 +314,52 @@ class Pemerintahan extends CI_Controller {
 
     }
 
+    // ==================================
+    // HAPUS LEMBAGA
+    // ==================================
+
+    public function hapusLembaga($id)
+    {
+
+        $this->Pemerintahan_model
+        ->hapusLembaga($id);
 
 
+        redirect('pemerintahan');
 
+    }
 
+    // ==================================
+    // EDIT LEMBAGA
+    // ==================================
+
+    public function editLembaga($id)
+    {
+        $data = [
+            'nama_lembaga' => $this->input->post('nama_lembaga'),
+            'deskripsi'    => $this->input->post('deskripsi'),
+            'urutan'       => $this->input->post('urutan')
+        ];
+
+        $this->Pemerintahan_model->updateLembaga($id, $data);
+
+        redirect('pemerintahan');
+    }
+
+    
+    // ==================================
+    // UPDATE LEMBAGA DESA
+    // ==================================
+    public function updateLembaga($id)
+    {
+        $data = [
+            'nama_lembaga' => $this->input->post('nama_lembaga')
+        ];
+
+        $this->Pemerintahan_model->updateLembaga($id, $data);
+
+        redirect('pemerintahan');
+    }
 
 
     // ==================================
@@ -373,22 +415,29 @@ class Pemerintahan extends CI_Controller {
 
     }
 
-
-
     // ==================================
-    // HAPUS LEMBAGA
-    // ==================================
+// EDIT ANGGOTA
+// ==================================
 
-    public function hapusLembaga($id)
-    {
+public function editAnggota($id)
+{
 
-        $this->Pemerintahan_model
-        ->hapusLembaga($id);
+    $data = [
 
+        'jabatan' => $this->input->post('jabatan'),
 
-        redirect('pemerintahan');
+        'nama'    => $this->input->post('nama'),
 
-    }
+        'urutan'  => $this->input->post('urutan')
+
+    ];
+
+    $this->Pemerintahan_model->updateAnggota($id, $data);
+
+    redirect('pemerintahan');
+
+}
+    
 
 
 }

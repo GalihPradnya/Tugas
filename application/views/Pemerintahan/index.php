@@ -101,7 +101,7 @@
 
                         <th>Nama</th>
 
-                        <th>Urutan</th>
+                        <!-- <th>Urutan</th> -->
 
                         <th>Aksi</th>
 
@@ -129,7 +129,7 @@
 
                         <td><?= $row->nama; ?></td>
 
-                        <td><?= $row->urutan; ?></td>
+                        <!-- <td><?= $row->urutan; ?></td> -->
 
                         <td>
 
@@ -349,13 +349,13 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
 
                             <label>Urutan</label>
 
                             <input type="number" name="urutan" class="form-control">
 
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -750,7 +750,6 @@
 <!-- ================================= -->
 
 <?php foreach($lembaga_desa as $lembaga): ?>
-
 <?php foreach($lembaga->anggota as $anggota): ?>
 
 <div class="modal fade"
@@ -766,18 +765,13 @@
                 <div class="modal-header">
 
                     <h5 class="modal-title">
-
                         Edit Anggota
-
                     </h5>
 
-                    <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal">
-
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal">
                         <span>&times;</span>
-
                     </button>
 
                 </div>
@@ -788,12 +782,11 @@
 
                         <label>Jabatan</label>
 
-                        <input
-                            type="text"
-                            name="jabatan"
-                            class="form-control"
-                            value="<?= $anggota->jabatan; ?>"
-                            required>
+                        <input type="text"
+                               name="jabatan"
+                               class="form-control"
+                               value="<?= $anggota->jabatan; ?>"
+                               required>
 
                     </div>
 
@@ -801,44 +794,38 @@
 
                         <label>Nama</label>
 
-                        <input
-                            type="text"
-                            name="nama"
-                            class="form-control"
-                            value="<?= $anggota->nama; ?>"
-                            required>
+                        <input type="text"
+                               name="nama"
+                               class="form-control"
+                               value="<?= $anggota->nama; ?>"
+                               required>
 
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
 
                         <label>Urutan</label>
 
-                        <input
-                            type="number"
-                            name="urutan"
-                            class="form-control"
-                            value="<?= $anggota->urutan; ?>"
-                            required>
+                        <input type="number"
+                               name="urutan"
+                               class="form-control"
+                               value="<?= $anggota->urutan; ?>"
+                               required>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
                 <div class="modal-footer">
 
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal">
-
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal">
                         Batal
-
                     </button>
 
-                    <button
-                        type="submit"
-                        class="btn btn-warning">
+                    <button type="submit"
+                            class="btn btn-warning">
 
                         <i class="fas fa-save"></i>
 
@@ -857,6 +844,5 @@
 </div>
 
 <?php endforeach; ?>
-
 <?php endforeach; ?>
 
