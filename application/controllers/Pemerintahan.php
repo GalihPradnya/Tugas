@@ -47,7 +47,7 @@ class Pemerintahan extends CI_Controller {
             $data
         );
 
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
 
     }
 

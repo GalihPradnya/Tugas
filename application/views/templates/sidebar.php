@@ -2,7 +2,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('beranda'); ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -55,6 +55,16 @@
                 <?PHP endforeach; ?>
                 <hr class="sidebar-divider mt-3">
             <?php endforeach; ?>
+            <?php if($this->session->userdata('role_id') == 3): ?>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('beranda'); ?>">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Website Desa</span>
+                </a>
+            </li>
+
+            <?php endif; ?>
 
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -62,7 +72,6 @@
                     <span>Logout</span>
                 </a>
             </li>
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
