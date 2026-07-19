@@ -14,30 +14,33 @@
 <body class="bg-gray-50 text-gray-800 overflow-x-hidden">
     <!-- Header -->
     <header class="bg-white shadow sticky top-0 z-50">
-        <div class="container mx-auto flex items-center justify-between py-4 px-6">
-            <div class="flex items-center space-x-3">
-                <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=48&q=80" alt="Logo Desa" class="h-12 w-12 rounded-full">
-                <div>
-                    <h1 class="text-xl font-bold">Desa Kelating</h1>
-                    <p class="text-sm text-gray-500">Bersama membangun desa yang mandiri dan sejahtera</p>
-                </div>
-            </div>
+        <div class="max-w-screen-2xl mx-auto flex items-center py-4 px-8">
+        <div class="flex items-center space-x-3 min-w-0">
+            <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=48&q=80"
+                alt="Logo Desa"
+                class="h-12 w-12 rounded-full">
+                <h1 class="text-xl font-bold truncate">
+                    Desa Kelating
+                </h1>
+        </div>
             <!-- Hamburger button for mobile/tablet -->
-            <button id="menu-toggle" class="lg:hidden flex items-center px-3 py-2 border rounded text-green-700 border-green-700 focus:outline-none" aria-label="Toggle Menu">
+            <button id="menu-toggle"
+            class="lg:hidden flex-shrink-0 items-center px-3 py-2 ml-4 border rounded text-green-700 border-green-700">
                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
             <!-- Desktop Navigation -->
-            <nav class="items-center hidden lg:flex gap-6">
-                <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium">Beranda</a>
-                <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium">Profil Desa</a>
-                <a href="<?php echo base_url('navbar/pemerintahan'); ?>" class="hover:text-green-600 font-medium">Pemerintahan</a>
-                <a href="<?php echo base_url('navbar/layanan_publik'); ?>" class="hover:text-green-600 font-medium text-green-700 font-bold">Layanan Publik</a>
-                <a href="<?php echo base_url('navbar/berita_pengumuman'); ?>" class="hover:text-green-600 font-medium">Berita & Pengumuman</a>
-                <a href="<?php echo base_url('navbar/galeri'); ?>" class="hover:text-green-600 font-medium">Galeri</a>
-                <a href="<?php echo base_url('navbar/kontak'); ?>" class="hover:text-green-600 font-medium">Kontak</a>
-                <!-- Button Login -->
+            <nav class="hidden lg:flex items-center gap-4 xl:gap-6 mx-auto">
+                <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Beranda</a>
+                <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Profil Desa</a>
+                <a href="<?php echo base_url('navbar/pemerintahan'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Pemerintahan</a>
+                <a href="<?php echo base_url('navbar/layanan_publik'); ?>" class="hover:text-green-600 font-medium text-green-700 font-bold whitespace-nowrap">Layanan Publik</a>
+                <a href="<?php echo base_url('navbar/berita_pengumuman'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Berita & Pengumuman</a>
+                <a href="<?php echo base_url('navbar/galeri'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Galeri</a>
+                <a href="<?php echo base_url('navbar/kontak'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Kontak</a>
+            </nav>
+                            <!-- Button Login -->
                 <?php if($this->session->userdata('id')): ?>
 
                 <div class="relative">
@@ -50,7 +53,7 @@
                         src="<?= base_url('assets/img/profile/'.$this->session->userdata('image')); ?>"
                         class="w-10 h-10 rounded-full object-cover border-2 border-green-500">
 
-                    <div class="hidden md:block text-left">
+                    <div class="hidden xl:block text-left">
                         <p class="text-sm font-semibold text-gray-800 leading-none">
                             <?= $this->session->userdata('name'); ?>
                         </p>
@@ -160,7 +163,6 @@
                 </a>
 
             <?php endif; ?>
-            </nav>
         </div>
         <!-- Mobile/Tablet Navigation -->
         <nav id="mobile-menu" class="lg:hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 hidden">
@@ -169,7 +171,85 @@
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
+
                 </button>
+                <?php if($this->session->userdata('id')): ?>
+
+                <div class="border-b pb-4 mb-4">
+
+                    <button
+                        id="mobileProfileBtn"
+                        class="w-full flex items-center justify-between">
+
+                        <div class="flex items-center gap-3">
+
+                            <img
+                                src="<?= base_url('assets/img/profile/'.$this->session->userdata('image')); ?>"
+                                class="w-12 h-12 rounded-full object-cover border-2 border-green-500">
+
+                            <div class="text-left">
+                                <h3 class="font-semibold">
+                                    <?= $this->session->userdata('name'); ?>
+                                </h3>
+
+                                <p class="text-sm text-gray-500">
+                                    <?= $this->session->userdata('email'); ?>
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+
+                            <path stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+
+                    </button>
+
+                    <div id="mobileProfileDropdown" class="hidden mt-3 pl-3 flex flex-col gap-2">
+
+                        <?php if($this->session->userdata('role_id') == 3): ?>
+
+                            <a href="<?= base_url('user'); ?>">
+                                🏠 Profil Saya
+                            </a>
+
+                        <?php elseif($this->session->userdata('role_id') == 2): ?>
+
+                            <a href="<?= base_url('admin'); ?>">
+                                🏠 Dashboard
+                            </a>
+
+                        <?php else: ?>
+
+                            <a href="<?= base_url('superadmin'); ?>">
+                                🏠 Dashboard
+                            </a>
+
+                        <?php endif; ?>
+
+                        <a href="<?= base_url('surat_saya'); ?>">
+                            📄 Surat Saya
+                        </a>
+
+                        <a href="#"
+                            onclick="logoutConfirm()"
+                            class="text-red-600">
+                            🚪 Logout
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <?php endif; ?>
                 <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium">Beranda</a>
                 <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium">Profil Desa</a>
                 <a href="<?php echo base_url('navbar/pemerintahan'); ?>" class="hover:text-green-600 font-medium">Pemerintahan</a>
