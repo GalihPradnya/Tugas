@@ -1,18 +1,17 @@
 
     <main class="container mx-auto py-12 px-4 flex-1">
         <nav class="mb-6 text-sm">
-            <a href="index.html" class="text-green-700 hover:underline">Beranda</a> &gt; <a href="berita-pengumuman.html" class="text-green-700 hover:underline">Berita & Pengumuman</a> &gt; <span class="text-gray-500">Detail Berita</span>
+            <a href="index.html" class="text-green-700 hover:underline">Beranda</a> &gt; <a href="berita-pengumuman.html" class="text-green-700 hover:underline">Berita & Pengumuman</a> &gt; <span class="text-gray-500"><?= $berita->judul; ?></span>
         </nav>
         <article class="bg-white rounded-xl shadow-lg p-6 md:p-10 mx-auto mb-10">
-            <h2 class="text-3xl font-bold mb-2 text-green-700">Judul Berita 1</h2>
+            <h2 class="text-3xl font-bold mb-2 text-green-700"><?= $berita->judul; ?></h2>
             <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
-                <span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Oleh: <span class="font-semibold text-green-700">Admin</span></span>
-                <span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4 4 4-4m-4-5v9"/></svg> 01 Jan 2025</span>
+                <span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Oleh: <span class="font-semibold text-green-700"><?= $berita->penulis; ?></span></span>
+                <span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4 4 4-4m-4-5v9"/></svg><?= date('d F Y', strtotime($berita->tanggal)); ?></span>
             </div>
-            <img src="https://picsum.photos/id/89/600/300" alt="Gambar Berita" class="rounded-lg my-6 w-full max-w-2xl mx-auto shadow">
+            <img src="<?= base_url('uploads/berita/'.$berita->gambar); ?>" class="rounded-lg my-6 w-full max-w-2xl mx-auto shadow">
             <div class="prose max-w-none mb-6">
-                <p>Isi lengkap berita desa yang informatif, aktual, dan bermanfaat bagi masyarakat. Paragraf ini dapat berisi penjelasan detail mengenai peristiwa, kegiatan, atau informasi penting yang terjadi di desa.</p>
-                <p>Paragraf tambahan untuk memperkaya konten berita dan memberikan gambaran yang lebih jelas kepada pembaca.</p>
+                <?= $berita->isi; ?>
             </div>
         </article>
         <section class="mx-auto bg-white rounded-xl shadow p-6 md:p-8">
