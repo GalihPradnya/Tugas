@@ -65,6 +65,20 @@
         });
     }
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const mobileProfileBtn = document.getElementById('mobileProfileBtn');
+        const mobileProfileDropdown = document.getElementById('mobileProfileDropdown');
+
+        if (mobileProfileBtn) {
+            mobileProfileBtn.addEventListener('click', function() {
+                mobileProfileDropdown.classList.toggle('hidden');
+            });
+        }
+
+    });
+    </script>
 </body>
 
 </html>
