@@ -9,6 +9,8 @@ class Profil_desa extends CI_Controller {
 
         // Memanggil model
         $this->load->model('Profil_model');
+        $this->load->model('Logo_profil_model');
+        
     }
 
     // Menampilkan halaman profil desa
@@ -17,11 +19,10 @@ class Profil_desa extends CI_Controller {
         // Mengambil data dari database
         $data['profil'] = $this->Profil_model->getProfil();
         $data['misi']   = $this->Profil_model->getMisi();
-
-        // Mengirim data ke view
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/profil_view', $data);
         $this->load->view('templates/dashboard_footer');
     }
-
+    
 }

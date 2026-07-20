@@ -8,11 +8,13 @@ class JenisSurat extends CI_Controller
         parent::__construct();
 
         $this->load->model('JenisSurat_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Jenis Surat';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['jenis_surat'] = $this->JenisSurat_model->getAll();
 
         $this->load->view('templates/header', $data);

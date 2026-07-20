@@ -10,6 +10,7 @@ class PersyaratanSurat extends CI_Controller
         $this->load->model('PersyaratanSurat_model');
         $this->load->model('JenisSurat_model');
         $this->load->model('Persyaratan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
@@ -24,6 +25,7 @@ class PersyaratanSurat extends CI_Controller
 
         $data['persyaratan_surat'] =
             $this->PersyaratanSurat_model->getAll();
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $this->load->view('templates/header',$data);
         $this->load->view('templates/sidebar',$data);

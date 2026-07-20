@@ -6,10 +6,13 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('Logo_profil_model');
     }
 
     public function login()
+    
     {   
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email',
             [
                 'required' => 'Email Tidak Boleh Kosong!',
@@ -34,6 +37,7 @@ class Auth extends CI_Controller {
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
+        
 
         //usernya ada
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
@@ -92,6 +96,7 @@ class Auth extends CI_Controller {
     
     public function registration()
     {
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->form_validation->set_rules('name', 'Name', 'required|trim',
             [
                 'required' => 'Nama Tidak Boleh Kosong!'
@@ -136,7 +141,7 @@ class Auth extends CI_Controller {
     }
         public function logout()
         {
-           $this->session->unset_userdata('id');
+            $this->session->unset_userdata('id');
             $this->session->unset_userdata('email');
             $this->session->unset_userdata('name');
             $this->session->unset_userdata('image');

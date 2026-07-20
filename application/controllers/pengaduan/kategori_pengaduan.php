@@ -10,11 +10,13 @@ class Kategori_pengaduan extends CI_Controller
         is_logged_in();
 
         $this->load->model('Kategori_pengaduan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Kategori Pengaduan';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['kategori'] =
             $this->Kategori_pengaduan_model->getAll();

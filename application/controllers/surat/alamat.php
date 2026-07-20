@@ -8,11 +8,13 @@ class Alamat extends CI_Controller
         parent::__construct();
 
         $this->load->model('Alamat_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Data Alamat';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['alamat'] = $this->Alamat_model->getAll();
 
         $this->load->model('Alamat_model');

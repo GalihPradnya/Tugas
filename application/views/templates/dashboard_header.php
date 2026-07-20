@@ -16,12 +16,13 @@
     <header class="bg-white shadow sticky top-0 z-50">
         <div class="max-w-screen-2xl mx-auto flex items-center py-4 px-8">
         <div class="flex items-center space-x-3 min-w-0">
-            <img src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=48&q=80"
-                alt="Logo Desa"
+            <img src="<?= base_url('uploads/logo/' . $logoDesa['logo']); ?>"
+                alt="<?= $logoDesa['nama_desa']; ?>"
                 class="h-12 w-12 rounded-full">
-                <h1 class="text-xl font-bold truncate">
-                    Desa Kelating
-                </h1>
+
+            <h1 class="text-xl font-bold truncate">
+                <?= $logoDesa['nama_desa']; ?>
+            </h1>
         </div>
             <!-- Hamburger button for mobile/tablet -->
             <button id="menu-toggle"

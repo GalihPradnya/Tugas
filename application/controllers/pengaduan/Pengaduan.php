@@ -8,6 +8,7 @@ public function __construct()
     parent::__construct();
     $this->load->model('Kategori_pengaduan_model');
     $this->load->model('Pengaduan_model');
+    $this->load->model('Logo_profil_model');
     
 }
 public function index()
@@ -17,6 +18,7 @@ public function index()
 
     $data['kategori'] =
     $this->Kategori_pengaduan_model->getAktif();
+    $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
     $this->load->view('templates/dashboard_header', $data);
     $this->load->view('pengaduan/pengaduan_masyarakat', $data);
