@@ -8,12 +8,14 @@ class Pendatang extends CI_Controller
         parent::__construct();
 
         $this->load->model('Pendatang_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Pendataan Warga Pendatang';
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        
         $this->load->view('templates/dashboard_header', $data);
         $this->load->view('pendatang/form_pendatang', $data);
         $this->load->view('templates/dashboard_footer');
@@ -95,4 +97,5 @@ class Pendatang extends CI_Controller
 
         redirect('pendatang/pendatang');
     }
+    
 }

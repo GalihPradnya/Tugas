@@ -10,18 +10,20 @@ class Pengaduan_admin extends CI_Controller {
         is_logged_in();
 
         $this->load->model('Pengaduan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Data Pengaduan';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['pengaduan'] =
             $this->Pengaduan_model->getAll();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
-        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
         $this->load->view('pengaduan/pengaduan_admin', $data);
         $this->load->view('templates/footer');
     }
@@ -32,10 +34,11 @@ class Pengaduan_admin extends CI_Controller {
 
         $data['pengaduan'] =
             $this->Pengaduan_model->getById($id);
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar');
-        $this->load->view('templates/topbar');
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
         $this->load->view('pengaduan/pengaduan_detail', $data);
         $this->load->view('templates/footer');
     }

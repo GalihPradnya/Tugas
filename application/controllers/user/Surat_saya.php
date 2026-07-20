@@ -8,6 +8,7 @@ class Surat_saya extends CI_Controller
         parent::__construct();
 
         $this->load->model('Pengajuan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
@@ -18,6 +19,7 @@ class Surat_saya extends CI_Controller
 
         $data['surat'] =
             $this->Pengajuan_model->getSuratByUser($user_id);
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

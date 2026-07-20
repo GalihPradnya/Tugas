@@ -11,11 +11,13 @@ class Pengaduan_saya extends CI_Controller {
         
 
         $this->load->model('Pengaduan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Pengaduan Saya';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $user_id = $this->session->userdata('id');
 
@@ -37,6 +39,7 @@ class Pengaduan_saya extends CI_Controller {
         $data['pengaduan'] =
             $this->Pengaduan_model
             ->getDetailPengaduan($id);
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

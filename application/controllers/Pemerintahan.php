@@ -10,6 +10,7 @@ class Pemerintahan extends CI_Controller {
         $this->load->model('Pemerintahan_model');
         $this->load->library('upload');
         $this->load->library('form_validation');
+        $this->load->model('Logo_profil_model');
     }
 
 
@@ -37,7 +38,7 @@ class Pemerintahan extends CI_Controller {
         $data['lembaga_desa'] =
             $this->Pemerintahan_model->getLembaga();
 
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/header',$data);
         $this->load->view('templates/sidebar',$data);
         $this->load->view('templates/topbar',$data);

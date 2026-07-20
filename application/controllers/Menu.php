@@ -6,17 +6,20 @@ class Menu extends CI_Controller {
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Menu Management';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['user'] = $this->db->get_where('user', ['email' => 
         $this->session->userdata('email')])->row_array();
 
         $data['menu'] = $this->db->get('user_menu')->result_array();
         $this->form_validation->set_rules('menu', 'Menu', 'required|trim', [
         'required' => 'Nama menu wajib diisi!'
+
     ]);
      
         if ($this->form_validation->run() == false) {
@@ -24,7 +27,7 @@ class Menu extends CI_Controller {
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('menu/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
 
         }
         else{
@@ -90,6 +93,7 @@ class Menu extends CI_Controller {
         ]);
 
         if ($this->form_validation->run() == false) {
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

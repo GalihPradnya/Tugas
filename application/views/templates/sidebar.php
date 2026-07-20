@@ -2,11 +2,21 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('beranda'); ?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+            href="<?= base_url('beranda'); ?>">
+
+                <div class="sidebar-brand-icon">
+                <img src="<?= base_url('uploads/logo/' . $logoDesa['logo']); ?>"
+                    alt="<?= $logoDesa['nama_desa']; ?>"
+                    style="width:45px; height:45px; object-fit:cover;"
+                    class="rounded-circle">
+
                 </div>
-                <div class="sidebar-brand-text mx-3">Desa Kelating</div>
+
+                <div class="sidebar-brand-text mx-3">
+                    <?= $logoDesa['nama_desa']; ?>
+                </div>
+
             </a>
 
             <!-- Divider -->

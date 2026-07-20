@@ -10,6 +10,7 @@ class Pendatang_admin extends CI_Controller
         is_logged_in();
 
         $this->load->model('Pendatang_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
@@ -18,7 +19,7 @@ class Pendatang_admin extends CI_Controller
 
         $data['pendatang'] =
             $this->Pendatang_model->getAll();
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/header',$data);
         $this->load->view('templates/sidebar',$data);
         $this->load->view('templates/topbar',$data);
@@ -32,7 +33,7 @@ class Pendatang_admin extends CI_Controller
 
         $data['pendatang'] =
             $this->Pendatang_model->getById($id);
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/header',$data);
         $this->load->view('templates/sidebar',$data);
         $this->load->view('templates/topbar',$data);

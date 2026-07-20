@@ -9,13 +9,16 @@ class Pemerintahan extends CI_Controller {
 
         // Load model
         $this->load->model('Pemerintahan_model');
+        $this->load->model('Logo_profil_model');
+        $this->load->model('Profil_model');
     }
 
     // Menampilkan halaman Pemerintahan Desa
     public function index()
     {
-
-         $data['menu'] = 'pemerintahan';
+        $data['title'] = 'Pemerintahan Desa';
+        $data['menu'] = 'pemerintahan';
+        
         // Data Kepala Desa
         $data['kepala_desa'] = $this->Pemerintahan_model->getKepalaDesa();
 
@@ -26,7 +29,8 @@ class Pemerintahan extends CI_Controller {
         $data['lembaga_desa'] = $this->Pemerintahan_model->getLembagaDesa();
 
         // Menampilkan view
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/pemerintahan_view', $data);
         $this->load->view('templates/dashboard_footer');
     }

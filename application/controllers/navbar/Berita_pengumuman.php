@@ -7,6 +7,7 @@ class Berita_pengumuman extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Berita_pengumuman_model');
+        $this->load->model('Logo_profil_model');
     }
 
     // Menampilkan halaman berita dan pengumuman
@@ -14,7 +15,9 @@ class Berita_pengumuman extends CI_Controller {
     {
         $data['berita'] = $this->Berita_pengumuman_model->getBerita();
         $data['pengumuman'] = $this->Berita_pengumuman_model->getPengumuman();
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/berita_pengumuman_view', $data);
         $this->load->view('templates/dashboard_footer');
     }
@@ -26,7 +29,8 @@ class Berita_pengumuman extends CI_Controller {
         if (!$data['berita']) {
             show_404();
         }
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/berita_detail_view', $data);
         $this->load->view('templates/dashboard_footer');
     }
@@ -38,7 +42,8 @@ class Berita_pengumuman extends CI_Controller {
         if (!$data['pengumuman']) {
             show_404();
         }
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/pengumuman_detail_view', $data);
         $this->load->view('templates/dashboard_footer');
     }
