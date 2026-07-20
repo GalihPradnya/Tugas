@@ -7,6 +7,7 @@ class Berita_pengumuman extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Berita_pengumuman_model');
+        $this->load->model('Logo_profil_model');
         $this->load->library('pagination');
         
     }
@@ -52,10 +53,14 @@ class Berita_pengumuman extends CI_Controller {
             ->getBeritaPagination($config['per_page'], $start);
 
         $data['pengumuman'] = $this->Berita_pengumuman_model->getPengumuman();
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['links'] = $this->pagination->create_links();
 
-        $this->load->view('templates/dashboard_header');
+        
+
+
+
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/berita_pengumuman_view', $data);
         $this->load->view('templates/dashboard_footer');
     }
@@ -67,7 +72,8 @@ class Berita_pengumuman extends CI_Controller {
         if (!$data['berita']) {
             show_404();
         }
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/berita_detail_view', $data);
         $this->load->view('templates/dashboard_footer');
     }
@@ -79,7 +85,8 @@ class Berita_pengumuman extends CI_Controller {
         if (!$data['pengumuman']) {
             show_404();
         }
-        $this->load->view('templates/dashboard_header');
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+        $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/pengumuman_detail_view', $data);
         $this->load->view('templates/dashboard_footer');
     }

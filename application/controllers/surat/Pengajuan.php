@@ -9,17 +9,20 @@ class Pengajuan extends CI_Controller
 
         $this->load->model('Pengajuan_model');
          $this->load->model('Alamat_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Pengajuan Surat';
-        
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+
         $data['jenis_surat'] =
             $this->Pengajuan_model->getJenisSurat();
 
         $data['alamat'] =
         $this->Alamat_model->getAktif();
+        
 
         $this->load->view('templates/dashboard_header', $data);
         $this->load->view('surat/pengajuan', $data);

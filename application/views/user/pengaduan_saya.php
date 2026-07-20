@@ -35,7 +35,7 @@
                         <td><?= $p['judul']; ?></td>
                         <td><?= $p['status']; ?></td>
                         <td>
-                            <a href="<?= base_url('pengaduan/pengaduan_saya/detail/'.$p['id']); ?>"
+                            <a href="<?= base_url('user/pengaduan_saya/detail/'.$p['id']); ?>"
                                class="btn btn-info btn-sm">
                                 Detail
                             </a>

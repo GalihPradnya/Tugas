@@ -8,11 +8,13 @@ class Pengajuan_admin extends CI_Controller
         parent::__construct();
 
         $this->load->model('Pengajuan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function pengajuan_admin()
     {
         $data['title'] = 'Data Pengajuan';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['pengajuan'] =
             $this->Pengajuan_model->getAllPengajuan();
@@ -32,12 +34,13 @@ class Pengajuan_admin extends CI_Controller
 
     $data['file'] =
         $this->Pengajuan_model->getFilePengajuan($id);
+    $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
     $this->load->view('templates/header', $data);
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('surat/detail_pengajuan', $data);
-    $this->load->view('templates/footer');
+    $this->load->view('templates/footer', $data);
 }
 public function updateStatus()
 {

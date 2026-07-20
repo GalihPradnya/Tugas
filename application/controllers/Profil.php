@@ -9,11 +9,13 @@ class Profil extends CI_Controller {
 
         $this->load->model('Profil_model');
         $this->load->library('form_validation');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Profil Desa';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['user'] = $this->db
             ->get_where('user', [

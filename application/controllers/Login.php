@@ -2,11 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('Logo_profil_model');
+	}
 
 	public function index()
 	{
-		$this->load->view('templates/dashboard_header');
-        $this->load->view('dashboard/login_view');
-        $this->load->view('templates/dashboard_footer');
+		$data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+		$this->load->view('templates/dashboard_header', $data);
+        $this->load->view('dashboard/login_view', $data);
+        $this->load->view('templates/dashboard_footer', $data);
 	}
 }

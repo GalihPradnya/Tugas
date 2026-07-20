@@ -8,11 +8,13 @@ class Persyaratan extends CI_Controller
         parent::__construct();
 
         $this->load->model('Persyaratan_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Persyaratan';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['persyaratan'] =
             $this->Persyaratan_model->getAll();
