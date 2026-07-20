@@ -14,7 +14,7 @@
                 <?= $berita->isi; ?>
             </div>
         </article>
-        <section class="mx-auto bg-white rounded-xl shadow p-6 md:p-8">
+        <!-- <section class="mx-auto bg-white rounded-xl shadow p-6 md:p-8">
             <h3 class="text-xl font-bold mb-4 text-green-700">Komentar</h3>
             <form class="mb-8">
                 <div class="mb-3">
@@ -43,5 +43,5 @@
                     <p class="text-gray-700">Semoga desa kita semakin maju!</p>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>

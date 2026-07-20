@@ -67,4 +67,120 @@ class Berita_pengumuman_model extends CI_Model
         return $this->db->insert('komentar_berita', $data);
     }
 
+    // ==========================
+    // CRUD BERITA (ADMIN)
+    // ==========================
+
+    public function getAllBerita()
+    {
+        return $this->db
+            ->order_by('tanggal', 'DESC')
+            ->get('berita')
+            ->result();
+    }
+
+    public function insertBerita($data)
+    {
+        return $this->db->insert('berita', $data);
+    }
+
+    public function updateBerita($id, $data)
+    {
+        return $this->db
+            ->where('id_berita', $id)
+            ->update('berita', $data);
+    }
+
+    public function deleteBerita($id)
+    {
+        // hapus gambar jika ada
+        $berita = $this->db
+            ->where('id_berita', $id)
+            ->get('berita')
+            ->row();
+
+        if ($berita && !empty($berita->gambar)) {
+
+            $file = FCPATH . 'uploads/berita/' . $berita->gambar;
+
+            if (file_exists($file)) {
+                unlink($file);
+            }
+        }
+
+        return $this->db
+            ->where('id_berita', $id)
+            ->delete('berita');
+    }
+
+    // ==========================
+// CRUD PENGUMUMAN (ADMIN)
+// ==========================
+
+public function getAllPengumuman()
+{
+    return $this->db
+        ->order_by('tanggal', 'DESC')
+        ->get('pengumuman')
+        ->result();
+}
+
+public function getPengumumanByIdAdmin($id)
+{
+    return $this->db
+        ->where('id_pengumuman', $id)
+        ->get('pengumuman')
+        ->row();
+}
+
+public function insertPengumuman($data)
+{
+    return $this->db->insert('pengumuman', $data);
+}
+
+public function updatePengumuman($id, $data)
+{
+    return $this->db
+        ->where('id_pengumuman', $id)
+        ->update('pengumuman', $data);
+}
+
+public function deletePengumuman($id)
+{
+    $pengumuman = $this->db
+        ->where('id_pengumuman', $id)
+        ->get('pengumuman')
+        ->row();
+
+    if ($pengumuman && !empty($pengumuman->gambar)) {
+
+        $file = FCPATH . 'uploads/pengumuman/' . $pengumuman->gambar;
+
+        if (file_exists($file)) {
+            unlink($file);
+        }
+    }
+
+    return $this->db
+        ->where('id_pengumuman', $id)
+        ->delete('pengumuman');
+}
+
+public function countBeritaPublish()
+{
+    return $this->db
+        ->where('status', 'publish')
+        ->count_all_results('berita');
+}
+
+public function getBeritaPagination($limit, $start)
+{
+    return $this->db
+        ->where('status', 'publish')
+        ->order_by('tanggal', 'DESC')
+        ->limit($limit, $start)
+        ->get('berita')
+        ->result();
+}
+
 }
