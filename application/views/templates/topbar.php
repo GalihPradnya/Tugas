@@ -109,7 +109,7 @@
                                 <?php if($this->session->userdata('role_id') == 3): ?>
 
                                 <a class="dropdown-item"
-                                href="<?= base_url('surat_saya'); ?>">
+                                href="<?= base_url('user/surat_saya'); ?>">
 
                                     <i class="fas fa-file-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Surat Saya
