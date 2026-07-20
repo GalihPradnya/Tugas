@@ -10,13 +10,14 @@ class Pengumuman extends CI_Controller {
         $this->load->model('Berita_pengumuman_model');
         $this->load->library('upload');
         $this->load->library('form_validation');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Pengumuman Desa';
         $data['pengumuman'] = $this->Berita_pengumuman_model->getAllPengumuman();
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);

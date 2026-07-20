@@ -11,6 +11,7 @@ class Admin extends CI_Controller {
 
         $this->load->model('Dashboard_model');
         $this->load->model('Logo_profil_model');
+        $this->load->model('Kontak_model');
     }
 
 
@@ -46,5 +47,57 @@ class Admin extends CI_Controller {
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer', $data);
     }
+    public function kontakDesa()
+    {
+        $data['title'] = 'Kontak Desa';
+
+        $data['kontak'] =
+            $this->Kontak_model->getKontak();
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+
+        if($this->input->post()){
+
+            $update = [
+
+                'alamat' =>
+                $this->input->post('alamat'),
+
+                'telepon' =>
+                $this->input->post('telepon'),
+
+                'email' =>
+                $this->input->post('email'),
+
+                'whatsapp' =>
+                $this->input->post('whatsapp'),
+
+                'jam_pelayanan' =>
+                $this->input->post('jam_pelayanan'),
+
+                'maps' =>
+                $this->input->post('maps')
+
+            ];
+
+            $this->Kontak_model
+                ->updateKontak($update);
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success">
+                    Kontak berhasil diperbarui.
+                </div>'
+            );
+
+            redirect('Admin/kontakDesa');
+        }
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/sidebar',$data);
+        $this->load->view('templates/topbar',$data);
+        $this->load->view('Profil/kontak_desa',$data);
+        $this->load->view('templates/footer');
+    }
+
 
 }

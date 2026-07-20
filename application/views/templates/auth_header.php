@@ -22,4 +22,33 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<style>
+body{
+    background: #ffffff;
+    overflow-x: hidden;
+}
+
+body::before{
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: url('<?= base_url('uploads/logo/' . $logoDesa['logo']); ?>')
+                center center no-repeat;
+
+    background-size: 800px;
+
+    opacity: 4;
+
+    filter: blur(3px);
+
+    z-index: -1;
+}
+
+.card{
+    border-radius: 15px;
+}
+</style>

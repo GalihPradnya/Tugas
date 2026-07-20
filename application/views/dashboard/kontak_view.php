@@ -1,40 +1,113 @@
+<main class="container mx-auto py-12 px-4 flex-1">
 
-    <main class="container mx-auto py-12 px-4 flex-1">
-        <h2 class="text-3xl font-bold mb-2 text-green-700 text-center">Kontak Desa</h2>
-        <p class="text-gray-500 mb-8 text-center text-base">Hubungi kami untuk informasi, layanan, atau keperluan administrasi desa.</p>
-        <div class="md:flex md:space-x-8 items-stretch">
-            <div class="md:w-1/2 flex flex-col gap-6">
-                <div class="bg-white rounded shadow p-6 flex-1">
-                    <h3 class="text-2xl font-bold mb-2">Informasi Kontak</h3>
-                    <p class="mb-1">Alamat: Jl. Raya Desa No. 1, Kecamatan [X], Kabupaten [Y]</p>
-                    <p class="mb-1">Telepon: 08xx-xxxx-xxxx</p>
-                    <p class="mb-1">Email: desa@email.com</p>
+    <h2 class="text-3xl font-bold mb-2 text-green-700 text-center">
+        Kontak <?= $logoDesa['nama_desa']; ?>
+    </h2>
+
+    <p class="text-gray-500 mb-8 text-center text-base">
+        Hubungi Pemerintah Desa untuk informasi pelayanan administrasi,
+        pengaduan masyarakat, dan kebutuhan lainnya.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+        <!-- Informasi Kontak -->
+        <div class="bg-white rounded-lg shadow p-6">
+
+            <h3 class="text-2xl font-bold text-green-700 mb-6">
+                Informasi Kontak
+            </h3>
+
+            <div class="space-y-5">
+
+                <div>
+                    <p class="font-semibold text-gray-800">
+                        📍 Alamat Kantor Desa
+                    </p>
+
+                    <p class="text-gray-600">
+                        <?= nl2br($kontak['alamat']); ?>
+                    </p>
                 </div>
-                <div class="bg-white rounded shadow p-6 flex-1">
-                    <h3 class="text-2xl font-bold mb-2">Lokasi Desa</h3>
-                    <iframe src="https://maps.google.com/maps?q=-7.250445,112.768845&z=15&output=embed" width="100%" height="220" class="rounded shadow" allowfullscreen="" loading="lazy"></iframe>
+
+                <div>
+                    <p class="font-semibold text-gray-800">
+                        🕒 Jam Pelayanan
+                    </p>
+
+                    <p class="text-gray-600">
+                        <?= $kontak['jam_pelayanan']; ?>
+                    </p>
                 </div>
+
+                <div>
+                    <p class="font-semibold text-gray-800">
+                        ☎️ Telepon
+                    </p>
+
+                    <p class="text-gray-600">
+                        <?= $kontak['telepon']; ?>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="font-semibold text-gray-800">
+                        ✉️ Email
+                    </p>
+
+                    <p class="text-gray-600">
+                        <?= $kontak['email']; ?>
+                    </p>
+                </div>
+
+                <div>
+                    <p class="font-semibold text-gray-800">
+                        💬 WhatsApp Pelayanan
+                    </p>
+
+                    <p class="text-gray-600">
+                        <?= $kontak['whatsapp']; ?>
+                    </p>
+                </div>
+
             </div>
-            <div class="md:w-1/2 flex flex-col justify-stretch">
-                <div class="bg-white rounded shadow p-6 h-full flex flex-col">
-                    <h3 class="text-2xl font-bold mb-2">Formulir Kontak</h3>
-                    <form class="flex-1 flex flex-col justify-between">
-                        <div class="mb-4">
-                            <label class="block mb-1 font-medium" for="nama">Nama</label>
-                            <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" class="w-full border border-green-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-1 font-medium" for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Masukkan email Anda" class="w-full border border-green-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block mb-1 font-medium" for="pesan">Pesan</label>
-                            <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis pesan Anda di sini" class="w-full border border-green-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-400" required></textarea>
-                        </div>
-                        <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded font-semibold shadow hover:bg-green-800 transition">Kirim Pesan</button>
-                    </form>
-                </div>
-            </div>
+
         </div>
-    </main>
-    
+
+        <!-- Lokasi -->
+        <div class="bg-white rounded-lg shadow p-6">
+
+            <h3 class="text-2xl font-bold text-green-700 mb-6">
+                Lokasi Kantor Desa
+            </h3>
+
+            <iframe
+                src="<?= $kontak['maps']; ?>"
+                width="100%"
+                height="350"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                class="rounded-lg">
+            </iframe>
+
+        </div>
+
+    </div>
+
+    <!-- Informasi Pelayanan -->
+    <div class="mt-8 bg-green-50 border-l-4 border-green-600 p-5 rounded-lg">
+
+        <p class="font-semibold text-green-700 text-lg">
+            Pelayanan Online Desa
+        </p>
+
+        <p class="text-gray-700 mt-2">
+            Untuk pengajuan surat dan pengaduan masyarakat,
+            silakan login ke sistem pelayanan
+            <strong><?= $logoDesa['nama_desa']; ?></strong>.
+        </p>
+
+    </div>
+
+</main>
