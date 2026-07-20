@@ -107,7 +107,7 @@
                     <!-- Dashboard -->
                     <?php if($this->session->userdata('role_id') == 3): ?>
 
-                        <a href="<?= base_url('user'); ?>"
+                        <a href="<?= base_url('user/user'); ?>"
                         class="block px-4 py-3 hover:bg-gray-100">
                             🏠 Profil Saya
                         </a>
