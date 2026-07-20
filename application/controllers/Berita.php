@@ -10,11 +10,13 @@ class Berita extends CI_Controller {
         $this->load->model('Berita_pengumuman_model');
         $this->load->library('upload');
         $this->load->library('form_validation');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
     {
         $data['title'] = 'Berita Desa';
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['berita'] = $this->Berita_pengumuman_model->getAllBerita();
 
         $this->load->view('templates/header', $data);
@@ -68,7 +70,7 @@ class Berita extends CI_Controller {
     {
         $data['title'] = 'Edit Berita';
         $data['berita'] = $this->Berita_pengumuman_model->getBeritaById($id);
-
+        $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/header',$data);
         $this->load->view('templates/sidebar',$data);
         $this->load->view('templates/topbar',$data);
