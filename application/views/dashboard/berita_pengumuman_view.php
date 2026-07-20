@@ -42,20 +42,71 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <div class="flex justify-center mt-8">
-                <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
-                    <a href="#"
-                        class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-green-100 rounded-l">&laquo;</a>
-                    <a href="#"
-                        class="px-3 py-1 border-t border-b border-gray-300 bg-green-700 text-white font-bold">1</a>
-                    <a href="#"
-                        class="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-green-100">2</a>
-                    <a href="#"
-                        class="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-green-100">3</a>
-                    <a href="#"
-                        class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-green-100 rounded-r">&raquo;</a>
-                </nav>
-            </div>
+            <?php if($total_page > 1): ?>
+
+<div class="flex justify-center mt-8">
+
+    <nav class="inline-flex rounded-md shadow-sm">
+
+        <!-- Previous -->
+        <?php if($current_page > 1): ?>
+
+            <a href="<?= base_url('navbar/berita_pengumuman/index/'.(($current_page-2)*$per_page)) ?>"
+               class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-green-100 rounded-l">
+
+                &laquo;
+
+            </a>
+
+        <?php endif; ?>
+
+
+
+        <!-- Nomor Halaman -->
+
+        <?php for($i=1;$i<=$total_page;$i++): ?>
+
+            <?php if($i==$current_page): ?>
+
+                <span class="px-3 py-1 border-t border-b border-gray-300 bg-green-700 text-white font-bold">
+
+                    <?= $i ?>
+
+                </span>
+
+            <?php else: ?>
+
+                <a href="<?= base_url('navbar/berita_pengumuman/index/'.(($i-1)*$per_page)) ?>"
+                   class="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-green-100">
+
+                    <?= $i ?>
+
+                </a>
+
+            <?php endif; ?>
+
+        <?php endfor; ?>
+
+
+
+        <!-- Next -->
+
+        <?php if($current_page < $total_page): ?>
+
+            <a href="<?= base_url('navbar/berita_pengumuman/index/'.($current_page*$per_page)) ?>"
+               class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-green-100 rounded-r">
+
+                &raquo;
+
+            </a>
+
+        <?php endif; ?>
+
+    </nav>
+
+</div>
+
+<?php endif; ?>
         </section>
         <section>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
@@ -90,19 +141,6 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <div class="flex justify-center mt-8">
-                <nav class="inline-flex rounded-md shadow-sm" aria-label="Pagination">
-                    <a href="#"
-                        class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-green-100 rounded-l">&laquo;</a>
-                    <a href="#"
-                        class="px-3 py-1 border-t border-b border-gray-300 bg-green-700 text-white font-bold">1</a>
-                    <a href="#"
-                        class="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-green-100">2</a>
-                    <a href="#"
-                        class="px-3 py-1 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-green-100">3</a>
-                    <a href="#"
-                        class="px-3 py-1 border border-gray-300 bg-white text-gray-700 hover:bg-green-100 rounded-r">&raquo;</a>
-                </nav>
-            </div>
+            <!--  -->
         </section>
     </main>
