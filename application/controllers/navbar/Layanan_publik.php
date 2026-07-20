@@ -18,10 +18,4 @@ class Layanan_publik extends CI_Controller {
         $this->load->view('templates/dashboard_footer');
     }
 
-    public function pengaduan_masyarakat()
-    {
-        $this->load->view('templates/dashboard_header');
-        $this->load->view('layanan/pengaduan_masyarakat');
-        $this->load->view('templates/dashboard_footer');
-    }
 }

@@ -129,7 +129,7 @@
                     <?php endif; ?>
 
                     <!-- Surat Saya -->
-                    <a href="<?= base_url('surat_saya'); ?>"
+                    <a href="<?= base_url('user/surat_saya'); ?>"
                     class="block px-4 py-3 hover:bg-gray-100">
                         📄 Surat Saya
                     </a>

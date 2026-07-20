@@ -11,4 +11,10 @@ class Kategori_pengaduan_model extends CI_Model
             )
             ->result_array();
     }
+    public function getAll()
+{
+    return $this->db
+        ->get('kategori_pengaduan')
+        ->result_array();
+}
 }

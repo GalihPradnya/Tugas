@@ -8,6 +8,7 @@ class Pengaduan_saya extends CI_Controller {
         parent::__construct();
 
         is_logged_in();
+        
 
         $this->load->model('Pengaduan_model');
     }
@@ -25,7 +26,7 @@ class Pengaduan_saya extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('pengaduan/pengaduan_saya', $data);
+        $this->load->view('user/pengaduan_saya', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -40,7 +41,7 @@ class Pengaduan_saya extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('pengaduan/detail_pengaduan_saya', $data);
+        $this->load->view('user/detail_pengaduan_saya', $data);
         $this->load->view('templates/footer', $data);
     }
 }
