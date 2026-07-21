@@ -49,7 +49,7 @@ class Admin extends CI_Controller {
     }
     public function kontakDesa()
     {
-        $data['title'] = 'Kontak Desa';
+        $data['title'] = 'Kontak';
 
         $data['kontak'] =
             $this->Kontak_model->getKontak();

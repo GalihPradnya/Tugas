@@ -13,7 +13,7 @@ class Alamat extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Data Alamat';
+        $data['title'] = 'Alamat';
         $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['alamat'] = $this->Alamat_model->getAll();
 

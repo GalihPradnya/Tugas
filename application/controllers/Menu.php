@@ -11,7 +11,7 @@ class Menu extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Menu Management';
+        $data['title'] = 'Manajemen Menu';
         $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $data['user'] = $this->db->get_where('user', ['email' => 
         $this->session->userdata('email')])->row_array();
@@ -70,7 +70,7 @@ class Menu extends CI_Controller {
     public function submenu()
     {   
         
-        $data['title'] = 'Submenu Management';
+        $data['title'] = 'Submenu Manajemen';
         $data['user'] = $this->db->get_where('user', ['email' => 
         $this->session->userdata('email')])->row_array();
         $this->load->model('Menu_model', 'menu');

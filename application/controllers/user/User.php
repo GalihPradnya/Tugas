@@ -24,7 +24,7 @@ class User extends CI_Controller {
     }
     public function edit()
     {
-        $data['title'] = 'Edit Profil';
+        $data['title'] = 'Edit Profile';
         
 
         $data['user'] = $this->db->get_where(

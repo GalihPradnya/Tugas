@@ -15,7 +15,7 @@ class Pengaduan_admin extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Data Pengaduan';
+        $data['title'] = 'Pengaduan Admin';
         $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['pengaduan'] =

@@ -13,7 +13,7 @@ class Superadmin extends CI_Controller {
 public function index()
 {
 
-    $data['title'] = 'Dashboard Superadmin';
+    $data['title'] = 'Dashboard';
 
 
     $data['user'] = $this->db
@@ -199,7 +199,7 @@ public function roleAccess($role_id)
     }
     public function dataAdmin()
 {
-    $data['title'] = 'Data Admin';
+    $data['title'] = 'Edit Admin';
 
     $data['admin'] = $this->db
         ->get_where('user', ['role_id' => 2])
@@ -358,7 +358,7 @@ public function hapusAdmin($id)
 }
 public function profilDesa()
 {
-    $data['title'] = 'Profil Desa';
+    $data['title'] = 'Logo Desa';
 
     $data['user'] = $this->db->get_where(
         'user',

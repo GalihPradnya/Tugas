@@ -21,7 +21,7 @@ class Pemerintahan extends CI_Controller {
     public function index()
     {
 
-        $data['title'] = "Pemerintahan Desa";
+        $data['title'] = "Pemerintahan";
 
 
         // Kepala Desa

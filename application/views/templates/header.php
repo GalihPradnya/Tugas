@@ -19,6 +19,27 @@
 
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/');?>css/sb-admin-2.min.css" rel="stylesheet">
+    <style>
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Sidebar */
+#accordionSidebar {
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+/* Content Wrapper */
+#content-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    width: 100%;
+}
+</style>
 
 </head>
 
