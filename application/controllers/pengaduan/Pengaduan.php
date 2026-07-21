@@ -22,7 +22,7 @@ public function index()
 
     $this->load->view('templates/dashboard_header', $data);
     $this->load->view('pengaduan/pengaduan_masyarakat', $data);
-    $this->load->view('templates/dashboard_footer');
+    $this->load->view('templates/dashboard_footer', $data);
 }
 public function simpan()
     {

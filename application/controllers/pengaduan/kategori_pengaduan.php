@@ -33,7 +33,7 @@ class Kategori_pengaduan extends CI_Controller
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('pengaduan/kategori_pengaduan', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
 
         } else {
 

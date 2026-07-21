@@ -62,7 +62,7 @@ class Berita_pengumuman extends CI_Controller {
 
         $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/berita_pengumuman_view', $data);
-        $this->load->view('templates/dashboard_footer');
+        $this->load->view('templates/dashboard_footer',$data);
     }
     
     // Menampilkan halaman detail berita

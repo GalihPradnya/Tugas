@@ -18,7 +18,7 @@ class Pendatang extends CI_Controller
         
         $this->load->view('templates/dashboard_header', $data);
         $this->load->view('pendatang/form_pendatang', $data);
-        $this->load->view('templates/dashboard_footer');
+        $this->load->view('templates/dashboard_footer', $data);
     }
 
     public function simpan()

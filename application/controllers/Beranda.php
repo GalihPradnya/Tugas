@@ -25,6 +25,7 @@ class Beranda extends CI_Controller {
 		$data['hero'] = $this->Hero_model->getHero();
 		$data['slides'] = $this->Hero_model->getSlide();
 		// Kontak Desa
+		
    		$data['kontak'] = $this->Kontak_model->getKontak();
 		$this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/beranda_view', $data);
