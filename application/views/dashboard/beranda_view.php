@@ -1,24 +1,37 @@
 <!-- Hero Section -->
+<?php
+$gambarAwal = !empty($slides)
+    ? base_url('uploads/hero/'.$slides[0]['gambar'])
+    : base_url('assets/img/default.jpg');
+?>
+        <section id="beranda">
 <section id="beranda" class="relative bg-green-700 text-white">
     <div class="block md:hidden">
+
         <!-- TAMBAHKAN id="hero-mobile" -->
-        <img id="hero-mobile"
-            src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=1200&q=80"
-            alt="Foto Desa" class="w-full h-48 object-cover opacity-60">
+            <img id="hero-mobile"
+                src="<?= $gambarAwal; ?>"
+                class="w-full h-48 object-cover opacity-60">
     </div>
     <div class="hidden md:block">
         <!-- TAMBAHKAN id="hero-desktop" -->
         <img id="hero-desktop"
-            src="https://images.unsplash.com/photo-1558005530-a7958896ec60?auto=format&fit=crop&w=1200&q=80"
-            alt="Foto Desa" class="w-full h-105 object-cover opacity-60">
+            src="<?= $gambarAwal; ?>"
+            class="w-full h-105 object-cover opacity-60">
     </div>
     <div
         class="relative md:absolute md:inset-0 flex flex-col items-center justify-center text-center px-4 py-8 md:py-0">
-        <h2 class="text-2xl md:text-4xl font-bold mb-2">Selamat datang di Website Resmi Desa Kelating</h2>
-        <p class="text-gray-200 mb-4 text-base">Informasi, layanan, dan berita terkini seputar Desa Kelating.</p>
-        <p class="mb-4 text-base md:text-lg">Kec. Kerambitan, Kab. Tabanan, Provinsi Bali. Bersama membangun desa yang
-            mandiri dan
-            sejahtera.</p>
+        <h2 class="text-2xl md:text-4xl font-bold mb-2">
+            <?= $hero['judul']; ?>
+        </h2>
+
+        <p class="text-gray-200 mb-4 text-base">
+            <?= $hero['deskripsi']; ?>
+        </p>
+
+        <p class="mb-4 text-base md:text-lg">
+            <?= $hero['alamat']; ?>
+        </p>
         <div class="flex flex-col gap-2 w-full max-w-xs mx-auto md:flex-row md:gap-3 md:max-w-none md:w-auto md:mx-0">
             <a href="<?php echo base_url('navbar/profil_desa'); ?>"
                 class="bg-white text-green-700 px-5 py-2 rounded font-semibold shadow hover:bg-green-100">Lihat

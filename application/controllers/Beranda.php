@@ -10,6 +10,7 @@ class Beranda extends CI_Controller {
 		$this->load->model('Berita_pengumuman_model');
 		$this->load->model('Galeri_model');
 		$this->load->model('Kontak_model');
+		$this->load->model('Hero_model');
 	}
 
 	public function index()
@@ -21,6 +22,8 @@ class Beranda extends CI_Controller {
 		// Ambil 3 pengumuman terbaru
         $data['pengumuman'] = $this->Berita_pengumuman_model->getPengumumanLimit(1);
 		$data['galeri'] = $this->Galeri_model->getLimitGaleri(4);
+		$data['hero'] = $this->Hero_model->getHero();
+		$data['slides'] = $this->Hero_model->getSlide();
 		// Kontak Desa
    		$data['kontak'] = $this->Kontak_model->getKontak();
 		$this->load->view('templates/dashboard_header', $data);
