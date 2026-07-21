@@ -19,7 +19,15 @@
         </div>
     </footer>
     <script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
+        <script>
+        const daftarGambar = [
+        <?php foreach($slides as $slide): ?>
+            "<?= base_url('uploads/hero/'.$slide['gambar']); ?>",
+        <?php endforeach; ?>
+        ];
+        </script>
     <script src="<?php echo base_url('assets/js/slide_gambar.js'); ?>"></script>
+
     <script>
     document.addEventListener('DOMContentLoaded', function () {
 
