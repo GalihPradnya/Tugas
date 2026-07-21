@@ -74,4 +74,12 @@ class Galeri_model extends CI_Model
             ->delete('galeri');
     }
 
+    public function getLimitGaleri($limit)
+    {
+        $this->db->order_by('id_galeri', 'DESC');
+        $this->db->limit($limit);
+
+        return $this->db->get('galeri')->result();
+    }
+
 }

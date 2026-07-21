@@ -183,4 +183,26 @@ public function getBeritaPagination($limit, $start)
         ->result();
 }
 
+public function getBeritaLimit($limit)
+{
+    $this->db->order_by('tanggal','DESC');
+    $this->db->limit($limit);
+
+    return $this->db
+                ->get('berita')
+                ->result();
+}
+
+
+
+public function getPengumumanLimit($limit)
+{
+    $this->db->order_by('tanggal','DESC');
+    $this->db->limit($limit);
+
+    return $this->db
+                ->get('pengumuman')
+                ->result();
+}
+
 }
