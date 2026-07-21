@@ -10,11 +10,11 @@
                 <?= $logoDesa['nama_desa']; ?>
             </h1>
             </div>
-            <div class="flex space-x-4 mb-2 md:mb-0">
+            <!-- <div class="flex space-x-4 mb-2 md:mb-0">
                 <a href="<?php echo base_url(''); ?>instagram" class="hover:underline">Instagram</a>
                 <a href="<?php echo base_url(''); ?>facebook" class="hover:underline">Facebook</a>
                 <a href="<?php echo base_url(''); ?>youtube" class="hover:underline">YouTube</a>
-            </div>
+            </div> -->
             <div class="text-sm">&copy; 2026 Desa Kelating. All rights reserved.</div>
         </div>
     </footer>
