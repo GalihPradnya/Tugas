@@ -13,7 +13,7 @@ class Pengajuan_admin extends CI_Controller
 
     public function pengajuan_admin()
     {
-        $data['title'] = 'Data Pengajuan';
+        $data['title'] = 'Pengajuan Surat Admin';
         $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
         $data['pengajuan'] =

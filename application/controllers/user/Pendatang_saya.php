@@ -15,7 +15,7 @@ class Pendatang_saya extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Pendatang Saya';
+        $data['title'] = 'Pengajuan Pendatang';
 
         $user_id = $this->session->userdata('id');
 

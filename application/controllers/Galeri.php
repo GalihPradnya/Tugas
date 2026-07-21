@@ -12,6 +12,7 @@ class Galeri extends CI_Controller
         $this->load->library('upload');
         $this->load->library('form_validation');
         $this->load->model('Kontak_model');
+        $this->load->model('Logo_profil_model');
     }
 
     public function index()
