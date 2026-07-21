@@ -65,8 +65,26 @@
                 }
             });
         });
-    </script></script>
+    
+    <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
+    <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+    <script>
+window.addEventListener('load', function () {
 
+    const sidebar = document.getElementById('accordionSidebar');
+    const active = sidebar.querySelector('.nav-item.active');
+
+    if (sidebar && active) {
+        active.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
+});
+</script>
+</script>
 </body>
 
 </html>

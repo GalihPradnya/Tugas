@@ -32,14 +32,42 @@
                 </svg>
             </button>
             <!-- Desktop Navigation -->
+            <?php
+            $controller = $this->uri->segment(1);
+            $active = $this->uri->segment(2);
+            ?>
             <nav class="hidden lg:flex items-center gap-4 xl:gap-6 mx-auto">
-                <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Beranda</a>
-                <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Profil Desa</a>
-                <a href="<?php echo base_url('navbar/pemerintahan'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Pemerintahan</a>
-                <a href="<?php echo base_url('navbar/layanan_publik'); ?>" class="hover:text-green-600 font-medium text-green-700 font-bold whitespace-nowrap">Layanan Publik</a>
-                <a href="<?php echo base_url('navbar/berita_pengumuman'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Berita & Pengumuman</a>
-                <a href="<?php echo base_url('navbar/galeri'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Galeri</a>
-                <a href="<?php echo base_url('navbar/kontak'); ?>" class="hover:text-green-600 font-medium whitespace-nowrap">Kontak</a>
+                <a href="<?= base_url('beranda'); ?>"
+                class="font-medium whitespace-nowrap <?= ($controller == 'beranda') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Beranda
+                </a>
+                             <?php
+                        $active = $this->uri->segment(2);
+                        ?>
+                <a href="<?= base_url('navbar/profil_desa'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'profil_desa') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Profil Desa
+                </a>
+                <a href="<?= base_url('navbar/pemerintahan'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'pemerintahan') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Pemerintahan
+                </a>
+                <a href="<?= base_url('navbar/layanan_publik'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'layanan_publik') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Layanan Publik
+                </a>
+                <a href="<?= base_url('navbar/berita_pengumuman'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'berita_pengumuman') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Berita & Pengumuman
+                </a>
+                <a href="<?= base_url('navbar/galeri'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'galeri') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Galeri
+                </a>
+                <a href="<?= base_url('navbar/kontak'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'kontak') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Kontak
+                </a>
             </nav>
                             <!-- Button Login -->
                 <?php if($this->session->userdata('id')): ?>
@@ -251,13 +279,43 @@
                 </div>
 
                 <?php endif; ?>
-                <a href="<?php echo base_url('beranda'); ?>" class="hover:text-green-600 font-medium">Beranda</a>
-                <a href="<?php echo base_url('navbar/profil_desa'); ?>" class="hover:text-green-600 font-medium">Profil Desa</a>
-                <a href="<?php echo base_url('navbar/pemerintahan'); ?>" class="hover:text-green-600 font-medium">Pemerintahan</a>
-                <a href="<?php echo base_url('navbar/layanan_publik'); ?>" class="hover:text-green-600 font-medium text-green-700 font-bold">Layanan Publik</a>
-                <a href="<?php echo base_url('navbar/berita_pengumuman'); ?>" class="hover:text-green-600 font-medium">Berita & Pengumuman</a>
-                <a href="<?php echo base_url('navbar/galeri'); ?>" class="hover:text-green-600 font-medium">Galeri</a>
-                <a href="<?php echo base_url('navbar/kontak'); ?>" class="hover:text-green-600 font-medium">Kontak</a>
+                <?php
+            $controller = $this->uri->segment(1);
+            $active = $this->uri->segment(2);
+            ?>
+           
+                <a href="<?= base_url('beranda'); ?>"
+                class="font-medium whitespace-nowrap <?= ($controller == 'beranda') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Beranda
+                </a>
+                             <?php
+                        $active = $this->uri->segment(2);
+                        ?>
+                <a href="<?= base_url('navbar/profil_desa'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'profil_desa') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Profil Desa
+                </a>
+                <a href="<?= base_url('navbar/pemerintahan'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'pemerintahan') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Pemerintahan
+                </a>
+                <a href="<?= base_url('navbar/layanan_publik'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'layanan_publik') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Layanan Publik
+                </a>
+                <a href="<?= base_url('navbar/berita_pengumuman'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'berita_pengumuman') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Berita & Pengumuman
+                </a>
+                <a href="<?= base_url('navbar/galeri'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'galeri') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Galeri
+                </a>
+                <a href="<?= base_url('navbar/kontak'); ?>"
+                class="font-medium whitespace-nowrap <?= ($active == 'kontak') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
+                Kontak
+                </a>
+
             </div>
         </nav>
     </header>
