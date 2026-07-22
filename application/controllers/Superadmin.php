@@ -56,7 +56,7 @@ public function index()
     $this->load->view('templates/sidebar',$data);
     $this->load->view('templates/topbar',$data);
     $this->load->view('superadmin/index',$data);
-    $this->load->view('templates/footer');
+    $this->load->view('templates/footer', $data);
 
 }
 
@@ -82,7 +82,7 @@ public function index()
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('superadmin/role', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
 
         } else {
 
@@ -167,7 +167,7 @@ public function roleAccess($role_id)
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('superadmin/role_access', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
     }
     public function changeAccess()
     {
@@ -210,7 +210,7 @@ public function roleAccess($role_id)
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('superadmin/data_admin', $data);
-    $this->load->view('templates/footer');
+    $this->load->view('templates/footer', $data);
 }
 public function tambahAdmin()
 {
@@ -309,7 +309,7 @@ public function editAdmin($id = null)
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('superadmin/edit_admin', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
 
     } else {
 
@@ -411,7 +411,7 @@ public function profilDesa()
     $this->load->view('templates/sidebar', $data);
     $this->load->view('templates/topbar', $data);
     $this->load->view('superadmin/profil_desa', $data);
-    $this->load->view('templates/footer');
+    $this->load->view('templates/footer', $data);
 }
 
 }

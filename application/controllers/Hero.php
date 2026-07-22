@@ -32,7 +32,7 @@ class Hero extends CI_Controller
             $this->load->view('templates/sidebar');
             $this->load->view('templates/topbar');
             $this->load->view('superadmin/hero',$data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
         }
         else
         {
@@ -61,10 +61,10 @@ class Hero extends CI_Controller
     $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
     $this->load->view('templates/header',$data);
-    $this->load->view('templates/sidebar');
-    $this->load->view('templates/topbar');
+    $this->load->view('templates/sidebar', $data);
+    $this->load->view('templates/topbar', $data);
     $this->load->view('superadmin/hero_slide',$data);
-    $this->load->view('templates/footer');
+    $this->load->view('templates/footer', $data);
 }
 public function tambahSlide()
 {

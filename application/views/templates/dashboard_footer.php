@@ -1,24 +1,75 @@
-<!-- Footer -->
-    <footer class="bg-green-700 text-white py-6 mt-8">
-        <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4">
-            <div class="flex items-center space-x-2 mb-2 md:mb-0">
-             <img src="<?= base_url('uploads/logo/' . $logoDesa['logo']); ?>"
-                alt="<?= $logoDesa['nama_desa']; ?>"
-                class="h-12 w-12 rounded-full">
+<?php
+$CI =& get_instance();
+$CI->load->model('Kontak_model');
+$kontak = $CI->Kontak_model->getKontak();
 
-            <h1 class="text-xl font-bold truncate">
-                <?= $logoDesa['nama_desa']; ?>
-            </h1>
+$wa = preg_replace('/[^0-9]/', '', $kontak['whatsapp']);
+
+if (substr($wa, 0, 1) == '0') {
+    $wa = '62' . substr($wa, 1);
+}
+?>
+<footer class="bg-green-700 text-white py-8">
+    <div class="container mx-auto px-4">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Logo Desa -->
+            <div>
+                <div class="flex items-center space-x-2 mb-3">
+                    <img src="<?= base_url('uploads/logo/' . $logoDesa['logo']); ?>"
+                        class="h-12 w-12 rounded-full">
+
+                    <h1 class="font-bold text-lg">
+                        <?= $logoDesa['nama_desa']; ?>
+                    </h1>
+                </div>
+
+                <p class="text-sm">
+                    Website resmi Desa Kelating sebagai media informasi dan pelayanan masyarakat.
+                </p>
             </div>
-            <!-- <div class="flex space-x-4 mb-2 md:mb-0">
-                <a href="<?php echo base_url(''); ?>instagram" class="hover:underline">Instagram</a>
-                <a href="<?php echo base_url(''); ?>facebook" class="hover:underline">Facebook</a>
-                <a href="<?php echo base_url(''); ?>youtube" class="hover:underline">YouTube</a>
-            </div> -->
-            <div class="text-sm">&copy; 2026 Desa Kelating. All rights reserved.</div>
+
+            <!-- Kontak -->
+            <div>
+                <h3 class="font-semibold mb-2">Kontak Desa</h3>
+
+                <p class="text-sm mb-1">📍 <?= $kontak['alamat']; ?></p>
+                <p class="text-sm mb-1">☎ <?= $kontak['telepon']; ?></p>
+                <p class="text-sm mb-1">✉ <?= $kontak['email']; ?></p>
+
+                <a href="https://wa.me/<?= $wa; ?>"
+                    target="_blank"
+                    class="text-sm hover:underline block mb-1">
+                    💬 <?= $kontak['whatsapp']; ?>
+                </a>
+
+                <p class="text-sm">🕒 <?= $kontak['jam_pelayanan']; ?></p>
+            </div>
+
+            <!-- Menu Cepat -->
+            <div>
+                <h3 class="font-semibold mb-2">Menu Cepat</h3>
+
+                <ul class="text-sm space-y-1">
+                    <li><a href="<?= base_url('beranda'); ?>" class="hover:underline">Beranda</a></li>
+                    <li><a href="<?= base_url('navbar/profil_desa'); ?>" class="hover:underline">Profil</a></li>
+                    <li><a href="<?= base_url('navbar/berita_pengumuman'); ?>" class="hover:underline">Berita</a></li>
+                    <li><a href="<?= base_url('pengaduan/pengaduan'); ?>" class="hover:underline">Pengaduan</a></li>
+                </ul>
+            </div>
+
         </div>
-    </footer>
-    <script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
+
+        <hr class="my-6 border-green-500">
+
+        <div class="text-center text-sm">
+            &copy; <?= date('Y'); ?> <?= $logoDesa['nama_desa']; ?>. Melayani Masyarakat dengan Transparan dan Digital.
+        </div>
+
+    </div>
+</footer>
+<script src="<?php echo base_url('assets/js/script.js'); ?>"></script>
         <script>
         const daftarGambar = [
         <?php foreach($slides as $slide): ?>

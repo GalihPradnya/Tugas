@@ -32,7 +32,7 @@ class Pemerintahan extends CI_Controller {
         $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
         $this->load->view('templates/dashboard_header', $data);
         $this->load->view('dashboard/pemerintahan_view', $data);
-        $this->load->view('templates/dashboard_footer');
+        $this->load->view('templates/dashboard_footer', $data);
     }
 
 }

@@ -23,7 +23,7 @@ class Berita extends CI_Controller {
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('berita/index', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
     }
 
     public function simpan()
@@ -75,7 +75,7 @@ class Berita extends CI_Controller {
         $this->load->view('templates/sidebar',$data);
         $this->load->view('templates/topbar',$data);
         $this->load->view('berita/edit',$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer', $data);
     }
 
     public function update()
