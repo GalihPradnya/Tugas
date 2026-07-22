@@ -14,8 +14,22 @@
                     </button>
 
                     <?php
-                    $user_name = $this->session->userdata('name');
-                    $user_image = $this->session->userdata('image');
+                    $user = get_user_login();
+
+$user_name =
+    !empty($user['nama_lengkap'])
+        ? $user['nama_lengkap']
+        : $user['name'];
+
+$user_image =
+    !empty($user['image'])
+        ? $user['image']
+        : 'default.jpg';
+$user_email =
+    !empty($user['email'])
+        ? $user['email']
+        : '-';
+        
 
                     if(empty($user_name))
                     {
@@ -72,6 +86,9 @@
 
                             <div class="text-gray-800 font-weight-bold">
                                 <?= $user_name; ?>
+                            </div>
+                                <div class="small text-muted">
+                                <?= $user_email; ?>
                             </div>
 
                             <div class="small text-gray-500">

@@ -1,104 +1,120 @@
 <div class="container-fluid">
 
     <h1 class="h3 mb-4 text-gray-800">
-        <?= $title; ?>
+        Manajemen Admin
     </h1>
 
     <?= $this->session->flashdata('message'); ?>
 
-    <a href="<?= base_url('superadmin/tambahAdmin'); ?>"
-       class="btn btn-primary mb-3">
+    <div class="card shadow mb-4">
 
-        <i class="fas fa-plus"></i>
-        Tambah Admin
+        <div class="card-header py-3">
 
-    </a>
+            <h6 class="m-0 font-weight-bold text-primary">
+                Data Admin & Masyarakat
+            </h6>
 
-    <div class="card shadow">
+        </div>
 
         <div class="card-body">
 
-            <table class="table table-bordered">
+            <div class="table-responsive">
 
-                <thead>
+                <table id="tableAdmin"
+                       class="table table-bordered table-hover"
+                       width="100%"
+                       cellspacing="0">
 
-                    <tr>
-                        <th>No</th>
-                        <th>Foto</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
+                    <thead class="thead-light">
 
-                </thead>
+                        <tr>
 
-                <tbody>
+                            <th width="5%">No</th>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th width="15%">Role</th>
+                            <th width="20%">Aksi</th>
 
-                    <?php $no=1; ?>
+                        </tr>
 
-                    <?php foreach($admin as $a): ?>
+                    </thead>
 
-                    <tr>
+                    <tbody>
 
-                        <td><?= $no++; ?></td>
+                        <?php $no = 1; ?>
 
-                        <td width="100">
+                        <?php foreach($user as $u): ?>
 
-                            <img
-                                src="<?= base_url('assets/img/profile/'.$a['image']); ?>"
-                                width="50">
+                        <tr>
 
-                        </td>
+                            <td><?= $no++; ?></td>
 
-                        <td><?= $a['name']; ?></td>
+                            <td><?= $u['nik']; ?></td>
 
-                        <td><?= $a['email']; ?></td>
+                            <td><?= $u['nama_lengkap']; ?></td>
 
-                        <td>
+                            <td>
+                                <?= !empty($u['email']) ? $u['email'] : '-'; ?>
+                            </td>
 
-                            <?php if($a['is_active']==1): ?>
+                            <td>
 
-                                <span class="badge badge-success">
-                                    Aktif
-                                </span>
+                                <?php if($u['role_id'] == 2): ?>
 
-                            <?php else: ?>
+                                    <span class="badge badge-success">
+                                        Admin
+                                    </span>
 
-                                <span class="badge badge-danger">
-                                    Nonaktif
-                                </span>
+                                <?php else: ?>
 
-                            <?php endif; ?>
+                                    <span class="badge badge-secondary">
+                                        Masyarakat
+                                    </span>
 
-                        </td>
+                                <?php endif; ?>
 
-                        <td>
+                            </td>
 
-                            <a href="<?= base_url('superadmin/editAdmin/'.$a['id']); ?>"
-                               class="btn btn-warning btn-sm">
+                            <td>
 
-                                Edit
+                                <?php if($u['role_id'] == 3): ?>
 
-                            </a>
+                                    <a href="<?= base_url('superadmin/jadikanAdmin/'.$u['id']); ?>"
+                                       class="btn btn-success btn-sm"
+                                       onclick="return confirm('Jadikan Admin?')">
 
-                            <a href="<?= base_url('superadmin/hapusAdmin/'.$a['id']); ?>"
-                               class="btn btn-danger btn-sm"
-                               onclick="return confirm('Yakin?')">
+                                        <i class="fas fa-user-shield"></i>
+                                        Jadikan Admin
 
-                                Hapus
+                                    </a>
 
-                            </a>
+                                <?php endif; ?>
 
-                        </td>
+                                <?php if($u['role_id'] == 2): ?>
 
-                    </tr>
+                                    <a href="<?= base_url('superadmin/jadikanMasyarakat/'.$u['id']); ?>"
+                                       class="btn btn-warning btn-sm"
+                                       onclick="return confirm('Jadikan Masyarakat?')">
 
-                    <?php endforeach; ?>
+                                        <i class="fas fa-user"></i>
+                                        Jadikan Masyarakat
 
-                </tbody>
+                                    </a>
 
-            </table>
+                                <?php endif; ?>
+
+                            </td>
+
+                        </tr>
+
+                        <?php endforeach; ?>
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 

@@ -4,20 +4,44 @@
         Tambah Admin
     </h1>
 
+    <?= validation_errors(
+        '<div class="alert alert-danger">',
+        '</div>'
+    ); ?>
+
+    <?= $this->session->flashdata('message'); ?>
+
     <div class="card shadow">
 
         <div class="card-body">
 
-            <form method="post">
+            <form method="post" action="<?= base_url('superadmin/tambahAdmin'); ?>">
 
                 <div class="form-group">
 
-                    <label>Nama</label>
+                    <label>Penduduk</label>
 
-                    <input
-                        type="text"
-                        name="name"
-                        class="form-control">
+                    <select
+                        name="penduduk_id"
+                        class="form-control"
+                        required>
+
+                        <option value="">
+                            -- Pilih Penduduk --
+                        </option>
+
+                        <?php foreach($penduduk as $p): ?>
+
+                            <option value="<?= $p['id']; ?>">
+
+                                <?= $p['nik']; ?> -
+                                <?= $p['nama_lengkap']; ?>
+
+                            </option>
+
+                        <?php endforeach; ?>
+
+                    </select>
 
                 </div>
 
@@ -28,7 +52,13 @@
                     <input
                         type="email"
                         name="email"
-                        class="form-control">
+                        class="form-control"
+                        value="<?= set_value('email'); ?>"
+                        required>
+
+                    <small class="text-muted">
+                        Digunakan untuk notifikasi email.
+                    </small>
 
                 </div>
 
@@ -39,7 +69,8 @@
                     <input
                         type="password"
                         name="password"
-                        class="form-control">
+                        class="form-control"
+                        required>
 
                 </div>
 
@@ -47,9 +78,19 @@
                     type="submit"
                     class="btn btn-success">
 
+                    <i class="fas fa-save"></i>
                     Simpan
 
                 </button>
+
+                <a
+                    href="<?= base_url('superadmin/dataAdmin'); ?>"
+                    class="btn btn-secondary">
+
+                    <i class="fas fa-arrow-left"></i>
+                    Kembali
+
+                </a>
 
             </form>
 
