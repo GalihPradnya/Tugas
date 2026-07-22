@@ -39,47 +39,107 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="<?= base_url('assets/');?>vendor/jquery/jquery.min.js"></script>
+   <!-- Bootstrap core JavaScript -->
+<script src="<?= base_url('assets/');?>vendor/jquery/jquery.min.js"></script>
+
 <script src="<?= base_url('assets/');?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script src="<?= base_url('assets/');?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
+<!-- Custom scripts for all pages -->
 <script src="<?= base_url('assets/');?>js/sb-admin-2.min.js"></script>
+
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Select2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+    // DataTables
+    if($('#tableAdmin').length){
+        $('#tableAdmin').DataTable({
+            pageLength: 10,
+            language: {
+                search: "Cari :",
+                lengthMenu: "Tampilkan _MENU_ data",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                paginate: {
+                    previous: "Sebelumnya",
+                    next: "Berikutnya"
+                }
+            }
+        });
+    }
+
+    // Select2
+    if($('.select2').length){
+        $('.select2').select2({
+            placeholder: 'Cari NIK atau Nama Penduduk',
+            width: '100%'
+        });
+    }
+
+});
+</script>
 
 <script>
 $('.form-check-input').on('click', function() {
+
     const menuId = $(this).data('menu');
     const roleId = $(this).data('role');
 
     $.ajax({
+
         url: "<?= base_url('superadmin/changeaccess'); ?>",
+
         type: 'post',
+
         data: {
             menuId: menuId,
             roleId: roleId
         },
+
         success: function() {
+
             document.location.href =
                 "<?= base_url('superadmin/roleaccess/'); ?>" + roleId;
+
         }
+
     });
+
 });
 </script>
 
 <script>
 window.addEventListener('load', function () {
-    const sidebar = document.getElementById('accordionSidebar');
-    const active = sidebar ? sidebar.querySelector('.nav-item.active') : null;
 
-    if (active) {
+    const sidebar =
+        document.getElementById('accordionSidebar');
+
+    const active =
+        sidebar
+        ? sidebar.querySelector('.nav-item.active')
+        : null;
+
+    if(active){
+
         active.scrollIntoView({
+
             behavior: 'smooth',
             block: 'center'
+
         });
+
     }
+
 });
 </script>
-</body>
 
+</body>
 </html>

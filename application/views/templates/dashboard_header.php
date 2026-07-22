@@ -1,3 +1,32 @@
+<?php
+
+$CI =& get_instance();
+
+$userLogin = null;
+
+if($CI->session->userdata('id')){
+
+    $userLogin = $CI->db
+        ->select('
+            user.email,
+            user.image,
+            penduduk.nama_lengkap
+        ')
+        ->from('user')
+        ->join(
+            'penduduk',
+            'penduduk.id = user.penduduk_id'
+        )
+        ->where(
+            'user.id',
+            $CI->session->userdata('id')
+        )
+        ->get()
+        ->row_array();
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -84,7 +113,7 @@
 
                     <div class="hidden xl:block text-left">
                         <p class="text-sm font-semibold text-gray-800 leading-none">
-                            <?= $this->session->userdata('name'); ?>
+                            <?= $userLogin['nama_lengkap']; ?>
                         </p>
 
                         <p class="text-xs text-gray-500 mt-1">
@@ -124,11 +153,11 @@
                     <div class="bg-green-600 text-white px-3 py-3">
 
                         <p class="font-semibold">
-                            <?= $this->session->userdata('name'); ?>
+                            <?= $userLogin['nama_lengkap']; ?>
                         </p>
 
-                        <p class="text-sm text-green-100">
-                            <?= $this->session->userdata('email'); ?>
+                        <p class="card-text">
+                            <?= !empty($userLogin['email']) ? $userLogin['email'] : '-'; ?>
                         </p>
 
                     </div>
@@ -218,11 +247,11 @@
 
                             <div class="text-left">
                                 <h3 class="font-semibold">
-                                    <?= $this->session->userdata('name'); ?>
+                                  <?= $userLogin['nama_lengkap']; ?>
                                 </h3>
 
-                                <p class="text-sm text-gray-500">
-                                    <?= $this->session->userdata('email'); ?>
+                                <p class="card-text">
+                                    <?= !empty($userLogin['email']) ? $userLogin['email'] : '-'; ?>
                                 </p>
                             </div>
 

@@ -9,7 +9,8 @@ class Dashboard extends CI_Controller {
         $this->load->model('Logo_profil_model');
     }
     public function index()
-    {
+    {       echo "MASUK BERANDA";
+    exit;
         $data['title'] = 'Dashboard';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 

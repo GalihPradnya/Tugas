@@ -4,80 +4,282 @@
         <?= $title; ?>
     </h1>
 
+
     <?= $this->session->flashdata('message'); ?>
+
+
 
     <div class="card shadow">
 
+
         <div class="card-body">
+
 
             <div class="table-responsive">
 
-                <table class="table table-bordered">
 
-                    <thead>
+                <table class="table table-bordered table-hover"
+                       id="tablePengaduan">
+
+
+                    <thead class="thead-light">
 
                         <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama</th>
-                            <th>Kategori</th>
-                            <th>Judul</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
+
+                            <th width="50">
+                                No
+                            </th>
+
+
+                            <th>
+                                Tanggal
+                            </th>
+
+
+                            <th>
+                                NIK
+                            </th>
+
+
+                            <th>
+                                Nama Pelapor
+                            </th>
+
+
+                            <th>
+                                Kategori
+                            </th>
+
+
+                            <th>
+                                Judul
+                            </th>
+
+
+                            <th>
+                                Status
+                            </th>
+
+
+                            <th width="100">
+                                Aksi
+                            </th>
+
+
                         </tr>
 
                     </thead>
 
+
+
                     <tbody>
 
-                        <?php $no = 1; ?>
 
-                        <?php foreach($pengaduan as $p) : ?>
+                    <?php 
+                    $no = 1;
 
-                        <tr>
+                    foreach($pengaduan as $p):
+                    ?>
 
-                            <td><?= $no++; ?></td>
 
-                            <td>
-                                <?= date('d-m-Y',
-                                strtotime($p['created_at'])); ?>
-                            </td>
+                    <tr>
 
-                            <td><?= $p['nama']; ?></td>
 
-                            <td><?= $p['nama_kategori']; ?></td>
+                        <td>
+                            <?= $no++; ?>
+                        </td>
 
-                            <td><?= $p['judul']; ?></td>
 
-                            <td>
-                                <span class="badge badge-info">
-                                    <?= $p['status']; ?>
+
+                        <td>
+
+                            <?= date(
+                                'd-m-Y',
+                                strtotime($p['created_at'])
+                            ); ?>
+
+                        </td>
+
+
+
+
+                        <td>
+
+                            <?= $p['nik']; ?>
+
+                        </td>
+
+
+
+
+
+                        <td>
+
+
+                            <?= $p['nama_lengkap']; ?>
+
+
+                            <?php if(!empty($p['email'])): ?>
+
+                                <br>
+
+                                <small class="text-muted">
+
+                                    <?= $p['email']; ?>
+
+                                </small>
+
+                            <?php endif; ?>
+
+
+                        </td>
+
+
+
+
+
+
+                        <td>
+
+                            <?= $p['nama_kategori']; ?>
+
+                        </td>
+
+
+
+
+
+                        <td>
+
+                            <?= $p['judul']; ?>
+
+                        </td>
+
+
+
+
+
+
+
+                        <td>
+
+
+                            <?php if($p['status']=='Masuk'): ?>
+
+
+                                <span class="badge badge-warning">
+
+                                    Masuk
+
                                 </span>
-                            </td>
 
-                            <td>
 
-                                <a href="<?= base_url('pengaduan/pengaduan_admin/detail/'.$p['id']); ?>"
-                                   class="btn btn-primary btn-sm">
 
-                                    Detail
+                            <?php elseif($p['status']=='Diproses'): ?>
 
-                                </a>
 
-                            </td>
+                                <span class="badge badge-primary">
 
-                        </tr>
+                                    Diproses
 
-                        <?php endforeach; ?>
+                                </span>
+
+
+
+                            <?php elseif($p['status']=='Selesai'): ?>
+
+
+                                <span class="badge badge-success">
+
+                                    Selesai
+
+                                </span>
+
+
+
+                            <?php elseif($p['status']=='Ditolak'): ?>
+
+
+                                <span class="badge badge-danger">
+
+                                    Ditolak
+
+                                </span>
+
+
+                            <?php endif; ?>
+
+
+                        </td>
+
+
+
+
+
+
+
+                        <td>
+
+
+                            <a href="<?= base_url(
+                                'pengaduan/pengaduan_admin/detail/'.$p['id']
+                            ); ?>"
+                            class="btn btn-info btn-sm">
+
+
+                                <i class="fas fa-eye"></i>
+
+                                Detail
+
+
+                            </a>
+
+
+                        </td>
+
+
+
+                    </tr>
+
+
+
+                    <?php endforeach; ?>
+
+
 
                     </tbody>
 
+
                 </table>
+
 
             </div>
 
+
         </div>
+
 
     </div>
 
+
 </div>
+
+
+
+<script>
+
+$(document).ready(function(){
+
+    $('#tablePengaduan').DataTable({
+
+        pageLength:10,
+
+        order:[
+            [1,'desc']
+        ]
+
+    });
+
+});
+
+</script>

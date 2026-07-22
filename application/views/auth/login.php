@@ -32,11 +32,11 @@
                                     <form class="user" method="post" action="<?= base_url('auth/login'); ?>">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="email"
-                                                name="email"
-                                                placeholder="Masukkan Email"
-                                                value="<?= set_value('email'); ?>">
-                                                <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+                                                id="nik"
+                                                name="nik"
+                                                placeholder="Masukkan NIK"
+                                                value="<?= set_value('nik'); ?>">
+                                            <?= form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" 

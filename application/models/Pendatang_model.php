@@ -3,38 +3,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pendatang_model extends CI_Model
 {
-    public function simpan($data)
-    {
-        return $this->db->insert('warga_pendatang', $data);
-    }
 
+    private $table = 'penduduk_pendatang';
+
+
+
+    // Ambil semua data pendatang
     public function getAll()
     {
         return $this->db
-            ->order_by('id', 'DESC')
-            ->get('warga_pendatang')
+            ->order_by('id','DESC')
+            ->get($this->table)
             ->result_array();
     }
 
+
+
+    // Ambil berdasarkan ID
     public function getById($id)
     {
         return $this->db
-            ->get_where('warga_pendatang', ['id' => $id])
+            ->get_where(
+                $this->table,
+                [
+                    'id'=>$id
+                ]
+            )
             ->row_array();
     }
 
-    public function getByUser($user_id)
+
+
+    // Tambah data
+    public function insert($data)
     {
         return $this->db
-            ->where('user_id', $user_id)
-            ->order_by('id', 'DESC')
-            ->get('warga_pendatang')
-            ->result_array();
+            ->insert(
+                $this->table,
+                $data
+            );
     }
 
-    public function update($id, $data)
+
+
+    // Edit data
+    public function update($id,$data)
     {
-        $this->db->where('id', $id);
-        return $this->db->update('warga_pendatang', $data);
+        return $this->db
+            ->where(
+                'id',
+                $id
+            )
+            ->update(
+                $this->table,
+                $data
+            );
     }
+
+
+
+    // Hapus data
+    public function delete($id)
+    {
+        return $this->db
+            ->where(
+                'id',
+                $id
+            )
+            ->delete(
+                $this->table
+            );
+    }
+
+
 }
