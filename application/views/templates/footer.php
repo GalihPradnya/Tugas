@@ -50,9 +50,8 @@
 <script src="<?= base_url('assets/');?>js/sb-admin-2.min.js"></script>
 
 <!-- DataTables -->
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 
-<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+
 
 <!-- Select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -141,5 +140,195 @@ window.addEventListener('load', function () {
 });
 </script>
 
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready(function () {
+
+    // Pastikan tabel ada
+    if ($('#tablePenduduk').length) {
+
+        // Inisialisasi DataTable
+        var table = $('#tablePenduduk').DataTable({
+
+            pageLength: 25,
+
+            lengthMenu: [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+
+            ordering: true,
+            searching: true,
+            responsive: true,
+
+            language: {
+                search: "Cari :",
+                lengthMenu: "Tampilkan _MENU_ data",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+                infoEmpty: "Tidak ada data",
+                zeroRecords: "Data tidak ditemukan",
+                infoFiltered: "(difilter dari _MAX_ data)",
+                paginate: {
+                    first: "Awal",
+                    last: "Akhir",
+                    previous: "←",
+                    next: "→"
+                }
+            }
+
+        });
+
+        // =============================
+        // FILTER UMUR
+        // =============================
+        $.fn.dataTable.ext.search.push(function (settings, data) {
+
+            // Hanya berlaku untuk tabel penduduk
+            if (settings.nTable.id !== 'tablePenduduk') {
+                return true;
+            }
+
+            var filter = $('#filterUmur').val();
+
+            if (filter === "") {
+                return true;
+            }
+
+            var umur = parseInt(data[5]);
+
+            if (isNaN(umur)) {
+                return false;
+            }
+
+            var batas = filter.split('-');
+
+            var min = parseInt(batas[0]);
+            var max = parseInt(batas[1]);
+
+            return umur >= min && umur <= max;
+
+        });
+
+        // Saat dropdown berubah
+        $('#filterUmur').on('change', function () {
+            table.draw();
+        });
+
+        // =============================
+        // CETAK BERDASARKAN FILTER
+        // =============================
+        $('#btnCetakUmur').on('click', function () {
+
+            var umur = $('#filterUmur').val();
+
+            if (umur == "") {
+
+                window.open(
+                    "<?= base_url('penduduk/penduduk/cetak'); ?>",
+                    "_blank"
+                );
+
+            } else {
+
+                window.open(
+                    "<?= base_url('penduduk/penduduk/cetakUmur/'); ?>" + umur,
+                    "_blank"
+                );
+
+            }
+
+        });
+
+    }
+
+});
+</script>
+<script>
+$(document).ready(function () {
+
+    if ($('#tablePendatang').length) {
+
+        // Inisialisasi DataTable
+        var table = $('#tablePendatang').DataTable({
+
+            pageLength: 25,
+
+            responsive: true,
+
+            language: {
+
+                search: "Cari :",
+
+                lengthMenu: "Tampilkan _MENU_ data",
+
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+
+                infoEmpty: "Tidak ada data",
+
+                zeroRecords: "Data tidak ditemukan",
+
+                paginate: {
+                    previous: "←",
+                    next: "→"
+                }
+
+            }
+
+        });
+
+        // Filter berdasarkan alamat tinggal
+        $.fn.dataTable.ext.search.push(function (settings, data) {
+
+            // Hanya untuk tabel pendatang
+            if (settings.nTable.id !== 'tablePendatang') {
+                return true;
+            }
+
+            var alamat = $('#filterAlamat').val();
+
+            if (alamat === "") {
+                return true;
+            }
+
+            // Kolom Alamat Tinggal (sesuaikan jika posisi kolom berubah)
+            return data[10] === alamat;
+
+        });
+
+        // Jalankan filter
+        $('#filterAlamat').on('change', function () {
+            table.draw();
+        });
+
+        // Tombol Cetak
+        $('#btnCetakAlamat').on('click', function () {
+
+            var alamat = $('#filterAlamat').val();
+
+            if (alamat === "") {
+
+                window.open(
+                    "<?= base_url('pendatang/pendatang/cetak'); ?>",
+                    "_blank"
+                );
+
+            } else {
+
+                window.open(
+                    "<?= base_url('pendatang/pendatang/cetakAlamat/'); ?>" +
+                    encodeURIComponent(alamat),
+                    "_blank"
+                );
+
+            }
+
+        });
+
+    }
+
+});
+</script>
 </body>
 </html>

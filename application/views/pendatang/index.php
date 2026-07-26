@@ -1,26 +1,18 @@
 <div class="container-fluid">
 
-
     <h1 class="h3 mb-4 text-gray-800">
         Data Penduduk Pendatang
     </h1>
 
-
-
     <?= $this->session->flashdata('message'); ?>
-
-
 
     <div class="card shadow mb-4">
 
-
-        <div class="card-header py-3 d-flex justify-content-between">
-
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
 
             <h6 class="m-0 font-weight-bold text-primary">
                 Daftar Pendatang
             </h6>
-
 
             <a href="<?= base_url('pendatang/pendatang/tambah'); ?>"
                class="btn btn-primary btn-sm">
@@ -30,165 +22,177 @@
 
             </a>
 
-
         </div>
-
-
-
-
 
         <div class="card-body">
 
+            <!-- Filter -->
+            <div class="row mb-3">
+
+                <div class="col-md-4">
+
+                    <label><strong>Filter Alamat Tinggal</strong></label>
+
+                    <select id="filterAlamat" class="form-control">
+
+                        <option value="">Semua Alamat</option>
+
+                        <?php
+                        $alamat = [];
+
+                        foreach($pendatang as $p){
+
+                            if(!in_array($p['alamat_tinggal'],$alamat)){
+
+                                $alamat[] = $p['alamat_tinggal'];
+
+                                echo '<option value="'.$p['alamat_tinggal'].'">'.$p['alamat_tinggal'].'</option>';
+
+                            }
+
+                        }
+                        ?>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+
+                    <button class="btn btn-danger btn-block"
+                            id="btnCetakAlamat">
+
+                        <i class="fas fa-print"></i>
+                        Cetak
+
+                    </button>
+
+                </div>
+
+            </div>
 
             <div class="table-responsive">
 
+                <table id="tablePendatang"
+                       class="table table-bordered table-striped"
+                       width="100%">
 
-                <table class="table table-bordered"
-                       width="100%"
-                       cellspacing="0">
+                    <thead class="thead-light">
 
+                    <tr>
 
-                    <thead>
+                        <th>No</th>
+                        <th>NIK</th>
+                        <th>Nama Lengkap</th>
+                        <th>Tempat Lahir</th>
+                        <th>Tanggal Lahir</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Nomor HP</th>
+                        <th>Pekerjaan</th>
+                        <th>Asal Daerah</th>
+                        <th>Alamat Asal</th>
+                        <th>Alamat Tinggal</th>
+                        <th>Status</th>
+                        <th>Dibuat</th>
+                        <th>Aksi</th>
 
-                        <tr>
-
-                            <th>No</th>
-
-                            <th>NIK</th>
-
-                            <th>Nama Lengkap</th>
-
-                            <th>Jenis Kelamin</th>
-
-                            <th>Nomor HP</th>
-
-                            <th>Alamat Tinggal</th>
-
-                            <th>Status</th>
-
-                            <th>Aksi</th>
-
-                        </tr>
+                    </tr>
 
                     </thead>
 
-
-
                     <tbody>
-
 
                     <?php $no=1; ?>
 
-
                     <?php foreach($pendatang as $p): ?>
-
 
                         <tr>
 
+                            <td><?= $no++; ?></td>
 
-                            <td>
-                                <?= $no++; ?>
-                            </td>
+                            <td><?= $p['nik']; ?></td>
 
+                            <td><?= $p['nama_lengkap']; ?></td>
 
-                            <td>
-                                <?= $p['nik']; ?>
-                            </td>
+                            <td><?= $p['tempat_lahir']; ?></td>
 
+                            <td><?= date('d-m-Y',strtotime($p['tanggal_lahir'])); ?></td>
 
-                            <td>
-                                <?= $p['nama_lengkap']; ?>
-                            </td>
+                            <td><?= $p['jenis_kelamin']=='L' ? 'Laki-laki' : 'Perempuan'; ?></td>
 
+                            <td><?= $p['nomor_hp']; ?></td>
 
-                            <td>
-                                <?= $p['jenis_kelamin']; ?>
-                            </td>
+                            <td><?= $p['pekerjaan']; ?></td>
 
+                            <td><?= $p['asal_daerah']; ?></td>
 
-                            <td>
-                                <?= $p['nomor_hp']; ?>
-                            </td>
+                            <td><?= $p['alamat_asal']; ?></td>
 
-
-                            <td>
-                                <?= $p['alamat_tinggal']; ?>
-                            </td>
-
+                            <td><?= $p['alamat_tinggal']; ?></td>
 
                             <td>
 
-
-                                <?php if($p['status']=='Aktif'): ?>
-
+                                <?php if($p['status']=="Aktif"): ?>
 
                                     <span class="badge badge-success">
                                         Aktif
                                     </span>
 
-
                                 <?php else: ?>
-
 
                                     <span class="badge badge-secondary">
                                         Selesai
                                     </span>
 
-
                                 <?php endif; ?>
-
 
                             </td>
 
+                            <td><?= date('d-m-Y',strtotime($p['created_at'])); ?></td>
 
+                            <td class="text-nowrap">
 
-                            <td>
-
-
-                                <a href="<?= base_url('pendatang/edit/'.$p['id']); ?>"
+                                <a href="<?= base_url('pendatang/pendatang/edit/'.$p['id']); ?>"
                                    class="btn btn-warning btn-sm">
-
 
                                     <i class="fas fa-edit"></i>
 
                                 </a>
 
-
-
-                                <a href="<?= base_url('pendatang/hapus/'.$p['id']); ?>"
-                                   onclick="return confirm('Hapus data pendatang?')"
+                                <a href="<?= base_url('pendatang/pendatang/hapus/'.$p['id']); ?>"
+                                   onclick="return confirm('Yakin ingin menghapus data ini?')"
                                    class="btn btn-danger btn-sm">
-
 
                                     <i class="fas fa-trash"></i>
 
-
                                 </a>
-
 
                             </td>
 
-
                         </tr>
-
 
                     <?php endforeach; ?>
 
-
-
                     </tbody>
-
 
                 </table>
 
-
             </div>
-
 
         </div>
 
-
     </div>
 
-
 </div>
+
+<style>
+
+.table-responsive{
+    overflow-x:auto;
+}
+
+.table{
+    white-space:nowrap;
+}
+
+</style>

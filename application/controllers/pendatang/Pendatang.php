@@ -442,5 +442,23 @@ class Pendatang extends CI_Controller
 
 
     }
+public function cetak()
+{
+    $data['pendatang'] = $this->Pendatang_model->getAll();
+
+    $this->load->view('pendatang/print_semua', $data);
+}
+
+public function cetakAlamat($alamat)
+{
+    $alamat = urldecode($alamat);
+
+    $data['alamat'] = $alamat;
+
+    $data['pendatang'] =
+        $this->Pendatang_model->getPendatangByAlamat($alamat);
+
+    $this->load->view('pendatang/print_alamat', $data);
+}
 
 }

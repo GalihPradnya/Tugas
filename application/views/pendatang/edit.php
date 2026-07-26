@@ -238,7 +238,7 @@ Update
 
 
 
-<a href="<?= base_url('pendatang'); ?>"
+<a href="<?= base_url('pendatang/pendatang'); ?>"
 class="btn btn-secondary">
 
 Kembali
