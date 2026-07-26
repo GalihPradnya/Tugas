@@ -88,5 +88,28 @@ public function getAllUserPenduduk()
 
     return $this->db->get()->result_array();
 }
+public function getPendudukByUmur($min,$max)
+{
+
+    $sql = "
+
+        SELECT *
+
+        FROM penduduk
+
+        WHERE
+        TIMESTAMPDIFF(YEAR,tanggal_lahir,CURDATE())
+
+        BETWEEN ?
+
+        AND ?
+
+        ORDER BY nama_lengkap
+
+    ";
+
+    return $this->db->query($sql,[$min,$max])->result_array();
+
+}
 
 }

@@ -477,4 +477,25 @@ public function reset_password($id)
     redirect('penduduk/penduduk/akun');
 
 }
+public function cetak()
+{
+    $data['penduduk'] = $this->Penduduk_model->getAllPenduduk();
+
+    $this->load->view('penduduk/print_semua',$data);
+}
+public function cetakUmur($umur = '')
+{
+    if (empty($umur) || strpos($umur, '-') === false) {
+        show_error('Rentang umur tidak valid.');
+    }
+
+    $batas = explode('-', $umur);
+
+    $min = (int)$batas[0];
+    $max = (int)$batas[1];
+
+    $data['penduduk'] = $this->Penduduk_model->getPendudukByUmur($min, $max);
+
+    $this->load->view('penduduk/print_umur', $data);
+}
 }
