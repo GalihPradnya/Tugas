@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Cetak Pendatang Berdasarkan Alamat</title>
+
+    <title>Cetak Penduduk Pendatang Berdasarkan Alamat</title>
 
     <style>
 
         body{
-            font-family:Arial;
+            font-family: Arial, sans-serif;
             font-size:12px;
         }
 
         h2{
             text-align:center;
+            margin-bottom:5px;
         }
 
         h4{
             text-align:center;
+            margin-top:0;
             margin-bottom:20px;
         }
 
@@ -32,7 +35,8 @@
         }
 
         th{
-            background:#eee;
+            background:#eeeeee;
+            text-align:center;
         }
 
     </style>
@@ -50,64 +54,83 @@ Alamat Tinggal :
 
 <table>
 
-<thead>
+    <thead>
 
-<tr>
+    <tr>
 
-    <th>No</th>
-    <th>NIK</th>
-    <th>Nama Lengkap</th>
-    <th>Tempat Lahir</th>
-    <th>Tanggal Lahir</th>
-    <th>Jenis Kelamin</th>
-    <th>Alamat Asal</th>
-    <th>Alamat Tinggal</th>
-    <th>No HP</th>
-    <th>Pekerjaan</th>
-    <th>Asal Daerah</th>
-    <th>Status</th>
+        <th>No</th>
+        <th>NIK</th>
+        <th>Nama Lengkap</th>
+        <th>Tempat Lahir</th>
+        <th>Tanggal Lahir</th>
+        <th>Jenis Kelamin</th>
+        <th>Alamat Asal</th>
+        <th>Alamat Tinggal</th>
+        <th>No HP</th>
+        <th>Email</th>
+        <th>Pekerjaan</th>
+        <th>Tanggal Datang</th>
+        <th>Tempat Tinggal</th>
+        <th>Lama Tinggal</th>
+        <th>Keterangan</th>
+        <th>Status</th>
 
-</tr>
+    </tr>
 
-</thead>
+    </thead>
 
-<tbody>
+    <tbody>
 
-<?php $no=1; ?>
+    <?php $no = 1; ?>
 
-<?php foreach($pendatang as $p): ?>
+    <?php foreach($pendatang as $p): ?>
 
-<tr>
+    <tr>
 
-    <td><?= $no++; ?></td>
+        <td><?= $no++; ?></td>
 
-    <td><?= $p['nik']; ?></td>
+        <td><?= $p['nik']; ?></td>
 
-    <td><?= $p['nama_lengkap']; ?></td>
+        <td><?= $p['nama_lengkap']; ?></td>
 
-    <td><?= $p['tempat_lahir']; ?></td>
+        <td><?= $p['tempat_lahir']; ?></td>
 
-    <td><?= date('d-m-Y',strtotime($p['tanggal_lahir'])); ?></td>
+        <td>
+            <?= !empty($p['tanggal_lahir']) ? date('d-m-Y', strtotime($p['tanggal_lahir'])) : '-'; ?>
+        </td>
 
-    <td><?= $p['jenis_kelamin']=='L' ? 'Laki-laki' : 'Perempuan'; ?></td>
+        <td>
+            <?= $p['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan'; ?>
+        </td>
 
-    <td><?= $p['alamat_asal']; ?></td>
+        <td><?= $p['alamat_asal']; ?></td>
 
-    <td><?= $p['alamat_tinggal']; ?></td>
+        <td><?= $p['alamat_tinggal']; ?></td>
 
-    <td><?= $p['nomor_hp']; ?></td>
+        <td><?= $p['nomor_hp']; ?></td>
+        <td>
+        <?= !empty($p['email']) ? $p['email'] : '-'; ?>
+        </td>
 
-    <td><?= $p['pekerjaan']; ?></td>
+        <td><?= $p['pekerjaan']; ?></td>
 
-    <td><?= $p['asal_daerah']; ?></td>
+        <td>
+            <?= !empty($p['tanggal_datang']) ? date('d-m-Y', strtotime($p['tanggal_datang'])) : '-'; ?>
+        </td>
 
-    <td><?= $p['status']; ?></td>
+        <td><?= $p['tempat_tinggal']; ?></td>
 
-</tr>
+        <td><?= $p['lama_tinggal']; ?></td>
 
-<?php endforeach; ?>
+        <td><?= $p['keterangan']; ?></td>
 
-</tbody>
+        <td><?= $p['status']; ?></td>
+
+    </tr>
+
+    <?php endforeach; ?>
+
+    </tbody>
 
 </table>
 

@@ -48,6 +48,9 @@
 
 <!-- Custom scripts for all pages -->
 <script src="<?= base_url('assets/');?>js/sb-admin-2.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
 
 <!-- DataTables -->
 
@@ -140,9 +143,7 @@ window.addEventListener('load', function () {
 });
 </script>
 
-<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 
-<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
 <script>
 $(document).ready(function () {
 

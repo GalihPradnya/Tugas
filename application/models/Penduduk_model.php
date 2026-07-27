@@ -111,5 +111,15 @@ public function getPendudukByUmur($min,$max)
     return $this->db->query($sql,[$min,$max])->result_array();
 
 }
+public function getPendudukByUserId($user_id)
+{
+    return $this->db
+        ->select('penduduk.*')
+        ->from('penduduk')
+        ->join('user', 'user.penduduk_id = penduduk.id')
+        ->where('user.id', $user_id)
+        ->get()
+        ->row_array();
+}
 
 }

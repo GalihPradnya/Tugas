@@ -6,6 +6,20 @@ class Pengaduan extends CI_Controller {
 public function __construct()
 {
     parent::__construct();
+            if (!$this->session->userdata('id')) {
+
+            // Simpan URL yang ingin diakses (opsional)
+            $this->session->set_userdata('redirect_after_login', current_url());
+
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-warning">
+                    Silakan login terlebih dahulu untuk mengakses pengaduan.
+                </div>'
+            );
+
+            redirect('auth/login');
+        }
 
 
     $this->load->model('Kategori_pengaduan_model');

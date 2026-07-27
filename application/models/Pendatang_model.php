@@ -93,5 +93,18 @@ class Pendatang_model extends CI_Model
             ->get($this->table)
             ->result_array();
     }
+    // ==========================
+    // Cek berdasarkan NIK
+    // ==========================
+        public function getByNik($nik)
+        {
+            return $this->db
+                ->where('nik', $nik)
+                ->get($this->table)
+                ->row_array();
+                echo "<pre>";
+                print_r($cekNik);
+                exit;
+        }
 
 }

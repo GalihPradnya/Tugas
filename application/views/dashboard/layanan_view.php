@@ -13,7 +13,7 @@
             <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-2xl font-semibold mb-4">Lapor Warga Pendatang</h3>
                 <p class="mb-4">Lapor warga pendatang yang tinggal di desa untuk keperluan administrasi atau informasi.</p>
-                <a href="<?php echo base_url('pendatang/pendatang'); ?>" class="bg-green-600 text-white px-5 py-2 rounded font-semibold shadow hover:bg-green-700">Lapor</a>
+                <a href="<?php echo base_url('pendatang/Laporan_pendatang'); ?>" class="bg-green-600 text-white px-5 py-2 rounded font-semibold shadow hover:bg-green-700">Lapor</a>
             </div>
             <div class="bg-white rounded-lg shadow p-6">
                 <h3 class="text-2xl font-semibold mb-4">Pengaduan Masyarakat</h3>

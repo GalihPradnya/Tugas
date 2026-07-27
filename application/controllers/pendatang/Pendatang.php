@@ -122,6 +122,14 @@ class Pendatang extends CI_Controller
                 'required'=>'Nomor HP wajib diisi'
             ]
         );
+        $this->form_validation->set_rules(
+            'email',
+            'Email',
+            'trim|valid_email',
+            [
+                'valid_email' => 'Format email tidak valid'
+            ]
+        );
 
 
 
@@ -167,52 +175,39 @@ class Pendatang extends CI_Controller
 
 
 
-            $data = [
+           $data = [
 
+                    'nik' => $this->input->post('nik', true),
 
-                'nik'=>
-                $this->input->post('nik'),
+                    'nama_lengkap' => $this->input->post('nama_lengkap', true),
 
+                    'tempat_lahir' => $this->input->post('tempat_lahir', true),
 
-                'nama_lengkap'=>
-                $this->input->post('nama_lengkap'),
+                    'tanggal_lahir' => $this->input->post('tanggal_lahir', true),
 
+                    'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
 
-                'tempat_lahir'=>
-                $this->input->post('tempat_lahir'),
+                    'alamat_asal' => $this->input->post('alamat_asal', true),
 
+                    'alamat_tinggal' => $this->input->post('alamat_tinggal', true),
 
-                'tanggal_lahir'=>
-                $this->input->post('tanggal_lahir'),
+                    'nomor_hp' => $this->input->post('nomor_hp', true),
 
+                    'email' => $this->input->post('email', true),
 
-                'jenis_kelamin'=>
-                $this->input->post('jenis_kelamin'),
+                    'pekerjaan' => $this->input->post('pekerjaan', true),
 
+                    'tanggal_datang' => $this->input->post('tanggal_datang', true),
 
-                'alamat_asal'=>
-                $this->input->post('alamat_asal'),
+                    'tempat_tinggal' => $this->input->post('tempat_tinggal', true),
 
+                    'lama_tinggal' => $this->input->post('lama_tinggal', true),
 
-                'alamat_tinggal'=>
-                $this->input->post('alamat_tinggal'),
+                    'keterangan' => $this->input->post('keterangan', true),
 
+                    'status' => 'Aktif'
 
-                'nomor_hp'=>
-                $this->input->post('nomor_hp'),
-
-
-                'pekerjaan'=>
-                $this->input->post('pekerjaan'),
-
-
-                'asal_daerah'=>
-                $this->input->post('asal_daerah'),
-
-
-                'status'=>'Aktif'
-
-            ];
+                ];
 
 
 
@@ -292,6 +287,15 @@ class Pendatang extends CI_Controller
             'required|trim'
         );
 
+        $this->form_validation->set_rules(
+        'email',
+        'Email',
+        'trim|valid_email',
+        [
+            'valid_email' => 'Format email tidak valid'
+        ]
+         );
+
 
 
 
@@ -333,50 +337,37 @@ class Pendatang extends CI_Controller
         {
 
 
-            $update=[
+            $update = [
 
+                    'nik' => $this->input->post('nik', true),
 
-                'nik'=>
-                $this->input->post('nik'),
+                    'nama_lengkap' => $this->input->post('nama_lengkap', true),
 
+                    'tempat_lahir' => $this->input->post('tempat_lahir', true),
 
-                'nama_lengkap'=>
-                $this->input->post('nama_lengkap'),
+                    'tanggal_lahir' => $this->input->post('tanggal_lahir', true),
 
+                    'jenis_kelamin' => $this->input->post('jenis_kelamin', true),
 
-                'tempat_lahir'=>
-                $this->input->post('tempat_lahir'),
+                    'alamat_asal' => $this->input->post('alamat_asal', true),
 
+                    'alamat_tinggal' => $this->input->post('alamat_tinggal', true),
 
-                'tanggal_lahir'=>
-                $this->input->post('tanggal_lahir'),
+                    'nomor_hp' => $this->input->post('nomor_hp', true),
 
+                    'email' => $this->input->post('email', true),
 
-                'jenis_kelamin'=>
-                $this->input->post('jenis_kelamin'),
+                    'pekerjaan' => $this->input->post('pekerjaan', true),
 
+                    'tanggal_datang' => $this->input->post('tanggal_datang', true),
 
-                'alamat_asal'=>
-                $this->input->post('alamat_asal'),
+                    'tempat_tinggal' => $this->input->post('tempat_tinggal', true),
 
+                    'lama_tinggal' => $this->input->post('lama_tinggal', true),
 
-                'alamat_tinggal'=>
-                $this->input->post('alamat_tinggal'),
+                    'keterangan' => $this->input->post('keterangan', true)
 
-
-                'nomor_hp'=>
-                $this->input->post('nomor_hp'),
-
-
-                'pekerjaan'=>
-                $this->input->post('pekerjaan'),
-
-
-                'asal_daerah'=>
-                $this->input->post('asal_daerah')
-
-            ];
-
+                ];
 
 
 
