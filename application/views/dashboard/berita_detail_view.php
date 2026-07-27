@@ -1,7 +1,7 @@
 
     <main class="container mx-auto py-12 px-4 flex-1">
         <nav class="mb-6 text-sm">
-            <a href="index.html" class="text-green-700 hover:underline">Beranda</a> &gt; <a href="berita-pengumuman.html" class="text-green-700 hover:underline">Berita & Pengumuman</a> &gt; <span class="text-gray-500"><?= $berita->judul; ?></span>
+            <a href="<?= base_url('beranda'); ?>" class="text-green-700 hover:underline">Beranda</a> &gt; <a href="<?= base_url('navbar/berita_pengumuman'); ?>" class="text-green-700 hover:underline">Berita & Pengumuman</a> &gt; <span class="text-gray-500"><?= $berita->judul; ?></span>
         </nav>
         <article class="bg-white rounded-xl shadow-lg p-6 md:p-10 mx-auto mb-10">
             <h2 class="text-3xl font-bold mb-2 text-green-700"><?= $berita->judul; ?></h2>
