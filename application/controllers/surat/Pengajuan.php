@@ -5,12 +5,45 @@ class Pengajuan extends CI_Controller
 {
 
     public function __construct()
-    {
-        parent::__construct();
+{
+    parent::__construct();
 
-        $this->load->model('Pengajuan_model');
-        $this->load->model('Logo_profil_model');
+    // Load model terlebih dahulu
+    $this->load->model('User_model');
+    $this->load->model('Pengajuan_model');
+    $this->load->model('Logo_profil_model');
+
+    // Cek login
+    if (!$this->session->userdata('id')) {
+
+        $this->session->set_userdata('redirect_after_login', current_url());
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-warning">
+                Silakan login terlebih dahulu untuk mengakses layanan publik.
+            </div>'
+        );
+
+        redirect('auth/login');
     }
+
+    // Ambil data user
+    $user = $this->User_model->getUserById($this->session->userdata('id'));
+
+    // Cek email
+    if (empty($user['email'])) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-warning">
+                Silakan lengkapi email Anda terlebih dahulu sebelum mengajukan surat.
+            </div>'
+        );
+
+        redirect('user/user/edit');
+    }
+}
 
 
     // Halaman Form Pengajuan

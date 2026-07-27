@@ -86,12 +86,16 @@
                         <th>Nama Lengkap</th>
                         <th>Tempat Lahir</th>
                         <th>Tanggal Lahir</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Nomor HP</th>
+                        <th>JK</th>
+                        <th>No HP</th>
+                        <th>Email</th>
                         <th>Pekerjaan</th>
-                        <th>Asal Daerah</th>
                         <th>Alamat Asal</th>
                         <th>Alamat Tinggal</th>
+                        <th>Tanggal Datang</th>
+                        <th>Tempat Tinggal</th>
+                        <th>Lama Tinggal</th>
+                        <th>Keterangan</th>
                         <th>Status</th>
                         <th>Dibuat</th>
                         <th>Aksi</th>
@@ -116,19 +120,35 @@
 
                             <td><?= $p['tempat_lahir']; ?></td>
 
-                            <td><?= date('d-m-Y',strtotime($p['tanggal_lahir'])); ?></td>
+                            <td>
+                                <?= !empty($p['tanggal_lahir']) ? date('d-m-Y',strtotime($p['tanggal_lahir'])) : '-'; ?>
+                            </td>
 
-                            <td><?= $p['jenis_kelamin']=='L' ? 'Laki-laki' : 'Perempuan'; ?></td>
+                            <td>
+                                <?= $p['jenis_kelamin']=='L' ? 'Laki-laki' : 'Perempuan'; ?>
+                            </td>
 
                             <td><?= $p['nomor_hp']; ?></td>
 
-                            <td><?= $p['pekerjaan']; ?></td>
+                            <td>
+                                <?= !empty($p['email']) ? $p['email'] : '-'; ?>
+                            </td>
 
-                            <td><?= $p['asal_daerah']; ?></td>
+                            <td><?= $p['pekerjaan']; ?></td>
 
                             <td><?= $p['alamat_asal']; ?></td>
 
                             <td><?= $p['alamat_tinggal']; ?></td>
+
+                            <td>
+                                <?= !empty($p['tanggal_datang']) ? date('d-m-Y',strtotime($p['tanggal_datang'])) : '-'; ?>
+                            </td>
+
+                            <td><?= $p['tempat_tinggal']; ?></td>
+
+                            <td><?= $p['lama_tinggal']; ?></td>
+
+                            <td><?= $p['keterangan']; ?></td>
 
                             <td>
 
@@ -148,7 +168,9 @@
 
                             </td>
 
-                            <td><?= date('d-m-Y',strtotime($p['created_at'])); ?></td>
+                            <td>
+                                <?= date('d-m-Y',strtotime($p['created_at'])); ?>
+                            </td>
 
                             <td class="text-nowrap">
 
@@ -196,3 +218,23 @@
 }
 
 </style>
+
+<script>
+
+document.getElementById('btnCetakAlamat').addEventListener('click',function(){
+
+    let alamat = document.getElementById('filterAlamat').value;
+
+    if(alamat==''){
+
+        window.open("<?= base_url('pendatang/pendatang/cetak'); ?>","_blank");
+
+    }else{
+
+        window.open("<?= base_url('pendatang/pendatang/cetakAlamat/'); ?>"+encodeURIComponent(alamat),"_blank");
+
+    }
+
+});
+
+</script>

@@ -26,8 +26,7 @@
           rel="stylesheet">
 
     <!-- DataTables -->
-    <link rel="stylesheet"
-          href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+
 
     <!-- Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
@@ -75,43 +74,8 @@
         }
 
     </style>
-    <script>
-$(document).ready(function () {
-
-    $('#tablePenduduk').DataTable({
-
-        // Jumlah data yang ditampilkan pertama kali
-        pageLength: 10,
-
-        // Pilihan jumlah data
-        lengthMenu: [
-            [10, 25, 50, 100],
-            ['10 Data', '25 Data', '50 Data', '100 Data']
-        ],
-
-        ordering: true,
-        searching: true,
-        responsive: true,
-        autoWidth: false,
-
-        language: {
-            lengthMenu: "Tampilkan _MENU_",
-            search: "Cari :",
-            info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            infoEmpty: "Tidak ada data",
-            zeroRecords: "Data tidak ditemukan",
-            paginate: {
-                first: "Awal",
-                last: "Akhir",
-                next: "Berikutnya",
-                previous: "Sebelumnya"
-            }
-        }
-
-    });
-
-});
-</script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
 
 </head>
 
