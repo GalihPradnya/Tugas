@@ -475,7 +475,7 @@ class Pengajuan_model extends CI_Model
 
 
     }
-    public function cekPengajuanAktif($penduduk_id, $jenis_surat_id)
+    public function cekPengajuanBerjalan($penduduk_id, $jenis_surat_id)
 {
 
     return $this->db
@@ -488,6 +488,7 @@ class Pengajuan_model extends CI_Model
                 'Diproses'
             ]
         )
+        ->limit(1)
         ->get('pengajuan')
         ->row_array();
 
