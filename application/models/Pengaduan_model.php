@@ -57,6 +57,19 @@ class Pengaduan_model extends CI_Model
     );
 
 
+    // PRIORITAS STATUS
+    $this->db->order_by("
+        FIELD(
+            pengaduan.status,
+            'Masuk',
+            'Diproses',
+            'Selesai',
+            'Ditolak'
+        )
+    ", NULL, FALSE);
+
+
+    // Jika status sama, tampilkan yang terbaru
     $this->db->order_by(
         'pengaduan.created_at',
         'DESC'

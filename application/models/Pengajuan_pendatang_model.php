@@ -41,13 +41,26 @@
 
 
 
-            return $this->db
-                ->order_by(
-                    'pengajuan_pendatang.id',
-                    'DESC'
-                )
-                ->get()
-                ->result_array();
+           $this->db->order_by("
+    CASE
+        WHEN pengajuan_pendatang.status = 'Menunggu' THEN 1
+        WHEN pengajuan_pendatang.status = 'Diproses' THEN 2
+        WHEN pengajuan_pendatang.status = 'Selesai' THEN 3
+        WHEN pengajuan_pendatang.status = 'Ditolak' THEN 4
+        ELSE 5
+    END
+", '', FALSE);
+
+
+$this->db->order_by(
+    'pengajuan_pendatang.created_at',
+    'DESC'
+);
+
+
+return $this->db
+    ->get()
+    ->result_array();
 
         }
 
