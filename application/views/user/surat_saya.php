@@ -66,7 +66,7 @@
                 <?php if($s['status'] == 'Selesai' && !empty($s['file_hasil'])): ?>
 
                     <a target="_blank"
-                    href="<?= base_url('uploads/surat_hasil/'.$s['file_hasil']); ?>"
+                    href="<?= base_url('uploads/hasil_surat/'.$s['file_hasil']); ?>"
                     class="btn btn-success btn-sm">
 
                         Download Surat
