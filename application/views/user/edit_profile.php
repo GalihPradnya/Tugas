@@ -38,10 +38,8 @@
                     <div class="form-group text-center">
 
 
-                        <img
-                        src="<?= base_url('assets/img/profile/'.$user['image']); ?>"
-                        class="img-profile rounded-circle mb-3"
-                        width="120">
+                        <img src="<?= base_url('assets/img/profile/'.$user['image']); ?>"
+                            class="img-profile rounded-circle mb-3" width="120">
 
 
                     </div>
@@ -59,10 +57,7 @@
                         </label>
 
 
-                        <input type="text"
-                        class="form-control"
-                        value="<?= $user['nama_lengkap']; ?>"
-                        readonly>
+                        <input type="text" class="form-control" value="<?= $user['nama_lengkap']; ?>" readonly>
 
 
                         <small class="text-muted">
@@ -85,10 +80,7 @@
                         </label>
 
 
-                        <input type="text"
-                        class="form-control"
-                        value="<?= $user['nik']; ?>"
-                        readonly>
+                        <input type="text" class="form-control" value="<?= $user['nik']; ?>" readonly>
 
 
                     </div>
@@ -106,11 +98,8 @@
                         </label>
 
 
-                        <input type="email"
-                        name="email"
-                        class="form-control"
-                        value="<?= !empty($user['email']) ? $user['email'] : ''; ?>"
-                        placeholder="Masukkan email">
+                        <input type="email" name="email" class="form-control"
+                            value="<?= !empty($user['email']) ? $user['email'] : ''; ?>" placeholder="Masukkan email">
 
 
                         <small class="text-muted">
@@ -136,14 +125,10 @@
                         <div class="custom-file">
 
 
-                            <input type="file"
-                            class="custom-file-input"
-                            name="image"
-                            id="image">
+                            <input type="file" class="custom-file-input" name="image" id="image">
 
 
-                            <label class="custom-file-label"
-                            for="image">
+                            <label class="custom-file-label" for="image">
                                 Pilih file
                             </label>
 
@@ -156,8 +141,7 @@
 
 
 
-                    <button type="submit"
-                    class="btn btn-success">
+                    <button type="submit" class="btn btn-success">
 
 
                         <i class="fas fa-save"></i>
@@ -209,8 +193,7 @@
 
 
 
-                    <form action="<?= base_url('user/user/updatePassword'); ?>"
-                    method="post">
+                    <form action="<?= base_url('user/user/updatePassword'); ?>" method="post">
 
 
 
@@ -222,10 +205,24 @@
                             </label>
 
 
-                            <input type="password"
-                            name="current_password"
-                            class="form-control"
-                            required>
+                            <div class="input-group">
+
+                                <input type="password" name="current_password" id="current_password"
+                                    class="form-control" required>
+
+
+                                <div class="input-group-append">
+
+                                    <button type="button" class="btn btn-outline-secondary toggle-password"
+                                        data-target="current_password">
+
+                                        <i class="fas fa-eye"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
 
                         </div>
@@ -241,10 +238,24 @@
                             </label>
 
 
-                            <input type="password"
-                            name="new_password"
-                            class="form-control"
-                            required>
+                            <div class="input-group">
+
+                                <input type="password" name="new_password" id="new_password" class="form-control"
+                                    required>
+
+
+                                <div class="input-group-append">
+
+                                    <button type="button" class="btn btn-outline-secondary toggle-password"
+                                        data-target="new_password">
+
+                                        <i class="fas fa-eye"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
 
                         </div>
@@ -260,10 +271,24 @@
                             </label>
 
 
-                            <input type="password"
-                            name="confirm_password"
-                            class="form-control"
-                            required>
+                            <div class="input-group">
+
+                                <input type="password" name="confirm_password" id="confirm_password"
+                                    class="form-control" required>
+
+
+                                <div class="input-group-append">
+
+                                    <button type="button" class="btn btn-outline-secondary toggle-password"
+                                        data-target="confirm_password">
+
+                                        <i class="fas fa-eye"></i>
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
 
                         </div>
@@ -271,8 +296,7 @@
 
 
 
-                        <button type="submit"
-                        class="btn btn-warning">
+                        <button type="submit" class="btn btn-warning">
 
 
                             <i class="fas fa-key"></i>
@@ -306,25 +330,51 @@
 
 
 <script>
-
-$('.custom-file-input').on('change', function(){
+$('.custom-file-input').on('change', function() {
 
 
     let fileName =
-    $(this).val().split('\\').pop();
+        $(this).val().split('\\').pop();
 
 
     $(this)
-    .next('.custom-file-label')
-    .addClass("selected");
+        .next('.custom-file-label')
+        .addClass("selected");
 
 
     $(this)
-    .next('.custom-file-label')
-    .html(fileName);
+        .next('.custom-file-label')
+        .html(fileName);
 
 
 });
+</script>
+<script>
+$('.toggle-password').click(function() {
+
+    let target = $(this).data('target');
+
+    let input = $('#' + target);
+
+    let icon = $(this).find('i');
 
 
+    if (input.attr('type') === 'password') {
+
+        input.attr('type', 'text');
+
+        icon.removeClass('fa-eye')
+            .addClass('fa-eye-slash');
+
+    } else {
+
+        input.attr('type', 'password');
+
+        icon.removeClass('fa-eye-slash')
+            .addClass('fa-eye');
+
+    }
+
+
+});
 </script>
