@@ -74,13 +74,23 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
+                                        <a href="<?= base_url('beranda'); ?>" 
+                                        class="btn btn-secondary btn-user btn-block mt-2">
+
+                                            <i class="fas fa-arrow-left"></i>
+                                            Kembali
+
+                                        </a>
                                         <hr>
                                     </form>
 
-                                    <div class="text-center">
-                                       <a class="small" href="<?php echo base_url('auth/registration'); ?>">
-                                            Belum Punya Akun? Daftar!
-                                        </a>
+                                    <div class="text-center mt-3">
+
+                                    <small class="text-muted">
+                                        Akun layanan desa dibuat oleh admin desa.
+                                        Silakan hubungi kantor desa apabila belum memiliki akun.
+                                    </small>
+
                                     </div>
                                 </div>
                             </div>

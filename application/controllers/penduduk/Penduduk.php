@@ -324,55 +324,48 @@ redirect('penduduk/penduduk');
     // ==========================
 
     public function hapus($id)
-    {
+{
+    // Cek data penduduk
+    $penduduk = $this->Penduduk_model->getPendudukById($id);
 
-
-        // cek data penduduk
-        
-        $penduduk =
-        $this->Penduduk_model
-            ->getPendudukById($id);
-
-
-
-        if(!$penduduk)
-        {
-            redirect('penduduk/penduduk');
-        }
-
-
-
-        // hapus akun user
-
-        $this->db->where(
-            'penduduk_id',
-            $id
-        );
-
-
-        $this->db->delete('user');
-
-
-
-        // hapus data penduduk
-
-        $this->Penduduk_model
-            ->delete($id);
-
-
-
-        $this->session->set_flashdata(
-            'message',
-            '<div class="alert alert-success">
-            Data penduduk berhasil dihapus.
-            </div>'
-        );
-
-
-
+    if (!$penduduk) {
         redirect('penduduk/penduduk');
-
     }
+
+    $this->db->trans_start();
+
+    // Cari user berdasarkan penduduk
+    $user = $this->db->get_where('user', [
+        'penduduk_id' => $id
+    ])->row();
+
+    if ($user) {
+
+        // Hapus semua laporan pendatang milik user
+        $this->db->delete('laporan_pendatang', [
+            'user_id' => $user->id
+        ]);
+
+        // Hapus user
+        $this->db->delete('user', [
+            'id' => $user->id
+        ]);
+    }
+
+    // Hapus penduduk
+    $this->Penduduk_model->delete($id);
+
+    $this->db->trans_complete();
+
+    $this->session->set_flashdata(
+        'message',
+        '<div class="alert alert-success">
+        Data penduduk beserta akun user berhasil dihapus.
+        </div>'
+    );
+
+    redirect('penduduk/penduduk');
+}
     public function akun()
 {
 
