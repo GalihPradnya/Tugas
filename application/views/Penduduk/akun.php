@@ -14,6 +14,9 @@ Akun Penduduk
 
 
 <div class="card-body">
+    <div class="mb-3">
+    <input type="text" id="searchNama" class="form-control" placeholder="Cari berdasarkan nama penduduk...">
+</div>
 
 
 <div class="table-responsive">
@@ -148,3 +151,30 @@ Reset Password
 
 
 </div>
+<script>
+document.getElementById('searchNama').addEventListener('keyup', function(){
+
+    let filter = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll("table tbody tr");
+
+
+    rows.forEach(function(row){
+
+        let nama = row.cells[2].textContent.toLowerCase();
+
+
+        if(nama.includes(filter)){
+
+            row.style.display = "";
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+});
+</script>

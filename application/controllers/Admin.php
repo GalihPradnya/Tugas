@@ -12,6 +12,7 @@ class Admin extends CI_Controller {
         $this->load->model('Dashboard_model');
         $this->load->model('Logo_profil_model');
         $this->load->model('Kontak_model');
+        $this->load->model('Penduduk_model');
     }
 
 
@@ -29,15 +30,26 @@ class Admin extends CI_Controller {
 
 
         $data['jumlahPengajuan'] =
-            $this->Dashboard_model->jumlahPengajuan();
+    $this->Dashboard_model->jumlahPengajuan();
 
 
-        $data['jumlahPengaduan'] =
-            $this->Dashboard_model->jumlahPengaduan();
+$data['jumlahPengaduan'] =
+    $this->Dashboard_model->jumlahPengaduan();
 
 
-        $data['jumlahPendatang'] =
-            $this->Dashboard_model->jumlahPendatang();
+$data['jumlahPendatang'] =
+    $this->Dashboard_model->jumlahPendatang();
+
+$data['jumlahAkun'] =
+    $this->Dashboard_model->jumlahAkun();
+
+
+$data['jumlahPenduduk'] =
+    $this->Dashboard_model->jumlahPenduduk();
+
+
+$data['jumlahLaporanPendatang'] =
+    $this->Dashboard_model->jumlahLaporanPendatang();
 
 
 

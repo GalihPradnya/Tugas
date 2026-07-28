@@ -48,7 +48,7 @@
                 <td>
 
                     <a
-                        href="<?= base_url('JenisSurat/hapus/'.$js['id']); ?>"
+                        href="<?= base_url('surat/JenisSurat/hapus/'.$js['id']); ?>"
                         class="btn btn-danger btn-sm">
 
                         Hapus
