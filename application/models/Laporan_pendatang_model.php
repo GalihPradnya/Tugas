@@ -17,9 +17,20 @@ class Laporan_pendatang_model extends CI_Model
             ->select('laporan_pendatang.*, user.name')
             ->from('laporan_pendatang')
             ->join('user', 'user.id = laporan_pendatang.user_id')
-            ->order_by('laporan_pendatang.id', 'DESC')
-            ->get()
-            ->result_array();
+            ->order_by("
+            CASE
+                WHEN laporan_pendatang.status = 'Menunggu' THEN 1
+                WHEN laporan_pendatang.status = 'Disetujui' THEN 2
+                WHEN laporan_pendatang.status = 'Ditolak' THEN 3
+                ELSE 4
+            END
+        ", '', FALSE)
+        ->order_by(
+            'laporan_pendatang.created_at',
+            'DESC'
+        )
+        ->get()
+        ->result_array();
     }
 
     // Riwayat laporan milik user

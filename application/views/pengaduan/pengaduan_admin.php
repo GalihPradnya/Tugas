@@ -266,6 +266,7 @@
 
 
 
+
 <script>
 
 $(document).ready(function(){
@@ -274,12 +275,11 @@ $(document).ready(function(){
 
         pageLength:10,
 
-        order:[
-            [1,'desc']
-        ]
+        order: []
 
     });
 
 });
 
 </script>
+
