@@ -118,168 +118,195 @@ class Pengajuan extends CI_Controller
 
     // Simpan pengajuan surat
     public function simpan()
+{
+
+    $penduduk_id =
+        $this->session->userdata('penduduk_id');
+
+
+    $jenis_surat_id =
+        $this->input->post('jenis_surat_id');
+
+
+
+    // Cek apakah masih ada pengajuan surat yang sama
+    $cek =
+        $this->Pengajuan_model->cekPengajuanBerjalan(
+            $penduduk_id,
+            $jenis_surat_id
+        );
+
+
+
+    if($cek)
     {
 
-
-        $penduduk_id =
-            $this->session->userdata('penduduk_id');
-
-
-
-        // Data pengajuan
-
-        $data = [
-
-            'user_id' =>
-                $this->session->userdata('id'),
-
-
-            'penduduk_id' =>
-                $penduduk_id,
-
-
-            'hp' =>
-                $this->input->post('hp'),
-
-
-            'jenis_surat_id' =>
-                $this->input->post('jenis_surat_id'),
-
-
-            'keperluan' =>
-                $this->input->post('keperluan'),
-
-
-            'catatan' =>
-                $this->input->post('catatan')
-
-        ];
-
-
-
-        // simpan pengajuan
-
-        $pengajuan_id =
-            $this->Pengajuan_model
-            ->simpan($data);
-
-
-
-        if($pengajuan_id)
-        {
-
-
-            // konfigurasi upload
-
-            $config['upload_path']
-                = './uploads/persyaratan/';
-
-
-            $config['allowed_types']
-                = 'jpg|jpeg|png|pdf';
-
-
-            $config['max_size']
-                = 2048;
-
-
-
-            $this->load->library('upload');
-
-
-
-            foreach($_FILES as $key=>$file)
-            {
-
-
-                if(!empty($file['name']))
-                {
-
-
-                    $config['file_name']
-                    =
-                    time().'_'.$file['name'];
-
-
-
-                    $this->upload->initialize($config);
-
-
-
-                    if($this->upload->do_upload($key))
-                    {
-
-
-                        $uploadData =
-                            $this->upload->data();
-
-
-
-                        $persyaratan_id =
-                            str_replace(
-                                'persyaratan_',
-                                '',
-                                $key
-                            );
-
-
-
-                        $this->Pengajuan_model
-                        ->simpanFile([
-
-
-                            'pengajuan_id'
-                            =>
-                            $pengajuan_id,
-
-
-                            'persyaratan_id'
-                            =>
-                            $persyaratan_id,
-
-
-                            'nama_file'
-                            =>
-                            $uploadData['file_name']
-
-
-                        ]);
-
-                    }
-
-                }
-
-            }
-
-
-
-            $this->session->set_flashdata(
-                'success',
-                'Pengajuan surat berhasil dikirim'
-            );
-
-
-        }
-        else
-        {
-
-
-            $this->session->set_flashdata(
-                'error',
-                'Pengajuan surat gagal'
-            );
-
-
-        }
-
+        $this->session->set_flashdata(
+            'error',
+            'Pengajuan surat yang sama masih berstatus '.$cek['status'].'. Silakan tunggu proses verifikasi admin selesai sebelum mengajukan kembali.'
+        );
 
 
         redirect(
             'surat/pengajuan'
         );
 
+    }
+
+
+
+
+    // Data pengajuan
+
+    $data = [
+
+        'user_id' =>
+            $this->session->userdata('id'),
+
+
+        'penduduk_id' =>
+            $penduduk_id,
+
+
+        'hp' =>
+            $this->input->post('hp'),
+
+
+        'jenis_surat_id' =>
+            $jenis_surat_id,
+
+
+        'keperluan' =>
+            $this->input->post('keperluan'),
+
+
+        'catatan' =>
+            $this->input->post('catatan')
+
+    ];
+
+
+
+
+    // Simpan pengajuan
+
+    $pengajuan_id =
+        $this->Pengajuan_model->simpan($data);
+
+
+
+    if($pengajuan_id)
+    {
+
+
+        // konfigurasi upload
+
+        $config['upload_path']
+            = './uploads/persyaratan/';
+
+
+        $config['allowed_types']
+            = 'jpg|jpeg|png|pdf';
+
+
+        $config['max_size']
+            = 2048;
+
+
+
+        $this->load->library('upload');
+
+
+
+        foreach($_FILES as $key=>$file)
+        {
+
+
+            if(!empty($file['name']))
+            {
+
+
+                $config['file_name']
+                    = time().'_'.$file['name'];
+
+
+
+                $this->upload->initialize($config);
+
+
+
+                if($this->upload->do_upload($key))
+                {
+
+
+                    $uploadData =
+                        $this->upload->data();
+
+
+
+                    $persyaratan_id =
+                        str_replace(
+                            'persyaratan_',
+                            '',
+                            $key
+                        );
+
+
+
+                    $this->Pengajuan_model->simpanFile([
+
+
+                        'pengajuan_id'
+                            =>
+                            $pengajuan_id,
+
+
+                        'persyaratan_id'
+                            =>
+                            $persyaratan_id,
+
+
+                        'nama_file'
+                            =>
+                            $uploadData['file_name']
+
+
+                    ]);
+
+                }
+
+            }
+
+        }
+
+
+
+        $this->session->set_flashdata(
+            'success',
+            'Pengajuan surat berhasil dikirim'
+        );
+
 
     }
+    else
+    {
+
+
+        $this->session->set_flashdata(
+            'error',
+            'Pengajuan surat gagal'
+        );
+
+
+    }
+
+
+
+    redirect(
+        'surat/pengajuan'
+    );
+
+}
 
 
 

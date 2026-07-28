@@ -14,9 +14,23 @@
 
 <?php if($this->session->flashdata('success')): ?>
 
-<div class="bg-green-100 text-green-700 p-3 rounded mb-5">
+<div id="alert-success" 
+     class="bg-green-100 text-green-700 p-4 rounded mb-5 flex justify-between items-center">
 
-<?= $this->session->flashdata('success'); ?>
+    <span>
+        <?= $this->session->flashdata('success'); ?>
+    </span>
+
+
+    <button type="button"
+            onclick="closeAlert('alert-success')"
+            class="text-green-700 font-bold text-3xl hover:text-green-900
+                w-10 h-10 flex items-center justify-center rounded-full 
+                hover:bg-green-200">
+
+        &times;
+
+    </button>
 
 </div>
 
@@ -25,9 +39,23 @@
 
 <?php if($this->session->flashdata('error')): ?>
 
-<div class="bg-red-100 text-red-700 p-3 rounded mb-5">
+<div id="alert-error" 
+     class="bg-yellow-100 text-yellow-700 p-4 rounded mb-5 flex justify-between items-center">
 
-<?= $this->session->flashdata('error'); ?>
+    <span>
+        <?= $this->session->flashdata('error'); ?>
+    </span>
+
+
+    <button type="button"
+            onclick="closeAlert('alert-error')"
+            class="text-red-700 font-bold text-3xl hover:text-red-900 
+                w-10 h-10 flex items-center justify-center rounded-full 
+                hover:bg-red-200">
+
+        &times;
+
+    </button>
 
 </div>
 
@@ -490,5 +518,23 @@ $('#persyaratan_container').html(html);
 
 });
 
+
+</script>
+<script>
+
+function closeAlert(id)
+{
+
+    let alert = document.getElementById(id);
+
+
+    if(alert)
+    {
+
+        alert.style.display = 'none';
+
+    }
+
+}
 
 </script>
