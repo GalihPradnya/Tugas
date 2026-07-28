@@ -148,6 +148,17 @@ class Pengajuan_model extends CI_Model
     );
 
 
+// baru
+    $this->db->order_by("
+        CASE
+            WHEN pengajuan.status = 'Menunggu' THEN 1
+            WHEN pengajuan.status = 'Diproses' THEN 2
+            WHEN pengajuan.status = 'Selesai' THEN 3
+            WHEN pengajuan.status = 'Ditolak' THEN 4
+            ELSE 5
+        END
+    ", '', FALSE);
+
 
     $this->db->order_by(
         'pengajuan.created_at',
