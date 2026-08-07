@@ -188,6 +188,12 @@ class Auth extends CI_Controller {
                         redirect('beranda');
 
                     }
+                    elseif($user['role_id'] == 4)
+                    {
+
+                        redirect('kepala_wilayah');
+                    }
+                    
                     else
                     {
 

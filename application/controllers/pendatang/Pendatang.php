@@ -392,7 +392,7 @@ class Pendatang extends CI_Controller
 
 
             redirect(
-                'pendatang'
+                'pendatang/pendatang'
             );
 
         }

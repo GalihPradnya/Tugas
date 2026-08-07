@@ -487,22 +487,105 @@ class Pengajuan_model extends CI_Model
 
     }
     public function cekPengajuanBerjalan($penduduk_id, $jenis_surat_id)
+    {
+        return $this->db
+            ->where('penduduk_id', $penduduk_id)
+            ->where('jenis_surat_id', $jenis_surat_id)
+            ->where_in(
+                'status',
+                [
+                    'Menunggu',
+                    'Diproses'
+                ]
+            )
+            ->limit(1)
+            ->get('pengajuan')
+            ->row_array();
+    }
+// ==========================
+// PENGAJUAN MENUNGGU VERIFIKASI
+// ==========================
+public function getPengajuanMenungguVerifikasi()
 {
+    $this->db->select('
+        pengajuan.*,
+        jenis_surat.nama_surat,
+        penduduk.nik,
+        penduduk.nama_lengkap,
+        penduduk.alamat,
+        user.email
+    ');
 
-    return $this->db
-        ->where('penduduk_id', $penduduk_id)
-        ->where('jenis_surat_id', $jenis_surat_id)
-        ->where_in(
-            'status',
-            [
-                'Menunggu',
-                'Diproses'
-            ]
-        )
-        ->limit(1)
-        ->get('pengajuan')
-        ->row_array();
+    $this->db->from('pengajuan');
 
+    $this->db->join(
+        'jenis_surat',
+        'jenis_surat.id = pengajuan.jenis_surat_id'
+    );
+
+    $this->db->join(
+        'user',
+        'user.id = pengajuan.user_id',
+        'left'
+    );
+
+    $this->db->join(
+        'penduduk',
+        'penduduk.id = pengajuan.penduduk_id',
+        'left'
+    );
+
+    $this->db->where(
+        'pengajuan.status',
+        'Menunggu Verifikasi'
+    );
+
+    $this->db->order_by(
+        'pengajuan.created_at',
+        'DESC'
+    );
+
+    return $this->db->get()->result_array();
+}
+// ==========================
+// PENGAJUAN YANG SUDAH DIVERIFIKASI
+// ==========================
+public function getPengajuanDiprosesAdmin()
+{
+    $this->db->select('
+        pengajuan.*,
+        jenis_surat.nama_surat,
+        penduduk.nik,
+        penduduk.nama_lengkap,
+        penduduk.alamat,
+        user.email
+    ');
+
+    $this->db->from('pengajuan');
+
+    $this->db->join(
+        'jenis_surat',
+        'jenis_surat.id = pengajuan.jenis_surat_id'
+    );
+
+    $this->db->join(
+        'user',
+        'user.id = pengajuan.user_id',
+        'left'
+    );
+
+    $this->db->join(
+        'penduduk',
+        'penduduk.id = pengajuan.penduduk_id',
+        'left'
+    );
+
+    // HANYA YANG SUDAH DIVERIFIKASI
+    $this->db->where('pengajuan.status', 'Diproses Admin');
+
+    $this->db->order_by('pengajuan.created_at', 'DESC');
+
+    return $this->db->get()->result_array();
 }
 
 

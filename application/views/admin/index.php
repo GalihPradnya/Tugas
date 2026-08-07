@@ -11,7 +11,7 @@
 <!-- Penduduk -->
 <div class="col-xl-4 col-md-6 mb-4">
 
-<a href="<?= base_url('penduduk'); ?>" class="text-decoration-none">
+<a href="<?= base_url('penduduk/penduduk'); ?>" class="text-decoration-none">
 
 <div class="card border-left-primary shadow h-100 py-2">
 
@@ -53,7 +53,7 @@ Penduduk
 <!-- Akun Penduduk -->
 <div class="col-xl-4 col-md-6 mb-4">
 
-<a href="<?= base_url('penduduk/akun'); ?>" class="text-decoration-none">
+<a href="<?= base_url('penduduk/penduduk/akun'); ?>" class="text-decoration-none">
 
 <div class="card border-left-success shadow h-100 py-2">
 

@@ -41,7 +41,7 @@ class Pengajuan_admin extends CI_Controller
 
 
         $data['pengajuan'] =
-            $this->Pengajuan_model->getAllPengajuan();
+        $this->Pengajuan_model->getPengajuanDiprosesAdmin();
 
 
         $this->load->view(
