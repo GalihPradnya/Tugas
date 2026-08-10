@@ -177,7 +177,7 @@
 
 
                             <a href="<?= base_url(
-                                'user/pengaduan_saya/detail/'.$p['id']
+                                'user/Pengaduan_Saya/detail/'.$p['id']
                             ); ?>"
                             class="btn btn-info btn-sm">
 

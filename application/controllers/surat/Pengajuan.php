@@ -141,9 +141,9 @@ class Pengajuan extends CI_Controller
     if($cek)
     {
 
-        $this->session->set_flashdata(
+       $this->session->set_flashdata(
             'error',
-            'Pengajuan surat yang sama masih berstatus '.$cek['status'].'. Silakan tunggu proses verifikasi admin selesai sebelum mengajukan kembali.'
+            'Pengajuan surat yang sama masih berstatus '.$cek['status'].'. Silakan tunggu hingga proses pengajuan selesai sebelum mengajukan kembali.'
         );
 
 
@@ -163,25 +163,23 @@ class Pengajuan extends CI_Controller
         'user_id' =>
             $this->session->userdata('id'),
 
-
         'penduduk_id' =>
             $penduduk_id,
-
 
         'hp' =>
             $this->input->post('hp'),
 
-
         'jenis_surat_id' =>
             $jenis_surat_id,
-
 
         'keperluan' =>
             $this->input->post('keperluan'),
 
-
         'catatan' =>
-            $this->input->post('catatan')
+            $this->input->post('catatan'),
+
+        'status' =>
+            'Menunggu Verifikasi'
 
     ];
 

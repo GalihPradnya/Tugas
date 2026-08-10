@@ -328,7 +328,7 @@
 
 
             <a href="<?= base_url(
-                'user/pengaduan_saya'
+                'user/Pengaduan_Saya'
             ); ?>"
             class="btn btn-secondary">
 

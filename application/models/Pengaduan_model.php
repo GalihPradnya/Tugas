@@ -66,7 +66,7 @@ class Pengaduan_model extends CI_Model
             'Selesai',
             'Ditolak'
         )
-    ", NULL, FALSE);
+    ", '', FALSE);
 
 
     // Jika status sama, tampilkan yang terbaru

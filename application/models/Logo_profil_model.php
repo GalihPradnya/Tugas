@@ -19,4 +19,10 @@ class Logo_profil_model extends CI_Model
             $data
         );
     }
+    public function getKopSurat()
+{
+    return $this->db
+        ->get('logo_profil')
+        ->row_array();
+}
 }

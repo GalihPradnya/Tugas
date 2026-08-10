@@ -10,7 +10,7 @@
 
             <?= validation_errors('<div class="alert alert-danger">','</div>'); ?>
 
-            <form action="<?= base_url('pendatang/edit/'.$pendatang['id']); ?>" method="post">
+            <form action="<?= base_url('pendatang/pendatang/edit/'.$pendatang['id']); ?>" method="post">
 
                 <div class="row">
 

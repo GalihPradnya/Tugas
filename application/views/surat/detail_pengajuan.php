@@ -1,633 +1,896 @@
 <div class="container-fluid">
 
+    <!-- ============================= -->
+    <!-- JUDUL -->
+    <!-- ============================= -->
 
-<h1 class="h3 mb-4 text-gray-800">
-    Detail Pengajuan Surat
-</h1>
+    <h1 class="h3 mb-4 text-gray-800">
+        Detail Pengajuan Surat
+    </h1>
 
 
+    <!-- FLASH MESSAGE -->
 
-<?= $this->session->flashdata('message'); ?>
+    <?= $this->session->flashdata('message'); ?>
 
 
+    <!-- ============================= -->
+    <!-- DATA PEMOHON -->
+    <!-- ============================= -->
 
-<!-- DATA PENDUDUK -->
+    <div class="card shadow mb-4">
 
-<div class="card shadow mb-4">
+        <div class="card-header py-3">
 
+            <h6 class="m-0 font-weight-bold text-primary">
+                Data Pemohon
+            </h6>
 
-<div class="card-header bg-primary text-white">
+        </div>
 
-    <h6 class="m-0 font-weight-bold">
-        Data Pemohon
-    </h6>
 
-</div>
+        <div class="card-body">
 
+            <div class="row">
 
-<div class="card-body">
+                <!-- KOLOM KIRI -->
 
+                <div class="col-md-6">
 
-<table class="table table-bordered">
+                    <table class="table table-borderless">
 
+                        <tr>
 
-<tr>
-<th width="220">
-NIK
-</th>
+                            <th width="35%">
+                                NIK
+                            </th>
 
-<td>
-<?= $pengajuan['nik']; ?>
-</td>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['nik']
+                                ); ?>
+                            </td>
 
-</tr>
+                        </tr>
 
 
+                        <tr>
 
-<tr>
-<th>
-Nama Lengkap
-</th>
+                            <th>
+                                Nama Lengkap
+                            </th>
 
-<td>
-<?= $pengajuan['nama_lengkap']; ?>
-</td>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['nama_lengkap']
+                                ); ?>
+                            </td>
 
-</tr>
+                        </tr>
 
 
+                        <tr>
 
+                            <th>
+                                Tempat Lahir
+                            </th>
 
-<tr>
-<th>
-Tempat, Tanggal Lahir
-</th>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['tempat_lahir']
+                                ); ?>
+                            </td>
 
-<td>
+                        </tr>
 
-<?= $pengajuan['tempat_lahir']; ?>,
 
-<?= date(
-'d-m-Y',
-strtotime($pengajuan['tanggal_lahir'])
-); ?>
+                        <tr>
 
-</td>
+                            <th>
+                                Tanggal Lahir
+                            </th>
 
-</tr>
+                            <td>
+                                :
 
+                                <?php if(
+                                    !empty(
+                                        $pengajuan['tanggal_lahir']
+                                    )
+                                ): ?>
 
+                                    <?= date(
+                                        'd-m-Y',
+                                        strtotime(
+                                            $pengajuan['tanggal_lahir']
+                                        )
+                                    ); ?>
 
+                                <?php endif; ?>
 
+                            </td>
 
-<tr>
-<th>
-Jenis Kelamin
-</th>
+                        </tr>
 
-<td>
-<?= $pengajuan['jenis_kelamin']; ?>
-</td>
 
-</tr>
+                        <tr>
 
+                            <th>
+                                Jenis Kelamin
+                            </th>
 
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['jenis_kelamin']
+                                ); ?>
+                            </td>
 
+                        </tr>
 
-<tr>
-<th>
-Agama
-</th>
+                    </table>
 
-<td>
-<?= $pengajuan['agama']; ?>
-</td>
+                </div>
 
-</tr>
 
+                <!-- KOLOM KANAN -->
 
+                <div class="col-md-6">
 
+                    <table class="table table-borderless">
 
-<tr>
-<th>
-Pekerjaan
-</th>
+                        <tr>
 
-<td>
-<?= $pengajuan['pekerjaan']; ?>
-</td>
+                            <th width="35%">
+                                Alamat
+                            </th>
 
-</tr>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['alamat']
+                                ); ?>
+                            </td>
 
+                        </tr>
 
 
+                        <tr>
 
-<tr>
-<th>
-Status Perkawinan
-</th>
+                            <th>
+                                RT
+                            </th>
 
-<td>
-<?= $pengajuan['status_perkawinan']; ?>
-</td>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['rt']
+                                ); ?>
+                            </td>
 
-</tr>
+                        </tr>
 
 
+                        <tr>
 
+                            <th>
+                                RW
+                            </th>
 
-<tr>
-<th>
-Alamat
-</th>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['rw']
+                                ); ?>
+                            </td>
 
-<td>
+                        </tr>
 
-<?= $pengajuan['alamat']; ?>
 
-<br>
+                        <tr>
 
-RT :
-<?= $pengajuan['rt']; ?>
+                            <th>
+                                Agama
+                            </th>
 
-&nbsp;
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['agama']
+                                ); ?>
+                            </td>
 
-RW :
-<?= $pengajuan['rw']; ?>
+                        </tr>
 
 
-</td>
+                        <tr>
 
-</tr>
+                            <th>
+                                Pekerjaan
+                            </th>
 
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['pekerjaan']
+                                ); ?>
+                            </td>
 
+                        </tr>
 
 
+                        <tr>
 
-<tr>
-<th>
-Email
-</th>
+                            <th>
+                                Status Perkawinan
+                            </th>
 
-<td>
+                            <td>
+                                :
+                                <?= htmlspecialchars(
+                                    $pengajuan['status_perkawinan']
+                                ); ?>
+                            </td>
 
-<?= !empty($pengajuan['email'])
-?
-$pengajuan['email']
-:
-'-';
-?>
+                        </tr>
 
-</td>
+                    </table>
 
-</tr>
+                </div>
 
+            </div>
 
+        </div>
 
-</table>
+    </div>
 
 
-</div>
 
+    <!-- ============================= -->
+    <!-- DATA PENGAJUAN -->
+    <!-- ============================= -->
 
-</div>
+    <div class="card shadow mb-4">
 
+        <div class="card-header py-3">
 
+            <h6 class="m-0 font-weight-bold text-primary">
+                Data Pengajuan Surat
+            </h6>
 
+        </div>
 
 
+        <div class="card-body">
 
-<!-- DATA SURAT -->
+            <table class="table table-bordered">
 
-<div class="card shadow mb-4">
+                <tr>
 
+                    <th width="25%">
+                        Jenis Surat
+                    </th>
 
-<div class="card-header bg-success text-white">
+                    <td>
+                        <?= htmlspecialchars(
+                            $pengajuan['nama_surat']
+                        ); ?>
+                    </td>
 
-<h6 class="m-0 font-weight-bold">
+                </tr>
 
-Data Pengajuan Surat
 
-</h6>
+                <tr>
 
-</div>
+                    <th>
+                        Nomor Pengajuan
+                    </th>
 
+                    <td>
+                        <?= $pengajuan['id']; ?>
+                    </td>
 
+                </tr>
 
 
-<div class="card-body">
+                <tr>
 
+                    <th>
+                        Nomor HP
+                    </th>
 
-<table class="table table-bordered">
+                    <td>
+                        <?= htmlspecialchars(
+                            $pengajuan['hp']
+                        ); ?>
+                    </td>
 
+                </tr>
 
-<tr>
 
-<th width="220">
-Jenis Surat
-</th>
+                <tr>
 
+                    <th>
+                        Keperluan
+                    </th>
 
-<td>
-<?= $pengajuan['nama_surat']; ?>
-</td>
+                    <td>
+                        <?= nl2br(
+                            htmlspecialchars(
+                                $pengajuan['keperluan']
+                            )
+                        ); ?>
+                    </td>
 
-</tr>
+                </tr>
 
 
+                <tr>
 
-<tr>
+                    <th>
+                        Catatan
+                    </th>
 
-<th>
-Keperluan
-</th>
+                    <td>
 
+                        <?php if(
+                            !empty(
+                                $pengajuan['catatan']
+                            )
+                        ): ?>
 
-<td>
-<?= $pengajuan['keperluan']; ?>
-</td>
+                            <?= nl2br(
+                                htmlspecialchars(
+                                    $pengajuan['catatan']
+                                )
+                            ); ?>
 
-</tr>
+                        <?php else: ?>
 
+                            <span class="text-muted">
+                                Tidak ada catatan
+                            </span>
 
+                        <?php endif; ?>
 
+                    </td>
 
-<tr>
+                </tr>
 
-<th>
-Catatan
-</th>
 
+                <tr>
 
-<td>
+                    <th>
+                        Tanggal Pengajuan
+                    </th>
 
-<?= !empty($pengajuan['catatan'])
-?
-$pengajuan['catatan']
-:
-'-';
-?>
+                    <td>
 
-</td>
+                        <?= date(
+                            'd-m-Y H:i',
+                            strtotime(
+                                $pengajuan['created_at']
+                            )
+                        ); ?>
 
-</tr>
+                    </td>
 
+                </tr>
 
 
+                <tr>
 
-<tr>
+                    <th>
+                        Status
+                    </th>
 
-<th>
-Status
-</th>
+                    <td>
 
+                        <?php if(
+                            $pengajuan['status']
+                            ==
+                            'Menunggu Verifikasi'
+                        ): ?>
 
-<td>
+                            <span class="badge badge-warning">
+                                Menunggu Verifikasi
+                            </span>
 
 
-<?php if($pengajuan['status']=="Menunggu"): ?>
+                        <?php elseif(
+                            $pengajuan['status']
+                            ==
+                            'Diproses Admin'
+                        ): ?>
 
-<span class="badge badge-warning">
-Menunggu
-</span>
+                            <span class="badge badge-primary">
+                                Diproses Admin
+                            </span>
 
 
-<?php elseif($pengajuan['status']=="Diproses"): ?>
+                        <?php elseif(
+                            $pengajuan['status']
+                            ==
+                            'Selesai'
+                        ): ?>
 
-<span class="badge badge-primary">
-Diproses
-</span>
+                            <span class="badge badge-success">
+                                Selesai
+                            </span>
 
 
-<?php elseif($pengajuan['status']=="Selesai"): ?>
+                        <?php elseif(
+                            $pengajuan['status']
+                            ==
+                            'Ditolak'
+                        ): ?>
 
-<span class="badge badge-success">
-Selesai
-</span>
+                            <span class="badge badge-danger">
+                                Ditolak
+                            </span>
 
+
+                        <?php else: ?>
+
+                            <span class="badge badge-secondary">
+                                <?= htmlspecialchars(
+                                    $pengajuan['status']
+                                ); ?>
+                            </span>
+
+                        <?php endif; ?>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- ALASAN PENOLAKAN -->
+    <!-- ============================= -->
+
+    <?php if(
+        $pengajuan['status']
+        ==
+        'Ditolak'
+        &&
+        !empty(
+            $pengajuan['alasan_penolakan']
+        )
+    ): ?>
+
+        <div class="card shadow mb-4 border-left-danger">
+
+            <div class="card-header py-3">
+
+                <h6 class="m-0 font-weight-bold text-danger">
+                    Alasan Penolakan
+                </h6>
+
+            </div>
+
+            <div class="card-body">
+
+                <?= nl2br(
+                    htmlspecialchars(
+                        $pengajuan['alasan_penolakan']
+                    )
+                ); ?>
+
+            </div>
+
+        </div>
+
+    <?php endif; ?>
+
+
+
+    <!-- ============================= -->
+    <!-- FILE PERSYARATAN -->
+    <!-- ============================= -->
+
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+            <h6 class="m-0 font-weight-bold text-primary">
+                File Persyaratan
+            </h6>
+
+        </div>
+
+
+        <div class="card-body">
+
+            <?php if(!empty($file)): ?>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+
+                        <thead>
+
+                            <tr>
+
+                                <th width="5%">
+                                    No
+                                </th>
+
+                                <th>
+                                    Persyaratan
+                                </th>
+
+                                <th width="20%">
+                                    Aksi
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <?php $no = 1; ?>
+
+                            <?php foreach(
+                                $file
+                                as $f
+                            ): ?>
+
+                                <tr>
+
+                                    <td>
+                                        <?= $no++; ?>
+                                    </td>
+
+                                    <td>
+
+                                        <?= htmlspecialchars(
+                                            $f[
+                                                'nama_persyaratan'
+                                            ]
+                                        ); ?>
+
+                                    </td>
+
+                                    <td>
+
+                                        <a href="<?= base_url(
+                                            'surat/pengajuan_admin/download/'
+                                            .$f['id']
+                                        ); ?>"
+                                           class="btn btn-success btn-sm">
+
+                                            <i class="fas fa-download"></i>
+
+                                            Download
+
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            <?php endforeach; ?>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            <?php else: ?>
+
+                <div class="alert alert-info">
+
+                    Tidak ada file persyaratan.
+
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ============================= -->
+    <!-- PROSES PENGAJUAN -->
+    <!-- ============================= -->
+
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+
+            <h6 class="m-0 font-weight-bold text-primary">
+                Proses Pengajuan
+            </h6>
+
+        </div>
+
+
+        <div class="card-body">
+
+
+            <!-- ================================= -->
+            <!-- STATUS DIPROSES ADMIN -->
+            <!-- ================================= -->
+
+            <?php if(
+                $pengajuan['status']
+                ==
+                'Diproses Admin'
+            ): ?>
+
+
+                <div class="alert alert-info">
+
+                    <i class="fas fa-info-circle"></i>
+
+                    Pengajuan telah diverifikasi oleh
+                    Kepala Wilayah dan sekarang dapat
+                    diproses oleh Admin.
+
+                </div>
+
+
+                <!-- ================================= -->
+<!-- TOMBOL SURAT -->
+<!-- ================================= -->
+
+<?php if (!empty($surat)): ?>
+
+    <!-- SURAT SUDAH DIBUAT -->
+
+    <a href="<?= base_url(
+        'surat/surat_admin/edit/'
+        . $surat['id']
+    ); ?>"
+       class="btn btn-warning">
+
+        <i class="fas fa-edit"></i>
+
+        Edit Surat
+
+    </a>
+
+
+    <a href="<?= base_url(
+        'surat/surat_admin/cetak/'
+        . $surat['id']
+    ); ?>"
+       target="_blank"
+       class="btn btn-primary">
+
+        <i class="fas fa-print"></i>
+
+        Cetak Surat
+
+    </a>
 
 <?php else: ?>
 
-<span class="badge badge-danger">
-Ditolak
-</span>
+    <!-- SURAT BELUM DIBUAT -->
 
+    <a href="<?= base_url(
+        'surat/surat_admin/buat/'
+        . $pengajuan['id']
+    ); ?>"
+       class="btn btn-primary">
+
+        <i class="fas fa-file-alt"></i>
+
+        Buat Surat
+
+    </a>
 
 <?php endif; ?>
 
 
-</td>
+                <hr>
 
-</tr>
 
+                <!-- UPLOAD SURAT HASIL -->
 
+                <h6 class="font-weight-bold text-gray-800 mb-3">
 
-</table>
+                    Upload Surat Bertanda Tangan
 
+                </h6>
 
-</div>
 
+                <p class="text-muted">
 
-</div>
+                    Setelah surat dibuat dan dicetak,
+                    silakan minta tanda tangan basah
+                    Kepala Desa. Kemudian scan surat
+                    tersebut menjadi PDF dan upload
+                    melalui form berikut.
 
+                </p>
 
 
+                <form action="<?= base_url(
+                    'surat/pengajuan_admin/updateStatus'
+                ); ?>"
+                      method="post"
+                      enctype="multipart/form-data">
 
 
+                    <input type="hidden"
+                           name="id"
+                           value="<?= $pengajuan['id']; ?>">
 
 
-<!-- FILE PERSYARATAN -->
+                    <input type="hidden"
+                           name="status"
+                           value="Selesai">
 
-<div class="card shadow mb-4">
 
+                    <div class="form-group">
 
-<div class="card-header bg-info text-white">
+                        <label>
+                            Surat Hasil
+                        </label>
 
-<h6 class="m-0 font-weight-bold">
+                        <input type="file"
+                               name="file_hasil"
+                               class="form-control"
+                               accept=".pdf"
+                               required>
 
-File Persyaratan
+                        <small class="form-text text-muted">
 
-</h6>
+                            Format PDF, maksimal 4 MB.
 
-</div>
+                        </small>
 
+                    </div>
 
 
-<div class="card-body">
+                    <button type="submit"
+                            class="btn btn-success"
+                            onclick="return confirm(
+                                'Upload surat dan ubah status menjadi Selesai?'
+                            );">
 
+                        <i class="fas fa-upload"></i>
 
-<table class="table table-bordered">
+                        Upload & Selesaikan
 
+                    </button>
 
-<thead>
 
-<tr>
+                </form>
 
-<th>
-Persyaratan
-</th>
 
+            <!-- ================================= -->
+            <!-- STATUS SELESAI -->
+            <!-- ================================= -->
 
-<th width="250">
-Aksi
-</th>
+            <?php elseif(
+                $pengajuan['status']
+                ==
+                'Selesai'
+            ): ?>
 
-</tr>
 
+                <div class="alert alert-success">
 
-</thead>
+                    <i class="fas fa-check-circle"></i>
 
+                    Surat telah selesai diproses.
 
+                </div>
 
-<tbody>
 
+                <?php if(
+                    !empty(
+                        $pengajuan['file_hasil']
+                    )
+                ): ?>
 
-<?php foreach($file as $f): ?>
+                    <a href="<?= base_url(
+                        'surat/pengajuan_admin/download_hasil/'
+                        .$pengajuan['id']
+                    ); ?>"
+                       class="btn btn-success"
+                       target="_blank">
 
+                        <i class="fas fa-file-pdf"></i>
 
-<tr>
+                        Lihat Surat
 
+                    </a>
 
-<td>
+                <?php else: ?>
 
-<?= $f['nama_persyaratan']; ?>
+                    <div class="alert alert-warning">
 
-</td>
+                        File surat hasil belum tersedia.
 
+                    </div>
 
+                <?php endif; ?>
 
-<td>
 
+            <!-- ================================= -->
+            <!-- STATUS DITOLAK -->
+            <!-- ================================= -->
 
-<a target="_blank"
-href="<?= base_url(
-'uploads/persyaratan/'.$f['nama_file']
-); ?>"
-class="btn btn-info btn-sm">
+            <?php elseif(
+                $pengajuan['status']
+                ==
+                'Ditolak'
+            ): ?>
 
 
-<i class="fas fa-eye"></i>
-Lihat
+                <div class="alert alert-danger">
 
+                    <i class="fas fa-times-circle"></i>
 
-</a>
+                    Pengajuan ini telah ditolak oleh
+                    Kepala Wilayah.
 
+                </div>
 
 
-<a href="<?= base_url(
-'surat/Pengajuan_admin/download/'.$f['id']
-); ?>"
-class="btn btn-success btn-sm">
+            <!-- ================================= -->
+            <!-- MENUNGGU VERIFIKASI -->
+            <!-- ================================= -->
 
+            <?php elseif(
+                $pengajuan['status']
+                ==
+                'Menunggu Verifikasi'
+            ): ?>
 
-<i class="fas fa-download"></i>
-Download
 
+                <div class="alert alert-warning">
 
-</a>
+                    <i class="fas fa-clock"></i>
 
+                    Pengajuan masih menunggu verifikasi
+                    Kepala Wilayah.
 
+                </div>
 
-</td>
 
+            <?php endif; ?>
 
-</tr>
 
+        </div>
 
-<?php endforeach; ?>
+    </div>
 
 
-</tbody>
 
+    <!-- ============================= -->
+    <!-- TOMBOL KEMBALI -->
+    <!-- ============================= -->
 
-</table>
+    <a href="<?= base_url(
+        'surat/pengajuan_admin/pengajuan_admin'
+    ); ?>"
+       class="btn btn-secondary mb-4">
 
+        <i class="fas fa-arrow-left"></i>
 
-</div>
+        Kembali
 
-
-</div>
-
-
-
-
-
-
-
-
-<!-- PROSES ADMIN -->
-
-
-<div class="card shadow mb-4">
-
-
-<div class="card-header bg-warning">
-
-
-<h6 class="m-0 font-weight-bold">
-
-Proses Pengajuan
-
-</h6>
-
-
-</div>
-
-
-
-<div class="card-body">
-
-
-
-<form action="<?= base_url(
-'surat/Pengajuan_admin/updateStatus'
-); ?>"
-method="post"
-enctype="multipart/form-data">
-
-
-
-<input type="hidden"
-name="id"
-value="<?= $pengajuan['id']; ?>">
-
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Status
-</label>
-
-
-<select name="status"
-class="form-control">
-
-
-<option value="Menunggu"
-<?= $pengajuan['status']=='Menunggu'
-?'selected':''; ?>>
-Menunggu
-</option>
-
-
-
-<option value="Diproses"
-<?= $pengajuan['status']=='Diproses'
-?'selected':''; ?>>
-Diproses
-</option>
-
-
-
-<option value="Selesai"
-<?= $pengajuan['status']=='Selesai'
-?'selected':''; ?>>
-Selesai
-</option>
-
-
-
-<option value="Ditolak"
-<?= $pengajuan['status']=='Ditolak'
-?'selected':''; ?>>
-Ditolak
-</option>
-
-
-
-</select>
-
-
-</div>
-
-
-
-
-<div class="form-group">
-
-
-<label>
-Upload Surat Hasil PDF
-</label>
-
-
-<input type="file"
-name="file_hasil"
-class="form-control">
-
-
-
-</div>
-
-
-
-
-
-<?php if(!empty($pengajuan['file_hasil'])): ?>
-
-
-<div class="alert alert-success">
-
-
-Surat hasil tersedia
-
-
-<br>
-
-
-<a target="_blank"
-href="<?= base_url(
-'uploads/hasil_surat/'.$pengajuan['file_hasil']
-); ?>"
-class="btn btn-success btn-sm mt-2">
-
-Lihat Surat
-
-</a>
-
-
-</div>
-
-
-
-<?php endif; ?>
-
-
-
-
-
-<button class="btn btn-primary">
-
-<i class="fas fa-save"></i>
-
-Simpan
-
-</button>
-
-
-
-<a href="<?= base_url(
-'surat/Pengajuan_admin/pengajuan_admin'
-); ?>"
-class="btn btn-secondary">
-
-Kembali
-
-</a>
-
-
-
-</form>
-
-
-</div>
-
-
-</div>
+    </a>
 
 
 </div>

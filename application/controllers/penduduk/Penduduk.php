@@ -30,7 +30,7 @@ class Penduduk extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('penduduk/index', $data);
+        $this->load->view('Penduduk/index', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -172,7 +172,7 @@ redirect('penduduk/penduduk');
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('penduduk/tambah_penduduk.php', $data);
+        $this->load->view('Penduduk/tambah_penduduk.php', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -223,7 +223,7 @@ redirect('penduduk/penduduk');
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('penduduk/edit_penduduk.php', $data);
+        $this->load->view('Penduduk/edit_penduduk.php', $data);
         $this->load->view('templates/footer', $data);
 
     }
@@ -383,7 +383,7 @@ redirect('penduduk/penduduk');
     $this->load->view('templates/header',$data);
     $this->load->view('templates/sidebar',$data);
     $this->load->view('templates/topbar',$data);
-    $this->load->view('penduduk/akun',$data);
+    $this->load->view('Penduduk/akun',$data);
     $this->load->view('templates/footer',$data);
 
 }
@@ -474,7 +474,7 @@ public function cetak()
 {
     $data['penduduk'] = $this->Penduduk_model->getAllPenduduk();
 
-    $this->load->view('penduduk/print_semua',$data);
+    $this->load->view('Penduduk/print_semua',$data);
 }
 public function cetakUmur($umur = '')
 {
@@ -489,6 +489,6 @@ public function cetakUmur($umur = '')
 
     $data['penduduk'] = $this->Penduduk_model->getPendudukByUmur($min, $max);
 
-    $this->load->view('penduduk/print_umur', $data);
+    $this->load->view('Penduduk/print_umur', $data);
 }
 }
