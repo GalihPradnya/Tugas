@@ -1,8 +1,8 @@
 <div class="container-fluid">
 
-    <!-- ============================= -->
+    <!-- ===================================================== -->
     <!-- JUDUL -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
 
     <h1 class="h3 mb-4 text-gray-800">
         Detail Pengajuan Surat
@@ -14,9 +14,9 @@
     <?= $this->session->flashdata('message'); ?>
 
 
-    <!-- ============================= -->
+    <!-- ===================================================== -->
     <!-- DATA PEMOHON -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
 
     <div class="card shadow mb-4">
 
@@ -33,14 +33,13 @@
 
             <div class="row">
 
-                <!-- KOLOM KIRI -->
+                <!-- KIRI -->
 
                 <div class="col-md-6">
 
                     <table class="table table-borderless">
 
                         <tr>
-
                             <th width="35%">
                                 NIK
                             </th>
@@ -51,12 +50,10 @@
                                     $pengajuan['nik']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Nama Lengkap
                             </th>
@@ -67,12 +64,10 @@
                                     $pengajuan['nama_lengkap']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Tempat Lahir
                             </th>
@@ -83,12 +78,10 @@
                                     $pengajuan['tempat_lahir']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Tanggal Lahir
                             </th>
@@ -96,7 +89,7 @@
                             <td>
                                 :
 
-                                <?php if(
+                                <?php if (
                                     !empty(
                                         $pengajuan['tanggal_lahir']
                                     )
@@ -112,12 +105,10 @@
                                 <?php endif; ?>
 
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Jenis Kelamin
                             </th>
@@ -128,7 +119,6 @@
                                     $pengajuan['jenis_kelamin']
                                 ); ?>
                             </td>
-
                         </tr>
 
                     </table>
@@ -136,14 +126,13 @@
                 </div>
 
 
-                <!-- KOLOM KANAN -->
+                <!-- KANAN -->
 
                 <div class="col-md-6">
 
                     <table class="table table-borderless">
 
                         <tr>
-
                             <th width="35%">
                                 Alamat
                             </th>
@@ -154,12 +143,10 @@
                                     $pengajuan['alamat']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 RT
                             </th>
@@ -170,12 +157,10 @@
                                     $pengajuan['rt']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 RW
                             </th>
@@ -186,12 +171,10 @@
                                     $pengajuan['rw']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Agama
                             </th>
@@ -202,12 +185,10 @@
                                     $pengajuan['agama']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Pekerjaan
                             </th>
@@ -218,12 +199,10 @@
                                     $pengajuan['pekerjaan']
                                 ); ?>
                             </td>
-
                         </tr>
 
 
                         <tr>
-
                             <th>
                                 Status Perkawinan
                             </th>
@@ -234,7 +213,6 @@
                                     $pengajuan['status_perkawinan']
                                 ); ?>
                             </td>
-
                         </tr>
 
                     </table>
@@ -248,10 +226,9 @@
     </div>
 
 
-
-    <!-- ============================= -->
+    <!-- ===================================================== -->
     <!-- DATA PENGAJUAN -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
 
     <div class="card shadow mb-4">
 
@@ -270,7 +247,7 @@
 
                 <tr>
 
-                    <th width="25%">
+                    <th width="30%">
                         Jenis Surat
                     </th>
 
@@ -314,56 +291,6 @@
                 <tr>
 
                     <th>
-                        Keperluan
-                    </th>
-
-                    <td>
-                        <?= nl2br(
-                            htmlspecialchars(
-                                $pengajuan['keperluan']
-                            )
-                        ); ?>
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <th>
-                        Catatan
-                    </th>
-
-                    <td>
-
-                        <?php if(
-                            !empty(
-                                $pengajuan['catatan']
-                            )
-                        ): ?>
-
-                            <?= nl2br(
-                                htmlspecialchars(
-                                    $pengajuan['catatan']
-                                )
-                            ); ?>
-
-                        <?php else: ?>
-
-                            <span class="text-muted">
-                                Tidak ada catatan
-                            </span>
-
-                        <?php endif; ?>
-
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <th>
                         Tanggal Pengajuan
                     </th>
 
@@ -381,6 +308,144 @@
                 </tr>
 
 
+                <!-- ================================================= -->
+                <!-- FIELD KHUSUS YANG DIISI MASYARAKAT -->
+                <!-- ================================================= -->
+
+                <?php if (!empty($field_pengajuan)): ?>
+
+                    <tr>
+
+                        <th colspan="2"
+                            class="bg-light text-primary">
+
+                            Data Yang Diajukan Masyarakat
+
+                        </th>
+
+                    </tr>
+
+
+                    <?php foreach (
+                        $field_pengajuan
+                        as $field
+                    ): ?>
+
+                        <tr>
+
+                            <th>
+
+                                <?= htmlspecialchars(
+                                    $field['label']
+                                ); ?>
+
+                            </th>
+
+
+                            <td>
+
+                                <?php if (
+                                    $field['tipe']
+                                    ==
+                                    'textarea'
+                                ): ?>
+
+                                    <?= nl2br(
+                                        htmlspecialchars(
+                                            $field['nilai']
+                                        )
+                                    ); ?>
+
+                                <?php elseif (
+                                    $field['tipe']
+                                    ==
+                                    'date'
+                                ): ?>
+
+                                    <?php if (
+                                        !empty(
+                                            $field['nilai']
+                                        )
+                                    ): ?>
+
+                                        <?= date(
+                                            'd-m-Y',
+                                            strtotime(
+                                                $field['nilai']
+                                            )
+                                        ); ?>
+
+                                    <?php else: ?>
+
+                                        <span class="text-muted">
+                                            -
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                <?php elseif (
+                                    $field['tipe']
+                                    ==
+                                    'file'
+                                ): ?>
+
+                                    <?php if (
+                                        !empty(
+                                            $field['nilai']
+                                        )
+                                    ): ?>
+
+                                        <?= htmlspecialchars(
+                                            $field['nilai']
+                                        ); ?>
+
+                                    <?php else: ?>
+
+                                        <span class="text-muted">
+                                            Tidak ada file
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                <?php else: ?>
+
+                                    <?= htmlspecialchars(
+                                        $field['nilai']
+                                    ); ?>
+
+                                <?php endif; ?>
+
+                            </td>
+
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+
+                    <tr>
+
+                        <th>
+                            Data Pengajuan
+                        </th>
+
+                        <td>
+
+                            <span class="text-muted">
+                                Tidak ada data tambahan.
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                <?php endif; ?>
+
+
+                <!-- ================================================= -->
+                <!-- STATUS -->
+                <!-- ================================================= -->
+
                 <tr>
 
                     <th>
@@ -389,7 +454,7 @@
 
                     <td>
 
-                        <?php if(
+                        <?php if (
                             $pengajuan['status']
                             ==
                             'Menunggu Verifikasi'
@@ -400,7 +465,7 @@
                             </span>
 
 
-                        <?php elseif(
+                        <?php elseif (
                             $pengajuan['status']
                             ==
                             'Diproses Admin'
@@ -411,7 +476,7 @@
                             </span>
 
 
-                        <?php elseif(
+                        <?php elseif (
                             $pengajuan['status']
                             ==
                             'Selesai'
@@ -422,7 +487,7 @@
                             </span>
 
 
-                        <?php elseif(
+                        <?php elseif (
                             $pengajuan['status']
                             ==
                             'Ditolak'
@@ -436,9 +501,11 @@
                         <?php else: ?>
 
                             <span class="badge badge-secondary">
+
                                 <?= htmlspecialchars(
                                     $pengajuan['status']
                                 ); ?>
+
                             </span>
 
                         <?php endif; ?>
@@ -454,12 +521,11 @@
     </div>
 
 
-
-    <!-- ============================= -->
+    <!-- ===================================================== -->
     <!-- ALASAN PENOLAKAN -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
 
-    <?php if(
+    <?php if (
         $pengajuan['status']
         ==
         'Ditolak'
@@ -494,10 +560,9 @@
     <?php endif; ?>
 
 
-
-    <!-- ============================= -->
+    <!-- ===================================================== -->
     <!-- FILE PERSYARATAN -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
 
     <div class="card shadow mb-4">
 
@@ -512,7 +577,7 @@
 
         <div class="card-body">
 
-            <?php if(!empty($file)): ?>
+            <?php if (!empty($file)): ?>
 
                 <div class="table-responsive">
 
@@ -543,9 +608,8 @@
 
                             <?php $no = 1; ?>
 
-                            <?php foreach(
-                                $file
-                                as $f
+                            <?php foreach (
+                                $file as $f
                             ): ?>
 
                                 <tr>
@@ -567,7 +631,7 @@
                                     <td>
 
                                         <a href="<?= base_url(
-                                            'surat/pengajuan_admin/download/'
+                                            'surat/Pengajuan_admin/download/'
                                             .$f['id']
                                         ); ?>"
                                            class="btn btn-success btn-sm">
@@ -605,10 +669,9 @@
     </div>
 
 
-
-    <!-- ============================= -->
+    <!-- ===================================================== -->
     <!-- PROSES PENGAJUAN -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
 
     <div class="card shadow mb-4">
 
@@ -624,16 +687,15 @@
         <div class="card-body">
 
 
-            <!-- ================================= -->
-            <!-- STATUS DIPROSES ADMIN -->
-            <!-- ================================= -->
+            <!-- ================================================= -->
+            <!-- DIPROSES ADMIN -->
+            <!-- ================================================= -->
 
-            <?php if(
+            <?php if (
                 $pengajuan['status']
                 ==
                 'Diproses Admin'
             ): ?>
-
 
                 <div class="alert alert-info">
 
@@ -646,63 +708,61 @@
                 </div>
 
 
-                <!-- ================================= -->
-<!-- TOMBOL SURAT -->
-<!-- ================================= -->
+                <!-- ================================================= -->
+                <!-- SURAT -->
+                <!-- ================================================= -->
 
-<?php if (!empty($surat)): ?>
+                <?php if (!empty($surat)): ?>
 
-    <!-- SURAT SUDAH DIBUAT -->
+                    <a href="<?= base_url(
+                        'surat/surat_admin/edit/'
+                        .$surat['id']
+                    ); ?>"
+                       class="btn btn-warning">
 
-    <a href="<?= base_url(
-        'surat/surat_admin/edit/'
-        . $surat['id']
-    ); ?>"
-       class="btn btn-warning">
+                        <i class="fas fa-edit"></i>
 
-        <i class="fas fa-edit"></i>
+                        Edit Surat
 
-        Edit Surat
-
-    </a>
+                    </a>
 
 
-    <a href="<?= base_url(
-        'surat/surat_admin/cetak/'
-        . $surat['id']
-    ); ?>"
-       target="_blank"
-       class="btn btn-primary">
+                    <a href="<?= base_url(
+                        'surat/surat_admin/cetak/'
+                        .$surat['id']
+                    ); ?>"
+                       target="_blank"
+                       class="btn btn-primary">
 
-        <i class="fas fa-print"></i>
+                        <i class="fas fa-print"></i>
 
-        Cetak Surat
+                        Cetak Surat
 
-    </a>
+                    </a>
 
-<?php else: ?>
+                <?php else: ?>
 
-    <!-- SURAT BELUM DIBUAT -->
+                    <a href="<?= base_url(
+                        'surat/surat_admin/buat/'
+                        .$pengajuan['id']
+                    ); ?>"
+                       class="btn btn-primary">
 
-    <a href="<?= base_url(
-        'surat/surat_admin/buat/'
-        . $pengajuan['id']
-    ); ?>"
-       class="btn btn-primary">
+                        <i class="fas fa-file-alt"></i>
 
-        <i class="fas fa-file-alt"></i>
+                        Buat Surat
 
-        Buat Surat
+                    </a>
 
-    </a>
-
-<?php endif; ?>
+                <?php endif; ?>
 
 
                 <hr>
 
 
+                <!-- ================================================= -->
                 <!-- UPLOAD SURAT HASIL -->
+                <!-- ================================================= -->
 
                 <h6 class="font-weight-bold text-gray-800 mb-3">
 
@@ -723,7 +783,7 @@
 
 
                 <form action="<?= base_url(
-                    'surat/pengajuan_admin/updateStatus'
+                    'surat/Pengajuan_admin/updateStatus'
                 ); ?>"
                       method="post"
                       enctype="multipart/form-data">
@@ -772,20 +832,18 @@
 
                     </button>
 
-
                 </form>
 
 
-            <!-- ================================= -->
-            <!-- STATUS SELESAI -->
-            <!-- ================================= -->
+            <!-- ================================================= -->
+            <!-- SELESAI -->
+            <!-- ================================================= -->
 
-            <?php elseif(
+            <?php elseif (
                 $pengajuan['status']
                 ==
                 'Selesai'
             ): ?>
-
 
                 <div class="alert alert-success">
 
@@ -796,14 +854,14 @@
                 </div>
 
 
-                <?php if(
+                <?php if (
                     !empty(
                         $pengajuan['file_hasil']
                     )
                 ): ?>
 
                     <a href="<?= base_url(
-                        'surat/pengajuan_admin/download_hasil/'
+                        'surat/Pengajuan_admin/download_hasil/'
                         .$pengajuan['id']
                     ); ?>"
                        class="btn btn-success"
@@ -826,16 +884,15 @@
                 <?php endif; ?>
 
 
-            <!-- ================================= -->
-            <!-- STATUS DITOLAK -->
-            <!-- ================================= -->
+            <!-- ================================================= -->
+            <!-- DITOLAK -->
+            <!-- ================================================= -->
 
-            <?php elseif(
+            <?php elseif (
                 $pengajuan['status']
                 ==
                 'Ditolak'
             ): ?>
-
 
                 <div class="alert alert-danger">
 
@@ -847,16 +904,15 @@
                 </div>
 
 
-            <!-- ================================= -->
-            <!-- MENUNGGU VERIFIKASI -->
-            <!-- ================================= -->
+            <!-- ================================================= -->
+            <!-- MENUNGGU -->
+            <!-- ================================================= -->
 
-            <?php elseif(
+            <?php elseif (
                 $pengajuan['status']
                 ==
                 'Menunggu Verifikasi'
             ): ?>
-
 
                 <div class="alert alert-warning">
 
@@ -867,22 +923,19 @@
 
                 </div>
 
-
             <?php endif; ?>
-
 
         </div>
 
     </div>
 
 
-
-    <!-- ============================= -->
-    <!-- TOMBOL KEMBALI -->
-    <!-- ============================= -->
+    <!-- ===================================================== -->
+    <!-- KEMBALI -->
+    <!-- ===================================================== -->
 
     <a href="<?= base_url(
-        'surat/pengajuan_admin/pengajuan_admin'
+        'surat/Pengajuan_admin/pengajuan_admin'
     ); ?>"
        class="btn btn-secondary mb-4">
 
@@ -891,6 +944,5 @@
         Kembali
 
     </a>
-
 
 </div>

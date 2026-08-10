@@ -3,30 +3,50 @@
 <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-8 md:p-10">
 
 
+<!-- =====================================================
+     JUDUL
+====================================================== -->
+
 <h2 class="text-3xl font-bold text-center text-green-700 mb-2">
+
     Form Pengajuan Surat
+
 </h2>
 
+
 <p class="text-center text-gray-500 mb-8">
+
     Silakan isi formulir berikut dengan benar.
+
 </p>
 
 
-<?php if($this->session->flashdata('success')): ?>
 
-<div id="alert-success" 
-     class="bg-green-100 text-green-700 p-4 rounded mb-5 flex justify-between items-center">
+<!-- =====================================================
+     ALERT SUCCESS
+====================================================== -->
+
+<?php if ($this->session->flashdata('success')): ?>
+
+<div id="alert-success"
+     class="bg-green-100 text-green-700 p-4 rounded mb-5
+            flex justify-between items-center">
 
     <span>
+
         <?= $this->session->flashdata('success'); ?>
+
     </span>
 
 
-    <button type="button"
-            onclick="closeAlert('alert-success')"
-            class="text-green-700 font-bold text-3xl hover:text-green-900
-                w-10 h-10 flex items-center justify-center rounded-full 
-                hover:bg-green-200">
+    <button
+        type="button"
+        onclick="closeAlert('alert-success')"
+        class="text-green-700 font-bold text-3xl
+               hover:text-green-900
+               w-10 h-10 flex items-center
+               justify-center rounded-full
+               hover:bg-green-200">
 
         &times;
 
@@ -37,21 +57,32 @@
 <?php endif; ?>
 
 
-<?php if($this->session->flashdata('error')): ?>
 
-<div id="alert-error" 
-     class="bg-yellow-100 text-yellow-700 p-4 rounded mb-5 flex justify-between items-center">
+<!-- =====================================================
+     ALERT ERROR
+====================================================== -->
+
+<?php if ($this->session->flashdata('error')): ?>
+
+<div id="alert-error"
+     class="bg-yellow-100 text-yellow-700 p-4 rounded mb-5
+            flex justify-between items-center">
 
     <span>
+
         <?= $this->session->flashdata('error'); ?>
+
     </span>
 
 
-    <button type="button"
-            onclick="closeAlert('alert-error')"
-            class="text-red-700 font-bold text-3xl hover:text-red-900 
-                w-10 h-10 flex items-center justify-center rounded-full 
-                hover:bg-red-200">
+    <button
+        type="button"
+        onclick="closeAlert('alert-error')"
+        class="text-red-700 font-bold text-3xl
+               hover:text-red-900
+               w-10 h-10 flex items-center
+               justify-center rounded-full
+               hover:bg-red-200">
 
         &times;
 
@@ -63,113 +94,166 @@
 
 
 
-<form action="<?= base_url('surat/pengajuan/simpan'); ?>"
-      method="post"
-      enctype="multipart/form-data">
+<!-- =====================================================
+     FORM
+====================================================== -->
+
+<form
+    action="<?= base_url('surat/pengajuan/simpan'); ?>"
+    method="post"
+    enctype="multipart/form-data"
+    id="formPengajuan">
 
 
-<!-- DATA PEMOHON -->
 
-<h3 class="text-xl font-semibold mb-6 text-gray-700 border-b pb-3">
+<!-- =====================================================
+     DATA PEMOHON
+====================================================== -->
+
+<h3 class="text-xl font-semibold mb-6 text-gray-700
+           border-b pb-3">
+
     Data Pemohon
+
 </h3>
+
 
 
 <div class="grid md:grid-cols-2 gap-5">
 
 
-<div>
-
-<label class="font-semibold">
-NIK
-</label>
-
-<input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['nik']; ?>"
-readonly>
-
-</div>
-
-
+<!-- NIK -->
 
 <div>
 
 <label class="font-semibold">
-Nama Lengkap
+
+    NIK
+
 </label>
 
+
 <input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['nama_lengkap']; ?>"
-readonly>
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['nik'] ?? ''
+    ); ?>"
+    readonly>
 
 </div>
 
 
+
+<!-- NAMA -->
 
 <div>
 
 <label class="font-semibold">
-Tempat Lahir
+
+    Nama Lengkap
+
 </label>
 
+
 <input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['tempat_lahir']; ?>"
-readonly>
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['nama_lengkap'] ?? ''
+    ); ?>"
+    readonly>
 
 </div>
 
 
 
+<!-- TEMPAT LAHIR -->
 
 <div>
 
 <label class="font-semibold">
-Tanggal Lahir
+
+    Tempat Lahir
+
 </label>
 
+
 <input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['tanggal_lahir']; ?>"
-readonly>
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['tempat_lahir'] ?? ''
+    ); ?>"
+    readonly>
 
 </div>
 
 
+
+<!-- TANGGAL LAHIR -->
 
 <div>
 
 <label class="font-semibold">
-Jenis Kelamin
+
+    Tanggal Lahir
+
 </label>
 
+
 <input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['jenis_kelamin']; ?>"
-readonly>
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['tanggal_lahir'] ?? ''
+    ); ?>"
+    readonly>
 
 </div>
 
 
+
+<!-- JENIS KELAMIN -->
 
 <div>
 
 <label class="font-semibold">
-No HP
+
+    Jenis Kelamin
+
 </label>
 
+
 <input
-type="text"
-name="hp"
-class="w-full border rounded p-2 mt-1"
-placeholder="Nomor HP">
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['jenis_kelamin'] ?? ''
+    ); ?>"
+    readonly>
+
+</div>
+
+
+
+<!-- NO HP -->
+
+<div>
+
+<label class="font-semibold">
+
+    No HP
+
+</label>
+
+
+<input
+    type="text"
+    name="hp"
+    class="w-full border rounded p-2 mt-1"
+    placeholder="Nomor HP"
+    required>
 
 </div>
 
@@ -177,26 +261,30 @@ placeholder="Nomor HP">
 </div>
 
 
+
+<!-- ALAMAT -->
 
 <div class="mt-5">
 
 <label class="font-semibold">
-Alamat
+
+    Alamat
+
 </label>
 
 
 <textarea
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-rows="3"
-readonly><?= 
-$penduduk['alamat']; 
-
-?>
-</textarea>
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    rows="3"
+    readonly><?= htmlspecialchars(
+        $penduduk['alamat'] ?? ''
+    ); ?></textarea>
 
 </div>
 
 
+
+<!-- RT RW -->
 
 <div class="grid md:grid-cols-2 gap-5 mt-5">
 
@@ -204,14 +292,19 @@ $penduduk['alamat'];
 <div>
 
 <label class="font-semibold">
-RT
+
+    RT
+
 </label>
 
+
 <input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['rt']; ?>"
-readonly>
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['rt'] ?? ''
+    ); ?>"
+    readonly>
 
 </div>
 
@@ -220,14 +313,19 @@ readonly>
 <div>
 
 <label class="font-semibold">
-RW
+
+    RW
+
 </label>
 
+
 <input
-type="text"
-class="w-full border rounded p-2 mt-1 bg-gray-100"
-value="<?= $penduduk['rw']; ?>"
-readonly>
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['rw'] ?? ''
+    ); ?>"
+    readonly>
 
 </div>
 
@@ -236,37 +334,44 @@ readonly>
 
 
 
+<!-- =====================================================
+     JENIS SURAT
+====================================================== -->
 
-<!-- JENIS SURAT -->
+<h3 class="text-xl font-semibold mt-10 mb-6 text-gray-700
+           border-b pb-3">
 
-<h3 class="text-xl font-semibold mt-10 mb-6 text-gray-700 border-b pb-3">
     Jenis Surat
+
 </h3>
 
 
 
 <select
-name="jenis_surat_id"
-id="jenis_surat"
-class="w-full border rounded p-2"
-required>
+    name="jenis_surat_id"
+    id="jenis_surat"
+    class="w-full border rounded p-2"
+    required>
 
 
 <option value="">
--- Pilih Surat --
-</option>
 
-
-
-<?php foreach($jenis_surat as $js): ?>
-
-
-<option value="<?= $js['id']; ?>">
-
-<?= $js['nama_surat']; ?>
+    -- Pilih Surat --
 
 </option>
 
+
+
+<?php foreach ($jenis_surat as $js): ?>
+
+<option
+    value="<?= $js['id']; ?>">
+
+    <?= htmlspecialchars(
+        $js['nama_surat']
+    ); ?>
+
+</option>
 
 <?php endforeach; ?>
 
@@ -275,69 +380,45 @@ required>
 
 
 
+<!-- =====================================================
+     LOADING
+====================================================== -->
 
+<div
+    id="loading_surat"
+    class="hidden mt-5 text-green-600">
 
-<!-- PERSYARATAN -->
-
-<div id="persyaratan_container"
-class="mt-8">
-
-</div>
-
-
-
-
-
-<!-- KEPERLUAN -->
-
-<div class="mt-6">
-
-
-<label class="font-semibold">
-Keperluan
-</label>
-
-
-<textarea
-name="keperluan"
-rows="4"
-class="w-full border rounded-lg p-3 mt-2"
-placeholder="Masukkan keperluan surat"
-required></textarea>
-
+    Memuat formulir surat...
 
 </div>
 
 
 
+<!-- =====================================================
+     FIELD DINAMIS PEMOHON
+====================================================== -->
 
-
-<!-- CATATAN -->
-
-<div class="mt-6">
-
-
-<label class="font-semibold">
-Catatan
-</label>
-
-
-<textarea
-name="catatan"
-rows="4"
-class="w-full border rounded-lg p-3 mt-2"
-placeholder="Catatan tambahan">
-
-</textarea>
-
+<div
+    id="field_container"
+    class="mt-8">
 
 </div>
 
 
 
+<!-- =====================================================
+     PERSYARATAN FILE
+====================================================== -->
 
+<div
+    id="persyaratan_container"
+    class="mt-8">
 
-<!-- CHECKBOX -->
+</div>
+
+<!-- =====================================================
+     PERNYATAAN
+====================================================== -->
 
 <div class="mt-6">
 
@@ -346,9 +427,11 @@ placeholder="Catatan tambahan">
 
 
 <input
-type="checkbox"
-required
-class="mr-2">
+    type="checkbox"
+    name="pernyataan"
+    value="1"
+    required
+    class="mr-2">
 
 
 Saya menyatakan data yang saya isi benar.
@@ -361,28 +444,33 @@ Saya menyatakan data yang saya isi benar.
 
 
 
+<!-- =====================================================
+     BUTTON
+====================================================== -->
+
+<div
+    class="flex justify-end gap-4 mt-10
+           border-t pt-6">
 
 
+<a
+    href="<?= base_url('navbar/layanan_publik'); ?>"
+    class="px-6 py-3 bg-gray-500 text-white rounded-lg
+           hover:bg-gray-600">
 
-<!-- BUTTON -->
-
-<div class="flex justify-end gap-4 mt-10 border-t pt-6">
-
-
-<a href="<?= base_url('navbar/layanan_publik'); ?>"
-class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600">
-
-Batal
+    Batal
 
 </a>
 
 
 
 <button
-type="submit"
-class="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+    type="submit"
+    id="btnSubmit"
+    class="px-8 py-3 bg-green-600 text-white rounded-lg
+           hover:bg-green-700">
 
-Ajukan Surat
+    Ajukan Surat
 
 </button>
 
@@ -400,141 +488,497 @@ Ajukan Surat
 
 
 
-
-
+<!-- =====================================================
+     JQUERY
+====================================================== -->
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
+
 <script>
 
 
-$('#jenis_surat').change(function(){
+// ========================================================
+// PILIH JENIS SURAT
+// ========================================================
+
+$('#jenis_surat').on('change', function() {
 
 
-let id = $(this).val();
+    let id =
+        $(this).val();
+
+
+    // kosongkan
+    $('#field_container').html('');
+
+    $('#persyaratan_container').html('');
+
+
+    // tidak memilih
+    if (id === '') {
+
+        return;
+
+    }
+
+
+    // tampilkan loading
+    $('#loading_surat')
+        .removeClass('hidden');
+
+
+    // ====================================================
+    // AJAX
+    // ====================================================
+
+    $.ajax({
+
+        url:
+            "<?= base_url(
+                'surat/pengajuan/getPersyaratan/'
+            ); ?>"
+            + id,
+
+        type:
+            "GET",
+
+        dataType:
+            "json",
+
+
+        success:
+            function(data) {
+
+
+                // sembunyikan loading
+                $('#loading_surat')
+                    .addClass('hidden');
+
+
+                // =================================================
+                // FIELD PEMOHON
+                // =================================================
+
+                let fieldHtml = '';
+
+
+                if (
+                    data.fields &&
+                    data.fields.length > 0
+                ) {
+
+
+                    fieldHtml += `
+
+                    <h3
+                        class="text-xl font-semibold
+                               mb-4 text-gray-700
+                               border-b pb-3">
+
+                        Data Tambahan
+
+                    </h3>
+
+                    `;
+
+
+                    $.each(
+                        data.fields,
+                        function(i, row) {
+
+
+                            fieldHtml += `
+
+                            <div class="mb-5">
+
+                                <label
+                                    class="font-semibold
+                                           block mb-2">
+
+                                    ${escapeHtml(
+                                        row.label
+                                    )}
+
+                                    ${
+                                        row.required == 1
+                                        ? '<span class="text-red-500">*</span>'
+                                        : ''
+                                    }
+
+                                </label>
+
+                            `;
+
+
+                            // =================================
+                            // TEXTAREA
+                            // =================================
+
+                            if (
+                                row.tipe ===
+                                'textarea'
+                            ) {
+
+
+                                fieldHtml += `
+
+                                <textarea
+                                    name="field[${row.id}]"
+                                    rows="4"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }></textarea>
+
+                                `;
+
+                            }
+
+
+                            // =================================
+                            // NUMBER
+                            // =================================
+
+                            else if (
+                                row.tipe ===
+                                'number'
+                            ) {
+
+
+                                fieldHtml += `
+
+                                <input
+                                    type="number"
+                                    name="field[${row.id}]"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }>
+
+                                `;
+
+                            }
+
+
+                            // =================================
+                            // DATE
+                            // =================================
+
+                            else if (
+                                row.tipe ===
+                                'date'
+                            ) {
+
+
+                                fieldHtml += `
+
+                                <input
+                                    type="date"
+                                    name="field[${row.id}]"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }>
+
+                                `;
+
+                            }
+
+
+                            // =================================
+                            // TEXT
+                            // =================================
+
+                            else {
+
+
+                                fieldHtml += `
+
+                                <input
+                                    type="text"
+                                    name="field[${row.id}]"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }>
+
+                                `;
+
+                            }
+
+
+                            fieldHtml += `
+
+                            </div>
+
+                            `;
+
+                        }
+                    );
+
+                }
+
+
+                // tampilkan field
+                $('#field_container')
+                    .html(fieldHtml);
 
 
 
-if(id == '')
+                // =================================================
+                // FILE PERSYARATAN
+                // =================================================
+
+                let fileHtml = '';
+
+
+                if (
+                    data.persyaratan &&
+                    data.persyaratan.length > 0
+                ) {
+
+
+                    fileHtml += `
+
+                    <h3
+                        class="text-xl font-semibold
+                               mt-8 mb-4 text-gray-700
+                               border-b pb-3">
+
+                        Upload Persyaratan
+
+                    </h3>
+
+                    `;
+
+
+                    $.each(
+                        data.persyaratan,
+                        function(i, row) {
+
+
+                            fileHtml += `
+
+                            <div class="mb-5">
+
+                                <label
+                                    class="font-semibold
+                                           block mb-2">
+
+                                    ${escapeHtml(
+                                        row.nama_persyaratan
+                                    )}
+
+                                    <span
+                                        class="text-red-500">
+
+                                        *
+
+                                    </span>
+
+                                </label>
+
+
+                                <input
+                                    type="file"
+                                    name="persyaratan_${row.id}"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    accept=".jpg,.jpeg,.png,.pdf"
+                                    required>
+
+
+                                <p
+                                    class="text-sm text-gray-500
+                                           mt-1">
+
+                                    Format:
+                                    JPG, JPEG, PNG, atau PDF.
+                                    Maksimal 2 MB.
+
+                                </p>
+
+                            </div>
+
+                            `;
+
+                        }
+                    );
+
+                }
+                else {
+
+
+                    fileHtml += `
+
+                    <div
+                        class="bg-blue-50
+                               text-blue-700
+                               p-4 rounded-lg mt-6">
+
+                        Surat ini tidak memiliki
+                        persyaratan file.
+
+                    </div>
+
+                    `;
+
+                }
+
+
+                // tampilkan file
+                $('#persyaratan_container')
+                    .html(fileHtml);
+
+            },
+
+
+        error:
+            function(xhr) {
+
+
+                $('#loading_surat')
+                    .addClass('hidden');
+
+
+                console.log(
+                    xhr.responseText
+                );
+
+
+                $('#field_container')
+                    .html('');
+
+
+                $('#persyaratan_container')
+                    .html(`
+
+                        <div
+                            class="bg-red-100
+                                   text-red-700
+                                   p-4 rounded-lg">
+
+                            Gagal mengambil data
+                            persyaratan surat.
+
+                        </div>
+
+                    `);
+
+            }
+
+    });
+
+});
+
+
+
+// ========================================================
+// ESCAPE HTML
+// Mencegah label dari database merusak HTML
+// ========================================================
+
+function escapeHtml(text)
 {
 
-$('#persyaratan_container').html('');
+    if (!text) {
 
-return;
+        return '';
+
+    }
+
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            '&amp;'
+        )
+
+        .replace(
+            /</g,
+            '&lt;'
+        )
+
+        .replace(
+            />/g,
+            '&gt;'
+        )
+
+        .replace(
+            /"/g,
+            '&quot;'
+        )
+
+        .replace(
+            /'/g,
+            '&#039;'
+        );
 
 }
 
 
 
-$.ajax({
-
-
-url :
-"<?= base_url('surat/pengajuan/getPersyaratan/'); ?>" + id,
-
-
-type :
-"GET",
-
-
-dataType :
-"json",
-
-
-
-success:function(data)
-{
-
-
-let html = '';
-
-
-
-html += `
-
-<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-700 border-b pb-2">
-
-Upload Persyaratan
-
-</h3>
-
-`;
-
-
-
-
-
-$.each(data,function(i,row){
-
-
-
-html += `
-
-<div class="mb-4">
-
-
-<label class="font-semibold">
-
-${row.nama_persyaratan}
-
-</label>
-
-
-
-<input
-
-type="file"
-
-name="persyaratan_${row.id}"
-
-class="w-full border rounded-lg p-3 mt-2"
-
-required>
-
-
-</div>
-
-
-`;
-
-
-
-});
-
-
-
-$('#persyaratan_container').html(html);
-
-
-
-}
-
-
-
-});
-
-
-
-});
-
-
-</script>
-<script>
+// ========================================================
+// CLOSE ALERT
+// ========================================================
 
 function closeAlert(id)
 {
 
-    let alert = document.getElementById(id);
+    let alert =
+        document.getElementById(id);
 
 
-    if(alert)
-    {
+    if (alert) {
 
-        alert.style.display = 'none';
+        alert.style.display =
+            'none';
 
     }
 
 }
+
+
+
+// ========================================================
+// CEGAH DOUBLE SUBMIT
+// ========================================================
+
+$('#formPengajuan').on(
+    'submit',
+    function() {
+
+
+        $('#btnSubmit')
+            .prop(
+                'disabled',
+                true
+            );
+
+
+        $('#btnSubmit')
+            .text(
+                'Mengirim...'
+            );
+
+
+    }
+);
+
 
 </script>
