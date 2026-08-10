@@ -571,57 +571,305 @@ public function jadikanMasyarakat($id)
 }
 public function profilDesa()
 {
+    // ==========================================
+    // JUDUL HALAMAN
+    // ==========================================
+
     $data['title'] = 'Logo Desa';
+
+
+    // ==========================================
+    // DATA USER LOGIN
+    // ==========================================
 
     $data['user'] = $this->getUserLogin();
 
+
+    // ==========================================
+    // LOAD MODEL
+    // ==========================================
+
     $this->load->model('Logo_profil_model');
 
-    $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
+
+    // ==========================================
+    // DATA PROFIL DESA
+    // ==========================================
+
+    $data['logoDesa'] =
+        $this->Logo_profil_model
+            ->getLogoDesa();
+
+
+    // ==========================================
+    // JIKA FORM DISUBMIT
+    // ==========================================
 
     if ($this->input->post()) {
 
-        $nama_desa = $this->input->post('nama_desa');
+
+        // ==========================================
+        // NAMA DESA
+        // ==========================================
+
+        $nama_desa =
+            $this->input
+                ->post(
+                    'nama_desa',
+                    true
+                );
+
+
+        // ==========================================
+        // DATA YANG AKAN DIUPDATE
+        // ==========================================
 
         $dataUpdate = [
-            'nama_desa' => $nama_desa
+
+            'nama_desa' =>
+                $nama_desa
+
         ];
 
-        // Upload logo
-        if (!empty($_FILES['logo']['name'])) {
 
-            $config['upload_path']   = './uploads/logo/';
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size']      = 2048;
+        // ==========================================
+        // UPLOAD LOGO DESA
+        // ==========================================
 
-            $this->load->library('upload', $config);
+        if (
+            !empty(
+                $_FILES['logo']['name']
+            )
+        ) {
 
-            if ($this->upload->do_upload('logo')) {
 
-                $upload = $this->upload->data();
+            $configLogo = [
 
-                $dataUpdate['logo'] = $upload['file_name'];
+                'upload_path' =>
+                    './uploads/logo/',
+
+                'allowed_types' =>
+                    'jpg|jpeg|png',
+
+                'max_size' =>
+                    2048,
+
+                'encrypt_name' =>
+                    TRUE
+
+            ];
+
+
+            // Load library upload
+            $this->load->library(
+                'upload',
+                $configLogo
+            );
+
+
+            // Proses upload logo
+            if (
+                $this->upload
+                    ->do_upload('logo')
+            ) {
+
+
+                $uploadLogo =
+                    $this->upload
+                        ->data();
+
+
+                $dataUpdate['logo'] =
+                    $uploadLogo['file_name'];
+
+
+            } else {
+
+
+                $this->session
+                    ->set_flashdata(
+                        'message',
+
+                        '<div class="alert alert-danger">
+                            Logo gagal diupload.
+                            <br>
+                            '
+                            . $this->upload
+                                ->display_errors()
+                            . '
+                        </div>'
+                    );
+
+
+                redirect(
+                    'superadmin/profilDesa'
+                );
+
             }
+
         }
 
-        $this->Logo_profil_model->updateProfil($dataUpdate);
 
-        $this->session->set_flashdata(
-            'message',
-            '<div class="alert alert-success">
-                Profil desa berhasil diperbarui.
-            </div>'
+        // ==========================================
+        // UPLOAD KOP SURAT
+        // ==========================================
+
+        if (
+            !empty(
+                $_FILES['kop_surat']['name']
+            )
+        ) {
+
+
+            $configKop = [
+
+                'upload_path' =>
+                    './uploads/kop_surat/',
+
+                'allowed_types' =>
+                    'jpg|jpeg|png',
+
+                'max_size' =>
+                    4096,
+
+                'encrypt_name' =>
+                    TRUE
+
+            ];
+
+
+            // Load ulang library upload
+            // dengan konfigurasi kop surat
+
+            $this->load->library(
+                'upload',
+                $configKop
+            );
+
+
+            // Proses upload kop surat
+
+            if (
+                $this->upload
+                    ->do_upload('kop_surat')
+            ) {
+
+
+                $uploadKop =
+                    $this->upload
+                        ->data();
+
+
+                // Simpan lokasi file ke database
+
+                $dataUpdate['kop_surat'] =
+                    'uploads/kop_surat/'
+                    . $uploadKop['file_name'];
+
+
+            } else {
+
+
+                $this->session
+                    ->set_flashdata(
+                        'message',
+
+                        '<div class="alert alert-danger">
+                            Kop surat gagal diupload.
+                            <br>
+                            '
+                            . $this->upload
+                                ->display_errors()
+                            . '
+                        </div>'
+                    );
+
+
+                redirect(
+                    'superadmin/profilDesa'
+                );
+
+            }
+
+        }
+
+
+        // ==========================================
+        // UPDATE DATABASE
+        // ==========================================
+
+        $this->Logo_profil_model
+            ->updateProfil(
+                $dataUpdate
+            );
+
+
+        // ==========================================
+        // PESAN BERHASIL
+        // ==========================================
+
+        $this->session
+            ->set_flashdata(
+                'message',
+
+                '<div class="alert alert-success">
+                    Profil desa berhasil diperbarui.
+                </div>'
+            );
+
+
+        // ==========================================
+        // KEMBALI KE HALAMAN PROFIL
+        // ==========================================
+
+        redirect(
+            'superadmin/profilDesa'
         );
 
-        redirect('superadmin/profilDesa');
     }
-    $data['logoDesa'] = $this->Logo_profil_model->getLogoDesa();
 
-    $this->load->view('templates/header', $data);
-    $this->load->view('templates/sidebar', $data);
-    $this->load->view('templates/topbar', $data);
-    $this->load->view('superadmin/profil_desa', $data);
-    $this->load->view('templates/footer', $data);
+
+    // ==========================================
+    // AMBIL DATA TERBARU
+    // ==========================================
+
+    $data['logoDesa'] =
+        $this->Logo_profil_model
+            ->getLogoDesa();
+
+
+    // ==========================================
+    // TAMPILKAN HALAMAN
+    // ==========================================
+
+    $this->load->view(
+        'templates/header',
+        $data
+    );
+
+
+    $this->load->view(
+        'templates/sidebar',
+        $data
+    );
+
+
+    $this->load->view(
+        'templates/topbar',
+        $data
+    );
+
+
+    $this->load->view(
+        'superadmin/profil_desa',
+        $data
+    );
+
+
+    $this->load->view(
+        'templates/footer',
+        $data
+    );
 }
 private function getUserLogin()
 {

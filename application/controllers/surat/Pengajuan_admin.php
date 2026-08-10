@@ -9,7 +9,7 @@ class Pengajuan_admin extends CI_Controller
         parent::__construct();
 
         is_logged_in();
-
+        $this->load->model('Surat_model');
         $this->load->model('Pengajuan_model');
         $this->load->model('Logo_profil_model');
 
@@ -76,69 +76,58 @@ class Pengajuan_admin extends CI_Controller
     // ============================
     // DETAIL PENGAJUAN
     // ============================
-    public function detail($id)
+public function detail($id)
+{
+    $data['title'] =
+        'Detail Pengajuan Surat';
+
+    $data['pengajuan'] =
+        $this->Pengajuan_model
+        ->getDetailPengajuan($id);
+
+    if(!$data['pengajuan'])
     {
-
-        $data['title'] =
-            'Detail Pengajuan Surat';
-
-
-        $data['pengajuan'] =
-            $this->Pengajuan_model
-            ->getDetailPengajuan($id);
-
-
-
-        if(!$data['pengajuan'])
-        {
-            show_404();
-        }
-
-
-
-        $data['file'] =
-            $this->Pengajuan_model
-            ->getFilePengajuan($id);
-
-
-
-        $data['logoDesa'] =
-            $this->Logo_profil_model
-            ->getLogoDesa();
-
-
-
-        $this->load->view(
-            'templates/header',
-            $data
-        );
-
-
-        $this->load->view(
-            'templates/sidebar',
-            $data
-        );
-
-
-        $this->load->view(
-            'templates/topbar',
-            $data
-        );
-
-
-        $this->load->view(
-            'surat/detail_pengajuan',
-            $data
-        );
-
-
-        $this->load->view(
-            'templates/footer',
-            $data
-        );
-
+        show_404();
     }
 
+    // CEK APAKAH SURAT SUDAH DIBUAT
+    $data['surat'] =
+        $this->Surat_model
+        ->getByPengajuan($id);
+
+    $data['file'] =
+        $this->Pengajuan_model
+        ->getFilePengajuan($id);
+
+    $data['logoDesa'] =
+        $this->Logo_profil_model
+        ->getLogoDesa();
+
+    $this->load->view(
+        'templates/header',
+        $data
+    );
+
+    $this->load->view(
+        'templates/sidebar',
+        $data
+    );
+
+    $this->load->view(
+        'templates/topbar',
+        $data
+    );
+
+    $this->load->view(
+        'surat/detail_pengajuan',
+        $data
+    );
+
+    $this->load->view(
+        'templates/footer',
+        $data
+    );
+}
 
 
     // ============================
