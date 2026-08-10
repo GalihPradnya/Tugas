@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -5,10 +9,7 @@
 
     <meta charset="UTF-8">
 
-    <title>
-        <?= html_escape($pengajuan['nama_surat']); ?>
-    </title>
-
+    <title>Surat Keterangan Meninggal</title>
 
     <style>
 
@@ -17,11 +18,9 @@
             margin: 15mm 20mm 20mm 25mm;
         }
 
-
         * {
             box-sizing: border-box;
         }
-
 
         body {
             margin: 0;
@@ -39,7 +38,6 @@
             color: #000;
         }
 
-
         .surat {
             width: 100%;
             max-width: 170mm;
@@ -47,17 +45,15 @@
         }
 
 
-
         /* =====================================================
            KOP SURAT
-        ====================================================== */
+        ===================================================== */
 
         .kop-surat {
             width: 100%;
             margin-bottom: 5mm;
             text-align: center;
         }
-
 
         .kop-surat img {
             display: block;
@@ -72,7 +68,6 @@
             margin: 0 auto;
         }
 
-
         .garis-kop {
             border-bottom: 3px solid #000;
 
@@ -83,17 +78,14 @@
         }
 
 
-
         /* =====================================================
            JUDUL
-        ====================================================== */
+        ===================================================== */
 
         .judul {
             text-align: center;
-
             margin-bottom: 3px;
         }
-
 
         .judul h2 {
             margin: 0;
@@ -105,18 +97,15 @@
             text-decoration: underline;
         }
 
-
         .nomor {
             text-align: center;
-
             margin-bottom: 20px;
         }
 
 
-
         /* =====================================================
            PARAGRAF
-        ====================================================== */
+        ===================================================== */
 
         .paragraf {
             text-align: justify;
@@ -128,12 +117,11 @@
         }
 
 
-
         /* =====================================================
-           DATA PEMOHON
-        ====================================================== */
+           DATA PENDUDUK MENINGGAL
+        ===================================================== */
 
-        .data-pemohon {
+        .data-penduduk {
             width: 100%;
 
             border-collapse: collapse;
@@ -143,41 +131,36 @@
             margin-left: 12mm;
         }
 
-
-        .data-pemohon td {
+        .data-penduduk td {
             vertical-align: top;
 
             padding: 1px 0;
         }
 
-
-        .data-pemohon .label {
+        .data-penduduk .label {
             width: 42mm;
 
             white-space: nowrap;
         }
 
-
-        .data-pemohon .titik {
+        .data-penduduk .titik {
             width: 7mm;
 
             text-align: left;
         }
 
-
-        .data-pemohon .nilai {
+        .data-penduduk .nilai {
             width: auto;
 
             padding-right: 5mm;
         }
 
 
-
         /* =====================================================
-           ISI ALIAS
-        ====================================================== */
+           ISI SURAT
+        ===================================================== */
 
-        .isi-alias {
+        .isi {
             text-align: justify;
 
             margin-top: 10px;
@@ -187,23 +170,20 @@
             text-indent: 12mm;
         }
 
-
-        .isi-alias p {
+        .isi p {
             margin: 0 0 15px 0;
         }
 
 
-
         /* =====================================================
            TANDA TANGAN
-        ====================================================== */
+        ===================================================== */
 
         .ttd {
             width: 100%;
 
             margin-top: 30px;
         }
-
 
         .ttd-kanan {
             width: 75mm;
@@ -213,21 +193,17 @@
             text-align: center;
         }
 
-
         .ttd-kanan .tempat {
             margin-bottom: 0;
         }
-
 
         .ttd-kanan .jabatan {
             margin-top: 0;
         }
 
-
         .ttd-space {
             height: 30mm;
         }
-
 
         .ttd-nama {
             font-weight: bold;
@@ -236,17 +212,15 @@
         }
 
 
-
         /* =====================================================
            TOMBOL
-        ====================================================== */
+        ===================================================== */
 
         .tombol {
             margin-top: 30px;
 
             text-align: center;
         }
-
 
         .btn {
             display: inline-block;
@@ -268,13 +242,11 @@
             border: none;
         }
 
-
         .btn-print {
             background: #28a745;
 
             color: white;
         }
-
 
         .btn-back {
             background: #6c757d;
@@ -283,10 +255,9 @@
         }
 
 
-
         /* =====================================================
            PRINT
-        ====================================================== */
+        ===================================================== */
 
         @media print {
 
@@ -294,18 +265,15 @@
                 background: white;
             }
 
-
             .surat {
                 width: 100%;
 
                 max-width: none;
             }
 
-
             .tombol {
                 display: none;
             }
-
 
             .kop-surat {
                 margin-bottom: 5mm;
@@ -324,31 +292,42 @@
 <?php
 
 /* ==========================================================
-   DATA PEMOHON
+   DATA ORANG YANG MENINGGAL
+   PENTING:
+   Semua identitas mengambil dari $penduduk_meninggal
+   BUKAN dari $pengajuan
 ========================================================== */
 
-$nama = !empty($pengajuan['nama_lengkap'])
-    ? $pengajuan['nama_lengkap']
+
+/* Nama */
+
+$nama = !empty($penduduk_meninggal['nama_lengkap'])
+    ? $penduduk_meninggal['nama_lengkap']
     : '-';
 
 
-$nik = !empty($pengajuan['nik'])
-    ? $pengajuan['nik']
+/* NIK */
+
+$nik = !empty($penduduk_meninggal['nik'])
+    ? $penduduk_meninggal['nik']
     : '-';
 
 
-$tempat_lahir = !empty($pengajuan['tempat_lahir'])
-    ? $pengajuan['tempat_lahir']
+/* Tempat lahir */
+
+$tempat_lahir = !empty($penduduk_meninggal['tempat_lahir'])
+    ? $penduduk_meninggal['tempat_lahir']
     : '-';
 
 
-$tanggal_lahir = !empty($pengajuan['tanggal_lahir'])
+/* Tanggal lahir */
+
+$tanggal_lahir = !empty($penduduk_meninggal['tanggal_lahir'])
     ? date(
         'd-m-Y',
-        strtotime($pengajuan['tanggal_lahir'])
+        strtotime($penduduk_meninggal['tanggal_lahir'])
     )
     : '-';
-
 
 
 /* ==========================================================
@@ -357,41 +336,71 @@ $tanggal_lahir = !empty($pengajuan['tanggal_lahir'])
 
 $jenis_kelamin = '-';
 
+if (!empty($penduduk_meninggal['jenis_kelamin'])) {
 
-if (!empty($pengajuan['jenis_kelamin'])) {
-
-    if ($pengajuan['jenis_kelamin'] == 'L') {
+    if (
+        strtoupper(
+            trim(
+                $penduduk_meninggal['jenis_kelamin']
+            )
+        ) == 'L'
+    ) {
 
         $jenis_kelamin = 'Laki-laki';
 
-    } elseif ($pengajuan['jenis_kelamin'] == 'P') {
+    }
+
+    elseif (
+        strtoupper(
+            trim(
+                $penduduk_meninggal['jenis_kelamin']
+            )
+        ) == 'P'
+    ) {
 
         $jenis_kelamin = 'Perempuan';
 
-    } else {
+    }
+
+    else {
 
         $jenis_kelamin =
-            $pengajuan['jenis_kelamin'];
+            $penduduk_meninggal['jenis_kelamin'];
 
     }
 
 }
 
 
-
 /* ==========================================================
-   DATA LAIN
+   AGAMA
 ========================================================== */
 
-$pekerjaan = !empty($pengajuan['pekerjaan'])
-    ? $pengajuan['pekerjaan']
+$agama = !empty($penduduk_meninggal['agama'])
+    ? $penduduk_meninggal['agama']
     : '-';
 
 
-$alamat = !empty($pengajuan['alamat'])
-    ? $pengajuan['alamat']
+/* ==========================================================
+   PEKERJAAN
+   TETAP DITAMPILKAN
+   Jika kosong -> -
+========================================================== */
+
+$pekerjaan = !empty($penduduk_meninggal['pekerjaan'])
+    ? $penduduk_meninggal['pekerjaan']
     : '-';
 
+
+/* ==========================================================
+   ALAMAT
+   HANYA ALAMAT
+   RT DAN RW TIDAK DITAMPILKAN
+========================================================== */
+
+$alamat = !empty($penduduk_meninggal['alamat'])
+    ? $penduduk_meninggal['alamat']
+    : '-';
 
 
 /* ==========================================================
@@ -403,95 +412,13 @@ $nomor_surat = !empty($surat['nomor_surat'])
     : '-';
 
 
+/* ==========================================================
+   TANGGAL SURAT
+========================================================== */
+
 $tanggal_surat = !empty($surat['tanggal_surat'])
-    ? date(
-        'd-m-Y',
-        strtotime($surat['tanggal_surat'])
-    )
-    : date('d-m-Y');
-
-
-
-/* ==========================================================
-   DATA KOP SURAT
-========================================================== */
-
-$kop_surat = '';
-
-
-if (
-    !empty($logoDesa)
-    &&
-    !empty($logoDesa['kop_surat'])
-) {
-
-    $kop_surat =
-        $logoDesa['kop_surat'];
-
-}
-
-
-
-/* ==========================================================
-   DATA ISI SURAT
-   SESUAI DATABASE TERBARU
-========================================================== */
-
-/*
-    Field database:
-
-    subjek_lama
-    dokumen_lama
-    nilai_lama
-
-    subjek_baru
-    dokumen_baru
-    nilai_baru
-
-    keterangan_orang
-    keperluan_alias
-*/
-
-
-$subjek_lama = !empty($isi_surat['subjek_lama'])
-    ? $isi_surat['subjek_lama']
-    : '';
-
-
-$dokumen_lama = !empty($isi_surat['dokumen_lama'])
-    ? $isi_surat['dokumen_lama']
-    : '';
-
-
-$nilai_lama = !empty($isi_surat['nilai_lama'])
-    ? $isi_surat['nilai_lama']
-    : '';
-
-
-$subjek_baru = !empty($isi_surat['subjek_baru'])
-    ? $isi_surat['subjek_baru']
-    : '';
-
-
-$dokumen_baru = !empty($isi_surat['dokumen_baru'])
-    ? $isi_surat['dokumen_baru']
-    : '';
-
-
-$nilai_baru = !empty($isi_surat['nilai_baru'])
-    ? $isi_surat['nilai_baru']
-    : '';
-
-
-$keterangan_orang = !empty($isi_surat['keterangan_orang'])
-    ? $isi_surat['keterangan_orang']
-    : '';
-
-
-$keperluan_alias = !empty($isi_surat['keperluan_alias'])
-    ? $isi_surat['keperluan_alias']
-    : '';
-
+    ? $surat['tanggal_surat']
+    : date('Y-m-d');
 
 
 /* ==========================================================
@@ -516,24 +443,197 @@ $bulanIndonesia = [
 ];
 
 
-$tanggal_ttd = !empty($surat['tanggal_surat'])
-    ? date(
-        'j',
-        strtotime($surat['tanggal_surat'])
-      )
-      . ' '
-      . $bulanIndonesia[
+/* ==========================================================
+   FORMAT TANGGAL SURAT
+========================================================== */
+
+$tanggal_ttd = date(
+    'j',
+    strtotime($tanggal_surat)
+)
+. ' '
+. $bulanIndonesia[
+    (int) date(
+        'n',
+        strtotime($tanggal_surat)
+    )
+]
+. ' '
+. date(
+    'Y',
+    strtotime($tanggal_surat)
+);
+
+
+/* ==========================================================
+   TANGGAL MENINGGAL
+   DIAMBIL DARI DATA ISI SURAT
+========================================================== */
+
+$tanggal_meninggal = '-';
+
+if (
+    !empty($isi_surat)
+    &&
+    !empty($isi_surat['tanggal_meninggal'])
+) {
+
+    $tanggal_meninggal =
+        date(
+            'j',
+            strtotime(
+                $isi_surat['tanggal_meninggal']
+            )
+        )
+        . ' '
+        . $bulanIndonesia[
             (int) date(
                 'n',
-                strtotime($surat['tanggal_surat'])
+                strtotime(
+                    $isi_surat['tanggal_meninggal']
+                )
             )
         ]
-      . ' '
-      . date(
+        . ' '
+        . date(
             'Y',
-            strtotime($surat['tanggal_surat'])
-        )
-    : '-';
+            strtotime(
+                $isi_surat['tanggal_meninggal']
+            )
+        );
+
+}
+
+
+/* ==========================================================
+   PENYEBAB MENINGGAL
+========================================================== */
+
+$penyebab_meninggal = '-';
+
+if (
+    !empty($isi_surat)
+    &&
+    !empty($isi_surat['penyebab_meninggal'])
+) {
+
+    $penyebab_meninggal =
+        $isi_surat['penyebab_meninggal'];
+
+}
+
+
+/* ==========================================================
+   KELIAN DINAS
+========================================================== */
+
+$kelian_dinas = 'Kelian Dinas Br. Dangin Jalan';
+
+if (
+    !empty($isi_surat)
+    &&
+    !empty($isi_surat['kelian_dinas'])
+) {
+
+    $kelian_dinas =
+        $isi_surat['kelian_dinas'];
+
+}
+
+
+/* ==========================================================
+   KETERANGAN TAMBAHAN
+========================================================== */
+
+$keterangan_meninggal = '';
+
+if (
+    !empty($isi_surat)
+    &&
+    !empty($isi_surat['keterangan_meninggal'])
+) {
+
+    $keterangan_meninggal =
+        $isi_surat['keterangan_meninggal'];
+
+}
+
+
+/* ==========================================================
+   KEPERLUAN SURAT
+========================================================== */
+
+$keperluan_meninggal = '';
+
+if (
+    !empty($isi_surat)
+    &&
+    !empty($isi_surat['keperluan_meninggal'])
+) {
+
+    $keperluan_meninggal =
+        $isi_surat['keperluan_meninggal'];
+
+}
+
+
+/* ==========================================================
+   KOP SURAT
+========================================================== */
+
+$kop_surat = '';
+
+if (
+    !empty($logoDesa)
+    &&
+    !empty($logoDesa['kop_surat'])
+) {
+
+    $kop_surat =
+        $logoDesa['kop_surat'];
+
+}
+
+
+/* ==========================================================
+   NAMA KEPALA DESA
+========================================================== */
+
+$nama_kepala_desa = '-';
+
+if (!empty($kepala_desa)) {
+
+    if (is_object($kepala_desa)) {
+
+        if (
+            !empty(
+                $kepala_desa->nama_kepala_desa
+            )
+        ) {
+
+            $nama_kepala_desa =
+                $kepala_desa->nama_kepala_desa;
+
+        }
+
+    }
+
+    elseif (is_array($kepala_desa)) {
+
+        if (
+            !empty(
+                $kepala_desa['nama_kepala_desa']
+            )
+        ) {
+
+            $nama_kepala_desa =
+                $kepala_desa['nama_kepala_desa'];
+
+        }
+
+    }
+
+}
 
 ?>
 
@@ -543,7 +643,7 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
     <!-- =====================================================
          KOP SURAT
-    ====================================================== -->
+    ===================================================== -->
 
     <?php if (!empty($kop_surat)): ?>
 
@@ -556,7 +656,6 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
         </div>
 
-
         <div class="garis-kop"></div>
 
     <?php endif; ?>
@@ -565,12 +664,12 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
     <!-- =====================================================
          JUDUL
-    ====================================================== -->
+    ===================================================== -->
 
     <div class="judul">
 
         <h2>
-            SURAT KETERANGAN ALIAS
+            SURAT KETERANGAN MENINGGAL
         </h2>
 
     </div>
@@ -587,7 +686,7 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
     <!-- =====================================================
          PEMBUKA
-    ====================================================== -->
+    ===================================================== -->
 
     <p class="paragraf">
 
@@ -599,16 +698,18 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
 
     <!-- =====================================================
-         DATA PEMOHON
-    ====================================================== -->
+         DATA ORANG MENINGGAL
+    ===================================================== -->
 
-    <table class="data-pemohon">
+    <table class="data-penduduk">
 
+
+        <!-- NAMA -->
 
         <tr>
 
             <td class="label">
-                Nama
+                N a m a
             </td>
 
             <td class="titik">
@@ -623,6 +724,9 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
         </tr>
 
+
+
+        <!-- NIK -->
 
         <tr>
 
@@ -643,6 +747,9 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
         </tr>
 
 
+
+        <!-- JENIS KELAMIN -->
+
         <tr>
 
             <td class="label">
@@ -662,10 +769,13 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
         </tr>
 
 
+
+        <!-- TEMPAT / TANGGAL LAHIR -->
+
         <tr>
 
             <td class="label">
-                Tempat, Tgl Lahir
+                Tempat/Tgl Lahir
             </td>
 
             <td class="titik">
@@ -682,6 +792,32 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
         </tr>
 
 
+
+        <!-- WARGA NEGARA / AGAMA -->
+
+        <tr>
+
+            <td class="label">
+                Warga Negara/ Agama
+            </td>
+
+            <td class="titik">
+                :
+            </td>
+
+            <td class="nilai">
+
+                Indonesia /
+                <?= html_escape($agama); ?>
+
+            </td>
+
+        </tr>
+
+
+
+        <!-- PEKERJAAN -->
+
         <tr>
 
             <td class="label">
@@ -694,12 +830,15 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
             <td class="nilai">
 
-                <?= html_escape($pekerjaan); ?>
+                -
 
             </td>
 
         </tr>
 
+
+
+        <!-- ALAMAT -->
 
         <tr>
 
@@ -727,66 +866,64 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
 
     <!-- =====================================================
-         ISI ALIAS DINAMIS
-    ====================================================== -->
+         KETERANGAN MENINGGAL
+    ===================================================== -->
 
-    <div class="isi-alias">
-
+    <div class="isi">
 
         <p>
 
-            Memang benar
+            Berdasarkan keterangan Kelian Dinas
+            <strong>
+                <?= html_escape($kelian_dinas); ?>
+            </strong>,
+            Desa Kelating, Kecamatan Kerambitan, Kabupaten Tabanan
+            dan berdasarkan pengamatan kami memang benar yang tersebut
+            di atas telah meninggal pada tanggal :
 
             <strong>
-                <?= html_escape($subjek_lama); ?>
+                <?= html_escape($tanggal_meninggal); ?>
             </strong>
 
-            yang tercantum dalam
+            karena
 
             <strong>
-                <?= html_escape($dokumen_lama); ?>
-            </strong>
+                <?= html_escape($penyebab_meninggal); ?>
+            </strong>.
 
-            adalah
+            <?php if (!empty($keterangan_meninggal)): ?>
 
-            <strong>
-                <?= html_escape($nilai_lama); ?>
-            </strong>
+                <?= html_escape($keterangan_meninggal); ?>
 
-            sedangkan
+            <?php endif; ?>
 
-            <strong>
-                <?= html_escape($subjek_baru); ?>
-            </strong>
+        </p>
 
-            yang tercantum dalam
 
-            <strong>
-                <?= html_escape($dokumen_baru); ?>
-            </strong>
-
-            adalah
-
-                <strong>
-                    <?= html_escape($nilai_baru); ?>
-                </strong>
-
-                dimana orangnya satu.
-
-            </p>
-
+        <!-- =================================================
+             PENUTUP
+        ================================================== -->
 
         <p>
 
             Demikian surat keterangan ini dibuat dengan sebenarnya
             agar dapat dipergunakan
 
-            <strong>
-                <?= html_escape($keperluan_alias); ?>
-            </strong>.
+            <?php if (!empty($keperluan_meninggal)): ?>
+
+                <strong>
+                    <?= html_escape($keperluan_meninggal); ?>
+                </strong>
+
+            <?php else: ?>
+
+                <strong>
+                    dimana diperlukan
+                </strong>
+
+            <?php endif; ?>.
 
         </p>
-
 
     </div>
 
@@ -794,10 +931,9 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
     <!-- =====================================================
          TANDA TANGAN
-    ====================================================== -->
+    ===================================================== -->
 
     <div class="ttd">
-
 
         <div class="ttd-kanan">
 
@@ -822,15 +958,12 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
             <div class="ttd-nama">
 
-                <?= !empty($kepala_desa->nama_kepala_desa)
-                    ? html_escape($kepala_desa->nama_kepala_desa)
-                    : '-'; ?>
+                <?= html_escape($nama_kepala_desa); ?>
 
             </div>
 
 
         </div>
-
 
     </div>
 
@@ -838,10 +971,9 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
     <!-- =====================================================
          TOMBOL
-    ====================================================== -->
+    ===================================================== -->
 
     <div class="tombol">
-
 
         <button
             onclick="window.print();"
@@ -863,7 +995,6 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
         </a>
 
-
     </div>
 
 
@@ -872,4 +1003,4 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
 </body>
 
-</html>
+</html> 

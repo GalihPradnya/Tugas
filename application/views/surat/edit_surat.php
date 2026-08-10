@@ -5,11 +5,8 @@
 <?= $this->session->flashdata('message'); ?>
 
 
-<form
-    action="<?= base_url('surat/surat_admin/update'); ?>"
-    method="post"
->
-
+<form action="<?= base_url('surat/surat_admin/update'); ?>"
+      method="post">
 
     <!-- ================================================= -->
     <!-- ID SURAT -->
@@ -18,96 +15,7 @@
     <input
         type="hidden"
         name="surat_id"
-        value="<?= $surat['id']; ?>"
-    >
-
-
-    <!-- ================================================= -->
-    <!-- INFORMASI SURAT -->
-    <!-- ================================================= -->
-
-    <div class="card shadow mb-4">
-
-        <div class="card-header py-3">
-
-            <h6 class="m-0 font-weight-bold text-primary">
-                Informasi Surat
-            </h6>
-
-        </div>
-
-
-        <div class="card-body">
-
-
-            <!-- NOMOR SURAT -->
-
-            <div class="form-group">
-
-                <label>
-                    Nomor Surat
-                    <span class="text-danger">*</span>
-                </label>
-
-                <input
-                    type="text"
-                    name="nomor_surat"
-                    class="form-control"
-                    value="<?= html_escape(
-                        $surat['nomor_surat']
-                    ); ?>"
-                    required
-                >
-
-            </div>
-
-
-            <!-- TANGGAL SURAT -->
-
-            <div class="form-group">
-
-                <label>
-                    Tanggal Surat
-                    <span class="text-danger">*</span>
-                </label>
-
-                <input
-                    type="date"
-                    name="tanggal_surat"
-                    class="form-control"
-                    value="<?= html_escape(
-                        $surat['tanggal_surat']
-                    ); ?>"
-                    required
-                >
-
-            </div>
-
-
-            <!-- JENIS SURAT -->
-
-            <div class="form-group">
-
-                <label>
-                    Jenis Surat
-                </label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<?= html_escape(
-                        $pengajuan['nama_surat']
-                    ); ?>"
-                    readonly
-                >
-
-            </div>
-
-
-        </div>
-
-    </div>
-
+        value="<?= html_escape($surat['id']); ?>">
 
 
     <!-- ================================================= -->
@@ -127,236 +35,351 @@
 
         <div class="card-body">
 
-            <table class="table table-bordered">
+            <div class="table-responsive">
 
-                <tr>
+                <table class="table table-bordered">
 
-                    <th width="25%">
-                        Nama Lengkap
-                    </th>
+                    <!-- NAMA -->
 
-                    <td>
-                        <?= html_escape(
-                            $pengajuan['nama_lengkap']
-                        ); ?>
-                    </td>
+                    <tr>
 
-                </tr>
+                        <th width="25%">
+                            Nama Lengkap
+                        </th>
 
+                        <td>
+                            <?= html_escape(
+                                $pengajuan['nama_lengkap']
+                            ); ?>
+                        </td>
 
-                <tr>
-
-                    <th>
-                        NIK
-                    </th>
-
-                    <td>
-                        <?= html_escape(
-                            $pengajuan['nik']
-                        ); ?>
-                    </td>
-
-                </tr>
+                    </tr>
 
 
-                <tr>
+                    <!-- NIK -->
 
-                    <th>
-                        Tempat Lahir
-                    </th>
+                    <tr>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['tempat_lahir']
-                        )
-                            ? html_escape(
-                                $pengajuan['tempat_lahir']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                        <th>
+                            NIK
+                        </th>
 
-                </tr>
+                        <td>
+                            <?= html_escape(
+                                $pengajuan['nik']
+                            ); ?>
+                        </td>
+
+                    </tr>
 
 
-                <tr>
+                    <!-- TEMPAT LAHIR -->
 
-                    <th>
-                        Tanggal Lahir
-                    </th>
+                    <tr>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['tanggal_lahir']
-                        )
-                            ? date(
-                                'd-m-Y',
-                                strtotime(
+                        <th>
+                            Tempat Lahir
+                        </th>
+
+                        <td>
+
+                            <?php if (
+                                !empty(
+                                    $pengajuan['tempat_lahir']
+                                )
+                            ): ?>
+
+                                <?= html_escape(
+                                    $pengajuan['tempat_lahir']
+                                ); ?>
+
+                            <?php else: ?>
+
+                                -
+
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- TANGGAL LAHIR -->
+
+                    <tr>
+
+                        <th>
+                            Tanggal Lahir
+                        </th>
+
+                        <td>
+
+                            <?php if (
+                                !empty(
                                     $pengajuan['tanggal_lahir']
                                 )
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                            ): ?>
 
-                </tr>
+                                <?= date(
+                                    'd-m-Y',
+                                    strtotime(
+                                        $pengajuan['tanggal_lahir']
+                                    )
+                                ); ?>
 
+                            <?php else: ?>
 
-                <tr>
+                                -
 
-                    <th>
-                        Jenis Kelamin
-                    </th>
+                            <?php endif; ?>
 
-                    <td>
+                        </td>
 
-                        <?php
-
-                        $jk =
-                            $pengajuan['jenis_kelamin']
-                            ?? '';
-
-                        if ($jk === 'L') {
-
-                            echo 'Laki-laki';
-
-                        } elseif ($jk === 'P') {
-
-                            echo 'Perempuan';
-
-                        } else {
-
-                            echo '-';
-
-                        }
-
-                        ?>
-
-                    </td>
-
-                </tr>
+                    </tr>
 
 
-                <tr>
+                    <!-- JENIS KELAMIN -->
 
-                    <th>
-                        Alamat
-                    </th>
+                    <tr>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['alamat']
-                        )
-                            ? html_escape(
-                                $pengajuan['alamat']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                        <th>
+                            Jenis Kelamin
+                        </th>
 
-                </tr>
+                        <td>
 
+                            <?php if (
+                                !empty(
+                                    $pengajuan['jenis_kelamin']
+                                )
+                            ): ?>
 
-                <tr>
+                                <?= html_escape(
+                                    $pengajuan['jenis_kelamin']
+                                ); ?>
 
-                    <th>
-                        RT
-                    </th>
+                            <?php else: ?>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['rt']
-                        )
-                            ? html_escape(
-                                $pengajuan['rt']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                                -
 
-                </tr>
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
 
 
-                <tr>
+                    <!-- ALAMAT -->
 
-                    <th>
-                        RW
-                    </th>
+                    <tr>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['rw']
-                        )
-                            ? html_escape(
-                                $pengajuan['rw']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                        <th>
+                            Alamat
+                        </th>
 
-                </tr>
+                        <td>
 
+                            <?php if (
+                                !empty(
+                                    $pengajuan['alamat']
+                                )
+                            ): ?>
 
-                <tr>
+                                <?= html_escape(
+                                    $pengajuan['alamat']
+                                ); ?>
 
-                    <th>
-                        Agama
-                    </th>
+                            <?php else: ?>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['agama']
-                        )
-                            ? html_escape(
-                                $pengajuan['agama']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                                -
 
-                </tr>
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
 
 
-                <tr>
+                    <!-- RT -->
 
-                    <th>
-                        Pekerjaan
-                    </th>
+                    <tr>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['pekerjaan']
-                        )
-                            ? html_escape(
-                                $pengajuan['pekerjaan']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                        <th>
+                            RT
+                        </th>
 
-                </tr>
+                        <td>
+
+                            <?php if (
+                                !empty(
+                                    $pengajuan['rt']
+                                )
+                            ): ?>
+
+                                <?= html_escape(
+                                    $pengajuan['rt']
+                                ); ?>
+
+                            <?php else: ?>
+
+                                -
+
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
 
 
-                <tr>
+                    <!-- RW -->
 
-                    <th>
-                        Status Perkawinan
-                    </th>
+                    <tr>
 
-                    <td>
-                        <?= !empty(
-                            $pengajuan['status_perkawinan']
-                        )
-                            ? html_escape(
-                                $pengajuan['status_perkawinan']
-                            )
-                            : '-';
-                        ?>
-                    </td>
+                        <th>
+                            RW
+                        </th>
 
-                </tr>
+                        <td>
 
-            </table>
+                            <?php if (
+                                !empty(
+                                    $pengajuan['rw']
+                                )
+                            ): ?>
+
+                                <?= html_escape(
+                                    $pengajuan['rw']
+                                ); ?>
+
+                            <?php else: ?>
+
+                                -
+
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- AGAMA -->
+
+                    <tr>
+
+                        <th>
+                            Agama
+                        </th>
+
+                        <td>
+
+                            <?php if (
+                                !empty(
+                                    $pengajuan['agama']
+                                )
+                            ): ?>
+
+                                <?= html_escape(
+                                    $pengajuan['agama']
+                                ); ?>
+
+                            <?php else: ?>
+
+                                -
+
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- PEKERJAAN -->
+
+                    <tr>
+
+                        <th>
+                            Pekerjaan
+                        </th>
+
+                        <td>
+
+                            <?php if (
+                                !empty(
+                                    $pengajuan['pekerjaan']
+                                )
+                            ): ?>
+
+                                <?= html_escape(
+                                    $pengajuan['pekerjaan']
+                                ); ?>
+
+                            <?php else: ?>
+
+                                -
+
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- STATUS PERKAWINAN -->
+
+                    <tr>
+
+                        <th>
+                            Status Perkawinan
+                        </th>
+
+                        <td>
+
+                            <?php if (
+                                !empty(
+                                    $pengajuan['status_perkawinan']
+                                )
+                            ): ?>
+
+                                <?= html_escape(
+                                    $pengajuan['status_perkawinan']
+                                ); ?>
+
+                            <?php else: ?>
+
+                                -
+
+                            <?php endif; ?>
+
+                        </td>
+
+                    </tr>
+
+
+                    <!-- JENIS SURAT -->
+
+                    <tr>
+
+                        <th>
+                            Jenis Surat
+                        </th>
+
+                        <td>
+
+                            <strong>
+
+                                <?= html_escape(
+                                    $pengajuan['nama_surat']
+                                ); ?>
+
+                            </strong>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+            </div>
 
         </div>
 
@@ -365,15 +388,284 @@
 
 
     <!-- ================================================= -->
-    <!-- ISI SURAT -->
+    <!-- KHUSUS SURAT KETERANGAN MENINGGAL -->
+    <!-- ================================================= -->
+
+    <?php if (
+        (int)$pengajuan['jenis_surat_id'] === 3
+    ): ?>
+
+
+        <div class="card shadow mb-4">
+
+
+            <div class="card-header py-3">
+
+                <h6 class="m-0 font-weight-bold text-primary">
+
+                    Penduduk yang Meninggal
+
+                </h6>
+
+            </div>
+
+
+            <div class="card-body">
+
+
+                <!-- ===================================== -->
+                <!-- PENCARIAN -->
+                <!-- ===================================== -->
+
+                <div class="form-group">
+
+                    <label>
+                        Cari Penduduk
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cariPenduduk"
+                        class="form-control"
+                        placeholder="Ketik NIK atau nama penduduk..."
+                        autocomplete="off">
+
+                    <small class="form-text text-muted">
+
+                        Cari berdasarkan NIK atau nama.
+
+                    </small>
+
+                </div>
+
+
+                <!-- ===================================== -->
+                <!-- HASIL PENCARIAN -->
+                <!-- ===================================== -->
+
+                <div
+                    id="hasilPenduduk"
+                    class="list-group mb-3">
+                </div>
+
+
+                <!-- ===================================== -->
+                <!-- PENDUDUK TERPILIH -->
+                <!-- ===================================== -->
+
+                <input
+                    type="hidden"
+                    name="penduduk_id"
+                    id="penduduk_id"
+                    value="<?= !empty(
+                        $penduduk_meninggal['id']
+                    )
+                        ? html_escape(
+                            $penduduk_meninggal['id']
+                        )
+                        : ''; ?>">
+
+
+                <div
+                    id="dataPendudukTerpilih"
+                    class="<?= empty(
+                        $penduduk_meninggal
+                    )
+                        ? 'd-none'
+                        : ''; ?>">
+
+
+                    <div class="alert alert-success">
+
+
+                        <h6 class="font-weight-bold">
+                            Penduduk yang Dipilih
+                        </h6>
+
+
+                        <hr>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+
+                                <strong>
+                                    Nama Lengkap
+                                </strong>
+
+                                <br>
+
+                                <span id="namaPenduduk">
+
+                                    <?= !empty(
+                                        $penduduk_meninggal[
+                                            'nama_lengkap'
+                                        ]
+                                    )
+                                        ? html_escape(
+                                            $penduduk_meninggal[
+                                                'nama_lengkap'
+                                            ]
+                                        )
+                                        : ''; ?>
+
+                                </span>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+
+                                <strong>
+                                    NIK
+                                </strong>
+
+                                <br>
+
+                                <span id="nikPenduduk">
+
+                                    <?= !empty(
+                                        $penduduk_meninggal[
+                                            'nik'
+                                        ]
+                                    )
+                                        ? html_escape(
+                                            $penduduk_meninggal[
+                                                'nik'
+                                            ]
+                                        )
+                                        : ''; ?>
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <?php if (
+                            !empty(
+                                $penduduk_meninggal[
+                                    'tempat_lahir'
+                                ]
+                            )
+                        ): ?>
+
+                            <hr>
+
+                            <strong>
+                                Tempat Lahir
+                            </strong>
+
+                            <br>
+
+                            <?= html_escape(
+                                $penduduk_meninggal[
+                                    'tempat_lahir'
+                                ]
+                            ); ?>
+
+                        <?php endif; ?>
+
+
+                        <?php if (
+                            !empty(
+                                $penduduk_meninggal[
+                                    'tanggal_lahir'
+                                ]
+                            )
+                        ): ?>
+
+                            <br><br>
+
+                            <strong>
+                                Tanggal Lahir
+                            </strong>
+
+                            <br>
+
+                            <?= date(
+                                'd-m-Y',
+                                strtotime(
+                                    $penduduk_meninggal[
+                                        'tanggal_lahir'
+                                    ]
+                                )
+                            ); ?>
+
+                        <?php endif; ?>
+
+
+                        <?php if (
+                            !empty(
+                                $penduduk_meninggal[
+                                    'alamat'
+                                ]
+                            )
+                        ): ?>
+
+                            <hr>
+
+                            <strong>
+                                Alamat
+                            </strong>
+
+                            <br>
+
+                            <?= html_escape(
+                                $penduduk_meninggal[
+                                    'alamat'
+                                ]
+                            ); ?>
+
+                        <?php endif; ?>
+
+
+                    </div>
+
+                </div>
+
+
+                <?php if (
+                    empty(
+                        $penduduk_meninggal
+                    )
+                ): ?>
+
+                    <div class="alert alert-warning">
+
+                        <i class="fas fa-exclamation-triangle"></i>
+
+                        Belum ada penduduk yang dipilih.
+
+                    </div>
+
+                <?php endif; ?>
+
+
+            </div>
+
+        </div>
+
+
+    <?php endif; ?>
+
+
+
+    <!-- ================================================= -->
+    <!-- DATA SURAT -->
     <!-- ================================================= -->
 
     <div class="card shadow mb-4">
 
+
         <div class="card-header py-3">
 
             <h6 class="m-0 font-weight-bold text-primary">
-                Isi Surat
+
+                Data Surat
+
             </h6>
 
         </div>
@@ -382,7 +674,76 @@
         <div class="card-body">
 
 
-            <?php if (!empty($field_surat)): ?>
+            <!-- NOMOR SURAT -->
+
+            <div class="form-group">
+
+                <label>
+                    Nomor Surat
+                </label>
+
+                <input
+                    type="text"
+                    name="nomor_surat"
+                    class="form-control"
+                    value="<?= html_escape(
+                        $surat['nomor_surat']
+                    ); ?>"
+                    required>
+
+            </div>
+
+
+            <!-- TANGGAL SURAT -->
+
+            <div class="form-group">
+
+                <label>
+                    Tanggal Surat
+                </label>
+
+                <input
+                    type="date"
+                    name="tanggal_surat"
+                    class="form-control"
+                    value="<?= html_escape(
+                        $surat['tanggal_surat']
+                    ); ?>"
+                    required>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- DATA TAMBAHAN / ISI SURAT -->
+    <!-- ================================================= -->
+
+    <div class="card shadow mb-4">
+
+
+        <div class="card-header py-3">
+
+            <h6 class="m-0 font-weight-bold text-primary">
+
+                Data Isi Surat
+
+            </h6>
+
+        </div>
+
+
+        <div class="card-body">
+
+
+            <?php if (
+                !empty($field_surat)
+            ): ?>
 
 
                 <?php foreach (
@@ -393,54 +754,54 @@
 
                     <?php
 
+                    $label =
+                        !empty(
+                            $field['field_label']
+                        )
+
+                        ? $field['field_label']
+
+                        : ucwords(
+                            str_replace(
+                                '_',
+                                ' ',
+                                $field['field_name']
+                            )
+                        );
+
+
+                    $field_type =
+                        !empty(
+                            $field['field_type']
+                        )
+
+                        ? $field['field_type']
+
+                        : 'text';
+
+
+                    $wajib =
+                        !empty(
+                            $field['wajib']
+                        );
+
+
                     $field_name =
                         $field['field_name'];
 
 
-                    // KETERANGAN USAHA TIDAK DIGUNAKAN
-
-                    if (
-                        $field_name ===
-                        'keterangan_usaha'
-                    ) {
-                        continue;
-                    }
-
-
-                    // LABEL
-
-                    if (
-                        isset(
-                            $field['field_label']
-                        )
-                        &&
-                        $field['field_label']
-                        !== ''
-                    ) {
-
-                        $label =
-                            $field['field_label'];
-
-                    } else {
-
-                        $label =
-                            ucwords(
-                                str_replace(
-                                    '_',
-                                    ' ',
-                                    $field_name
-                                )
-                            );
-                    }
-
-
-                    // NILAI LAMA
-
                     $value =
-                        $isi_surat[
+                        isset(
+                            $isi_surat[
+                                $field_name
+                            ]
+                        )
+
+                        ? $isi_surat[
                             $field_name
                         ]
-                        ?? '';
+
+                        : '';
 
                     ?>
 
@@ -454,30 +815,51 @@
                                 $label
                             ); ?>
 
-                            <span class="text-danger">
-                                *
-                            </span>
+
+                            <?php if (
+                                $wajib
+                            ): ?>
+
+                                <span class="text-danger">
+                                    *
+                                </span>
+
+                            <?php endif; ?>
 
                         </label>
 
 
-                        <?php
-
-                        $field_type =
-                            $field['field_type']
-                            ?? 'textarea';
-
-                        ?>
-
 
                         <?php if (
-                            $field_type ===
-                            'text'
+                            $field_type === 'textarea'
+                        ): ?>
+
+
+                            <textarea
+                                name="<?= html_escape(
+                                    $field_name
+                                ); ?>"
+                                class="form-control"
+                                rows="4"
+                                <?= $wajib
+                                    ? 'required'
+                                    : ''; ?>
+                                placeholder="Masukkan <?= html_escape(
+                                    strtolower(
+                                        $label
+                                    )
+                                ); ?>"><?= html_escape(
+                                    $value
+                                ); ?></textarea>
+
+
+                        <?php elseif (
+                            $field_type === 'number'
                         ): ?>
 
 
                             <input
-                                type="text"
+                                type="number"
                                 name="<?= html_escape(
                                     $field_name
                                 ); ?>"
@@ -485,13 +867,18 @@
                                 value="<?= html_escape(
                                     $value
                                 ); ?>"
-                                required
-                            >
+                                <?= $wajib
+                                    ? 'required'
+                                    : ''; ?>
+                                placeholder="Masukkan <?= html_escape(
+                                    strtolower(
+                                        $label
+                                    )
+                                ); ?>">
 
 
                         <?php elseif (
-                            $field_type ===
-                            'date'
+                            $field_type === 'date'
                         ): ?>
 
 
@@ -504,23 +891,31 @@
                                 value="<?= html_escape(
                                     $value
                                 ); ?>"
-                                required
-                            >
+                                <?= $wajib
+                                    ? 'required'
+                                    : ''; ?>>
 
 
                         <?php else: ?>
 
 
-                            <textarea
+                            <input
+                                type="text"
                                 name="<?= html_escape(
                                     $field_name
                                 ); ?>"
                                 class="form-control"
-                                rows="4"
-                                required
-                            ><?= html_escape(
-                                $value
-                            ); ?></textarea>
+                                value="<?= html_escape(
+                                    $value
+                                ); ?>"
+                                <?= $wajib
+                                    ? 'required'
+                                    : ''; ?>
+                                placeholder="Masukkan <?= html_escape(
+                                    strtolower(
+                                        $label
+                                    )
+                                ); ?>">
 
 
                         <?php endif; ?>
@@ -537,7 +932,8 @@
 
                 <div class="alert alert-warning">
 
-                    Belum ada field isi surat.
+                    Belum ada field tambahan
+                    untuk jenis surat ini.
 
                 </div>
 
@@ -551,59 +947,235 @@
 
 
 
-<!-- ================================================= -->
-<!-- TOMBOL -->
-<!-- ================================================= -->
+    <!-- ================================================= -->
+    <!-- TOMBOL -->
+    <!-- ================================================= -->
 
-<div class="mb-4">
-
-
-    <!-- SIMPAN PERUBAHAN -->
-
-    <button
-        type="submit"
-        class="btn btn-success">
-
-        <i class="fas fa-save"></i>
-
-        Simpan Perubahan
-
-    </button>
+    <div class="mb-4">
 
 
-    <!-- LIHAT / CETAK -->
+        <button
+            type="submit"
+            class="btn btn-success">
 
-    <a
-        href="<?= base_url(
-            'surat/surat_admin/cetak/'
-            .$surat['id']
-        ); ?>"
-        target="_blank"
-        class="btn btn-primary">
+            <i class="fas fa-save"></i>
 
-        <i class="fas fa-print"></i>
+            Simpan Perubahan
 
-        Lihat/Cetak Surat
-
-    </a>
+        </button>
 
 
-    <!-- KEMBALI KE DETAIL SURAT -->
+        <a
+            href="<?= base_url(
+                'surat/surat_admin/detail/'
+                .$surat['id']
+            ); ?>"
+            class="btn btn-secondary">
 
-    <a
-        href="<?= base_url(
-            'surat/surat_admin/detail/'
-            .$surat['id']
-        ); ?>"
-        class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i>
 
-        <i class="fas fa-arrow-left"></i>
+            Kembali
 
-        Kembali
-
-    </a>
+        </a>
 
 
-</div>
+    </div>
+
 
 </form>
+
+
+
+<!-- ===================================================== -->
+<!-- JAVASCRIPT PENCARIAN PENDUDUK -->
+<!-- ===================================================== -->
+
+<?php if (
+    (int)$pengajuan['jenis_surat_id'] === 3
+): ?>
+
+<script>
+
+$(document).ready(function () {
+
+    $('#cariPenduduk').on('keyup', function () {
+
+        let keyword = $(this).val().trim();
+
+        if (keyword.length < 2) {
+
+            $('#hasilPenduduk').html('');
+
+            return;
+        }
+
+
+        $.ajax({
+
+            url: "<?= base_url('surat/surat_admin/cari_penduduk'); ?>",
+
+            type: "POST",
+
+            data: {
+                keyword: keyword
+            },
+
+            dataType: "json",
+
+            success: function (data) {
+
+                console.log('Hasil penduduk:', data);
+
+                let html = '';
+
+
+                if (!data || data.length === 0) {
+
+                    html = `
+                        <div class="alert alert-warning">
+                            <i class="fas fa-search"></i>
+                            Penduduk tidak ditemukan.
+                        </div>
+                    `;
+
+                } else {
+
+                    $.each(data, function (index, penduduk) {
+
+                        html += `
+
+                            <button
+                                type="button"
+                                class="list-group-item
+                                       list-group-item-action
+                                       pilihPenduduk"
+
+                                data-id="${penduduk.id}"
+
+                                data-nik="${penduduk.nik}"
+
+                                data-nama="${penduduk.nama_lengkap}">
+
+                                <strong>
+                                    ${penduduk.nama_lengkap}
+                                </strong>
+
+                                <br>
+
+                                <small>
+                                    NIK: ${penduduk.nik}
+                                </small>
+
+                            </button>
+
+                        `;
+
+                    });
+
+                }
+
+
+                $('#hasilPenduduk')
+                    .html(html);
+
+            },
+
+
+            error: function (xhr, status, error) {
+
+                console.log(
+                    'AJAX ERROR:',
+                    xhr.responseText
+                );
+
+                console.log(
+                    'STATUS:',
+                    status
+                );
+
+                console.log(
+                    'ERROR:',
+                    error
+                );
+
+
+                $('#hasilPenduduk').html(`
+
+                    <div class="alert alert-danger">
+
+                        <i class="fas fa-exclamation-triangle"></i>
+
+                        Terjadi kesalahan saat mencari
+                        data penduduk.
+
+                    </div>
+
+                `);
+
+            }
+
+        });
+
+    });
+
+
+
+    // =====================================================
+    // PILIH PENDUDUK
+    // =====================================================
+
+    $(document).on(
+        'click',
+        '.pilihPenduduk',
+        function () {
+
+            let id =
+                $(this).attr('data-id');
+
+            let nik =
+                $(this).attr('data-nik');
+
+            let nama =
+                $(this).attr('data-nama');
+
+
+            // Masukkan ID ke hidden input
+
+            $('#penduduk_id')
+                .val(id);
+
+
+            // Tampilkan data
+
+            $('#namaPenduduk')
+                .text(nama);
+
+            $('#nikPenduduk')
+                .text(nik);
+
+
+            // Tampilkan data terpilih
+
+            $('#dataPendudukTerpilih')
+                .removeClass('d-none');
+
+
+            // Hilangkan hasil pencarian
+
+            $('#hasilPenduduk')
+                .html('');
+
+
+            // Kosongkan pencarian
+
+            $('#cariPenduduk')
+                .val('');
+
+        }
+    );
+
+});
+
+</script>
+
+<?php endif; ?>

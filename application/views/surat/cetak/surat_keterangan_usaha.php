@@ -941,7 +941,9 @@ $tanggal_ttd = !empty($surat['tanggal_surat'])
 
             <div class="ttd-nama">
 
-                I MADE SUARGA, SH
+                <?= !empty($kepala_desa->nama_kepala_desa)
+                    ? html_escape($kepala_desa->nama_kepala_desa)
+                    : '-'; ?>
 
             </div>
 
