@@ -102,7 +102,9 @@
     action="<?= base_url('surat/pengajuan/simpan'); ?>"
     method="post"
     enctype="multipart/form-data"
-    id="formPengajuan">
+    id="formPengajuan"
+    novalidate>
+    
 
 
 
@@ -956,29 +958,236 @@ function closeAlert(id)
 
 
 // ========================================================
-// CEGAH DOUBLE SUBMIT
+// VALIDASI FORM + CEGAH DOUBLE SUBMIT
 // ========================================================
 
-$('#formPengajuan').on(
-    'submit',
-    function() {
+
+$('#formPengajuan').on('submit', function(e) {
 
 
-        $('#btnSubmit')
-            .prop(
-                'disabled',
-                true
-            );
+// ==========================
+// CEK NO HP
+// ==========================
+
+let noHp = $('input[name="hp"]');
 
 
-        $('#btnSubmit')
-            .text(
-                'Mengirim...'
-            );
+if (noHp.val().trim() === '') {
 
+
+    e.preventDefault();
+
+
+    alert(
+        'Nomor HP wajib diisi.'
+    );
+
+
+    noHp.focus();
+
+
+    noHp[0].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+
+
+    return false;
+
+}
+
+    // ==========================
+    // CEK JENIS SURAT
+    // ==========================
+
+    let jenisSurat = $('#jenis_surat');
+
+
+    if (jenisSurat.val() === '') {
+
+
+        e.preventDefault();
+
+
+        alert(
+            'Silakan pilih jenis surat terlebih dahulu.'
+        );
+
+
+        jenisSurat.focus();
+
+
+        jenisSurat[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+
+
+        return false;
 
     }
-);
+
+    
+
+
+
+
+    // ==========================
+    // CEK FIELD TAMBAHAN
+    // ==========================
+
+    let fieldKosong = null;
+
+$('#field_container')
+.find('input, textarea, select')
+.each(function() {
+
+    if (
+        $(this).prop('required') &&
+        $(this).val() === ''
+    ) {
+
+        fieldKosong = $(this);
+
+        return false;
+
+    }
+
+});
+
+
+
+    if (fieldKosong !== null) {
+
+
+        e.preventDefault();
+
+
+        alert(
+            'Mohon lengkapi data tambahan surat terlebih dahulu.'
+        );
+
+
+        fieldKosong.focus();
+
+
+        fieldKosong[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+
+
+        return false;
+
+    }
+
+
+
+
+    // ==========================
+    // CEK FILE PERSYARATAN
+    // ==========================
+
+    let fileKosong = null;
+
+
+    $('#persyaratan_container')
+        .find('input[type="file"]')
+        .each(function() {
+
+
+            if (
+                $(this).prop('required') &&
+                $(this).val() === ''
+            ) {
+
+
+                fileKosong = $(this);
+
+
+                return false;
+
+            }
+
+
+        });
+
+
+
+    if (fileKosong !== null) {
+
+
+        e.preventDefault();
+
+
+        alert(
+            'Mohon upload semua file persyaratan surat.'
+        );
+
+
+        fileKosong.focus();
+
+
+        fileKosong[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+
+
+        return false;
+
+    }
+
+
+
+
+    // ==========================
+    // CEK PERNYATAAN
+    // ==========================
+
+    let pernyataan =
+        $('input[name="pernyataan"]');
+
+
+    if (!pernyataan.is(':checked')) {
+
+
+        e.preventDefault();
+
+
+        alert(
+            'Silakan centang pernyataan bahwa data yang diisi benar.'
+        );
+
+
+        pernyataan.focus();
+
+
+        return false;
+
+    }
+
+
+
+
+    // ==========================
+    // CEGAH DOUBLE SUBMIT
+    // ==========================
+
+    $('#btnSubmit')
+        .prop(
+            'disabled',
+            true
+        );
+
+
+    $('#btnSubmit')
+        .text(
+            'Mengirim...'
+        );
+
+
+});
 
 
 </script>
