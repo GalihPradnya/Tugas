@@ -148,7 +148,7 @@
                 name="hp"
                 id="hp"
                 class="w-full border rounded p-2 mt-1"
-                placeholder="Nomor HP">
+                placeholder="Nomor HP (Wajib diisi)">
         </div>
 
     </div>
@@ -241,7 +241,7 @@
             id="keperluan"
             rows="4"
             class="w-full border rounded-lg p-3 mt-2"
-            placeholder="Masukkan keperluan surat"></textarea>
+            placeholder="Keperluan surat (Wajib diisi)"></textarea>
 
     </div>
 
