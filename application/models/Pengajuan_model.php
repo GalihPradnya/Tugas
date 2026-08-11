@@ -589,4 +589,33 @@ public function getPengajuanDiprosesAdmin()
 }
 
 
+// ==========================
+// AMBIL PENGAJUAN UNTUK BATAL
+// ==========================
+public function getPengajuanUntukBatal($id, $user_id)
+{
+    return $this->db
+        ->where('id', $id)
+        ->where('user_id', $user_id)
+        ->where('status', 'Menunggu Verifikasi')
+        ->get('pengajuan')
+        ->row_array();
+}
+
+
+// ==========================
+// BATALKAN PENGAJUAN
+// ==========================
+public function batalkanPengajuan($id, $user_id)
+{
+    $this->db->where('id', $id);
+    $this->db->where('user_id', $user_id);
+    $this->db->where('status', 'Menunggu Verifikasi');
+
+    return $this->db->delete('pengajuan');
+}
+
+
+
+
 }

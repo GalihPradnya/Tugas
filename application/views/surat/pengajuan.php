@@ -532,3 +532,20 @@ document.getElementById('formPengajuan').addEventListener('submit', function(e) 
 });
 
 </script>
+<script>
+
+function closeAlert(id)
+{
+
+    let alert = document.getElementById(id);
+
+    if(alert)
+    {
+
+        alert.style.display = 'none';
+
+    }
+
+}
+
+</script>
