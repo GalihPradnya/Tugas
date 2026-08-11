@@ -480,29 +480,52 @@ public function dataAdmin()
             user.email,
             user.image,
             penduduk.nik,
-            penduduk.nama_lengkap
+            penduduk.nama_lengkap,
+            user_role.role
         ')
         ->from('user')
+
         ->join(
             'penduduk',
             'penduduk.id = user.penduduk_id',
             'left'
         )
-        ->where('user.role_id !=', 1)
-        ->order_by(
-            'CASE WHEN user.role_id = 2 THEN 0 ELSE 1 END',
-            '',
-            false
+
+        ->join(
+            'user_role',
+            'user_role.id = user.role_id',
+            'left'
         )
+
+        // Jangan tampilkan Superadmin
+        ->where('user.role_id !=', 1)
+
+        // Urutan:
+        // Admin   = 1
+        // Kawil   = 2
+        // Masyarakat = 3
+        ->order_by("
+            CASE
+                WHEN user.role_id = 2 THEN 1
+                WHEN user.role_id = 4 THEN 2
+                WHEN user.role_id = 3 THEN 3
+                ELSE 4
+            END
+        ", '', false)
+
+        // Jika role sama, urutkan berdasarkan nama
         ->order_by(
             'penduduk.nama_lengkap',
             'ASC'
         )
+
         ->get()
         ->result_array();
 
+
     $data['logoDesa'] =
         $this->Logo_profil_model->getLogoDesa();
+
 
     $this->load->view(
         'templates/header',
@@ -529,17 +552,71 @@ public function dataAdmin()
         $data
     );
 }
+// ======================================================
+// JADIKAN ADMIN
+// role_id = 2
+// ======================================================
 public function jadikanAdmin($id)
 {
-    $this->db->where('id', $id);
+    // Pastikan ID berupa angka
+    if (!is_numeric($id)) {
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                ID user tidak valid.
+            </div>'
+        );
 
-    $this->db->update(
-        'user',
-        [
-            'role_id' => 2
-        ]
-    );
+        redirect('superadmin/dataAdmin');
+    }
 
+    // Cek user
+    $user = $this->db
+        ->get_where(
+            'user',
+            [
+                'id' => $id
+            ]
+        )
+        ->row_array();
+
+    // Jika user tidak ditemukan
+    if (!$user) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                Data user tidak ditemukan.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Jangan izinkan mengubah Superadmin
+    if ($user['role_id'] == 1) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                Role Superadmin tidak dapat diubah.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Ubah menjadi Admin
+    $this->db
+        ->where('id', $id)
+        ->update(
+            'user',
+            [
+                'role_id' => 2
+            ]
+        );
+
+    // Pesan berhasil
     $this->session->set_flashdata(
         'message',
         '<div class="alert alert-success">
@@ -549,21 +626,155 @@ public function jadikanAdmin($id)
 
     redirect('superadmin/dataAdmin');
 }
+
+
+// ======================================================
+// JADIKAN MASYARAKAT
+// role_id = 3
+// ======================================================
 public function jadikanMasyarakat($id)
 {
-    $this->db->where('id', $id);
+    // Pastikan ID berupa angka
+    if (!is_numeric($id)) {
 
-    $this->db->update(
-        'user',
-        [
-            'role_id' => 3
-        ]
-    );
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                ID user tidak valid.
+            </div>'
+        );
 
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Cek user
+    $user = $this->db
+        ->get_where(
+            'user',
+            [
+                'id' => $id
+            ]
+        )
+        ->row_array();
+
+    // Jika user tidak ditemukan
+    if (!$user) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                Data user tidak ditemukan.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Jangan izinkan mengubah Superadmin
+    if ($user['role_id'] == 1) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                Role Superadmin tidak dapat diubah.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Ubah menjadi Masyarakat
+    $this->db
+        ->where('id', $id)
+        ->update(
+            'user',
+            [
+                'role_id' => 3
+            ]
+        );
+
+    // Pesan berhasil
     $this->session->set_flashdata(
         'message',
         '<div class="alert alert-success">
-            Admin berhasil dijadikan Masyarakat.
+            User berhasil dijadikan Masyarakat.
+        </div>'
+    );
+
+    redirect('superadmin/dataAdmin');
+}
+
+
+// ======================================================
+// JADIKAN KAWIL
+// role_id = 4
+// ======================================================
+public function jadikanKawil($id)
+{
+    // Pastikan ID berupa angka
+    if (!is_numeric($id)) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                ID user tidak valid.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Cek user
+    $user = $this->db
+        ->get_where(
+            'user',
+            [
+                'id' => $id
+            ]
+        )
+        ->row_array();
+
+    // Jika user tidak ditemukan
+    if (!$user) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                Data user tidak ditemukan.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Jangan izinkan mengubah Superadmin
+    if ($user['role_id'] == 1) {
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-danger">
+                Role Superadmin tidak dapat diubah.
+            </div>'
+        );
+
+        redirect('superadmin/dataAdmin');
+    }
+
+    // Ubah menjadi Kawil
+    $this->db
+        ->where('id', $id)
+        ->update(
+            'user',
+            [
+                'role_id' => 4
+            ]
+        );
+
+    // Pesan berhasil
+    $this->session->set_flashdata(
+        'message',
+        '<div class="alert alert-success">
+            User berhasil dijadikan Kawil.
         </div>'
     );
 

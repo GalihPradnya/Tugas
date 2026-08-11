@@ -613,4 +613,82 @@ class Pengajuan_model extends CI_Model
             ->get()
             ->result_array();
     }
+        // =========================================================
+    // AMBIL PENGAJUAN BERDASARKAN ID
+    // =========================================================
+    public function getById($id)
+    {
+        return $this->db
+            ->where('id', $id)
+            ->get('pengajuan')
+            ->row_array();
+    }
+
+
+    // =========================================================
+    // HAPUS / BATALKAN PENGAJUAN
+    // =========================================================
+    public function hapusPengajuan($id)
+    {
+        // -----------------------------------------
+        // Ambil semua file persyaratan
+        // -----------------------------------------
+        $files = $this->db
+            ->where('pengajuan_id', $id)
+            ->get('pengajuan_file')
+            ->result_array();
+
+
+        // -----------------------------------------
+        // Hapus file fisik
+        // -----------------------------------------
+        foreach ($files as $file) {
+
+            $path = './uploads/persyaratan/' . $file['nama_file'];
+
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+
+
+        // -----------------------------------------
+        // Hapus data file persyaratan
+        // -----------------------------------------
+        $this->db
+            ->where('pengajuan_id', $id)
+            ->delete('pengajuan_file');
+
+
+        // -----------------------------------------
+        // Hapus field pengajuan
+        // -----------------------------------------
+        $this->db
+            ->where('pengajuan_id', $id)
+            ->delete('pengajuan_field');
+
+
+        // -----------------------------------------
+        // Hapus data pengajuan
+        // -----------------------------------------
+        return $this->db
+            ->where('id', $id)
+            ->delete('pengajuan');
+    }
+    // =========================================================
+// BATALKAN PENGAJUAN MASYARAKAT
+// =========================================================
+public function batalkanPengajuan($id, $user_id)
+{
+    return $this->db
+        ->where('id', $id)
+        ->where('user_id', $user_id)
+        ->where('status', 'Menunggu Verifikasi')
+        ->update(
+            'pengajuan',
+            [
+                'status' => 'Dibatalkan'
+            ]
+        );
+}
 }
