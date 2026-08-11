@@ -121,5 +121,55 @@ public function getPendudukByUserId($user_id)
         ->get()
         ->row_array();
 }
+/**
+ * ==========================================================
+ * CARI PENDUDUK
+ * Digunakan untuk mencari penduduk berdasarkan NIK atau nama
+ * ==========================================================
+ */
+public function cariPenduduk($keyword)
+{
+    $this->db->select('
+        id,
+        nik,
+        nama_lengkap,
+        tempat_lahir,
+        tanggal_lahir,
+        jenis_kelamin,
+        alamat,
+        agama,
+        pekerjaan,
+        rt,
+        rw,
+        status_perkawinan
+    ');
+
+    $this->db->from('penduduk');
+
+    $this->db->group_start();
+
+    $this->db->like(
+        'nik',
+        $keyword
+    );
+
+    $this->db->or_like(
+        'nama_lengkap',
+        $keyword
+    );
+
+    $this->db->group_end();
+
+    $this->db->order_by(
+        'nama_lengkap',
+        'ASC'
+    );
+
+    $this->db->limit(20);
+
+    return $this->db
+        ->get()
+        ->result_array();
+}
 
 }

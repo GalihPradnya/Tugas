@@ -122,6 +122,8 @@ if($CI->session->userdata('id')){
                                 echo 'Super Admin';
                             } elseif($this->session->userdata('role_id') == 2){
                                 echo 'Admin';
+                            } elseif($this->session->userdata('role_id') == 4){
+                                echo 'Kawil';
                             } else {
                                 echo 'Masyarakat';
                             }
@@ -165,26 +167,33 @@ if($CI->session->userdata('id')){
                     <!-- Dashboard -->
                     <?php if($this->session->userdata('role_id') == 3): ?>
 
-                        <a href="<?= base_url('user/user'); ?>"
-                        class="block px-4 py-3 hover:bg-gray-100">
-                            🏠 Profil Saya
-                        </a>
+    <a href="<?= base_url('user/user'); ?>"
+       class="block px-4 py-3 hover:bg-gray-100">
+        🏠 Profil Saya
+    </a>
 
-                    <?php elseif($this->session->userdata('role_id') == 2): ?>
+                <?php elseif($this->session->userdata('role_id') == 2): ?>
 
-                        <a href="<?= base_url('admin'); ?>"
-                        class="block px-4 py-3 hover:bg-gray-100">
-                            🏠 Dashboard
-                        </a>
+                    <a href="<?= base_url('admin'); ?>"
+                    class="block px-4 py-3 hover:bg-gray-100">
+                        🏠 Dashboard
+                    </a>
 
-                    <?php else: ?>
+                <?php elseif($this->session->userdata('role_id') == 4): ?>
 
-                        <a href="<?= base_url('superadmin'); ?>"
-                        class="block px-4 py-3 hover:bg-gray-100">
-                            🏠 Dashboard
-                        </a>
+                    <a href="<?= base_url('Kepala_wilayah'); ?>"
+                    class="block px-4 py-3 hover:bg-gray-100">
+                        🏠 Dashboard
+                    </a>
 
-                    <?php endif; ?>
+                <?php else: ?>
+
+                    <a href="<?= base_url('superadmin'); ?>"
+                    class="block px-4 py-3 hover:bg-gray-100">
+                        🏠 Dashboard
+                    </a>
+
+                <?php endif; ?>
 
                     <!-- Surat Saya -->
                     <a href="<?= base_url('user/surat_saya'); ?>"
@@ -317,7 +326,7 @@ if($CI->session->userdata('id')){
                 class="font-medium whitespace-nowrap <?= ($controller == 'beranda') ? 'text-green-700 font-bold' : 'hover:text-green-600' ?>">
                 Beranda
                 </a>
-                             <?php
+                            <?php
                         $active = $this->uri->segment(2);
                         ?>
                 <a href="<?= base_url('navbar/profil_desa'); ?>"

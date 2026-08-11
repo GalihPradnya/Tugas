@@ -3,30 +3,50 @@
 <div class="max-w-5xl mx-auto bg-white shadow-xl rounded-2xl p-8 md:p-10">
 
 
+<!-- =====================================================
+     JUDUL
+====================================================== -->
+
 <h2 class="text-3xl font-bold text-center text-green-700 mb-2">
+
     Form Pengajuan Surat
+
 </h2>
 
+
 <p class="text-center text-gray-500 mb-8">
+
     Silakan isi formulir berikut dengan benar.
+
 </p>
 
 
-<?php if($this->session->flashdata('success')): ?>
 
-<div id="alert-success" 
-     class="bg-green-100 text-green-700 p-4 rounded mb-5 flex justify-between items-center">
+<!-- =====================================================
+     ALERT SUCCESS
+====================================================== -->
+
+<?php if ($this->session->flashdata('success')): ?>
+
+<div id="alert-success"
+     class="bg-green-100 text-green-700 p-4 rounded mb-5
+            flex justify-between items-center">
 
     <span>
+
         <?= $this->session->flashdata('success'); ?>
+
     </span>
 
 
-    <button type="button"
-            onclick="closeAlert('alert-success')"
-            class="text-green-700 font-bold text-3xl hover:text-green-900
-                w-10 h-10 flex items-center justify-center rounded-full 
-                hover:bg-green-200">
+    <button
+        type="button"
+        onclick="closeAlert('alert-success')"
+        class="text-green-700 font-bold text-3xl
+               hover:text-green-900
+               w-10 h-10 flex items-center
+               justify-center rounded-full
+               hover:bg-green-200">
 
         &times;
 
@@ -37,21 +57,32 @@
 <?php endif; ?>
 
 
-<?php if($this->session->flashdata('error')): ?>
 
-<div id="alert-error" 
-     class="bg-yellow-100 text-yellow-700 p-4 rounded mb-5 flex justify-between items-center">
+<!-- =====================================================
+     ALERT ERROR
+====================================================== -->
+
+<?php if ($this->session->flashdata('error')): ?>
+
+<div id="alert-error"
+     class="bg-yellow-100 text-yellow-700 p-4 rounded mb-5
+            flex justify-between items-center">
 
     <span>
+
         <?= $this->session->flashdata('error'); ?>
+
     </span>
 
 
-    <button type="button"
-            onclick="closeAlert('alert-error')"
-            class="text-red-700 font-bold text-3xl hover:text-red-900 
-                w-10 h-10 flex items-center justify-center rounded-full 
-                hover:bg-red-200">
+    <button
+        type="button"
+        onclick="closeAlert('alert-error')"
+        class="text-red-700 font-bold text-3xl
+               hover:text-red-900
+               w-10 h-10 flex items-center
+               justify-center rounded-full
+               hover:bg-red-200">
 
         &times;
 
@@ -63,79 +94,37 @@
 
 
 
-
-<form action="<?= base_url('surat/pengajuan/simpan'); ?>"
-      method="post"
-      enctype="multipart/form-data"
-      id="formPengajuan">
-
-    <!-- DATA PEMOHON -->
-
-    <h3 class="text-xl font-semibold mb-6 text-gray-700 border-b pb-3">
-        Data Pemohon
-    </h3>
-
-    <div class="grid md:grid-cols-2 gap-5">
-
-        <div>
-            <label class="font-semibold">
-                NIK
-            </label>
-
-            <input
-                type="text"
-                class="w-full border rounded p-2 mt-1 bg-gray-100"
-                value="<?= $penduduk['nik']; ?>"
-                readonly>
-        </div>
-
-        <div>
-            <label class="font-semibold">
-                Nama Lengkap
-            </label>
-
-            <input
-                type="text"
-                class="w-full border rounded p-2 mt-1 bg-gray-100"
-                value="<?= $penduduk['nama_lengkap']; ?>"
-                readonly>
-        </div>
-
-        <div>
-            <label class="font-semibold">
-                Tempat Lahir
-            </label>
-
-            <input
-                type="text"
-                class="w-full border rounded p-2 mt-1 bg-gray-100"
-                value="<?= $penduduk['tempat_lahir']; ?>"
-                readonly>
-        </div>
-
-        <div>
-            <label class="font-semibold">
-                Tanggal Lahir
-            </label>
-
-            <input
-                type="text"
-                class="w-full border rounded p-2 mt-1 bg-gray-100"
-                value="<?= $penduduk['tanggal_lahir']; ?>"
-                readonly>
-        </div>
+<!-- =====================================================
+     FORM
 
         <div>
             <label class="font-semibold">
                 Jenis Kelamin
             </label>
 
-            <input
-                type="text"
-                class="w-full border rounded p-2 mt-1 bg-gray-100"
-                value="<?= $penduduk['jenis_kelamin']; ?>"
-                readonly>
-        </div>
+</div>
+
+
+
+<!-- ALAMAT -->
+
+<div class="mt-5">
+
+<label class="font-semibold">
+
+    Alamat
+
+</label>
+
+
+<textarea
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    rows="3"
+    readonly><?= htmlspecialchars(
+        $penduduk['alamat'] ?? ''
+    ); ?></textarea>
+
+</div>
 
         <!-- NO HP -->
         <div>
@@ -151,36 +140,49 @@
                 placeholder="Nomor HP (Wajib diisi)">
         </div>
 
-    </div>
+<!-- RT RW -->
+
+<div class="grid md:grid-cols-2 gap-5 mt-5">
 
 
     <div class="mt-5">
 
-        <label class="font-semibold">
-            Alamat
-        </label>
+<label class="font-semibold">
 
-        <textarea
-            class="w-full border rounded p-2 mt-1 bg-gray-100"
-            rows="3"
-            readonly><?= $penduduk['alamat']; ?></textarea>
+    RT
+
+</label>
+
+
+<input
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['rt'] ?? ''
+    ); ?>"
+    readonly>
+
+</div>
 
     </div>
 
 
     <div class="grid md:grid-cols-2 gap-5 mt-5">
 
-        <div>
-            <label class="font-semibold">
-                RT
-            </label>
+<label class="font-semibold">
 
-            <input
-                type="text"
-                class="w-full border rounded p-2 mt-1 bg-gray-100"
-                value="<?= $penduduk['rt']; ?>"
-                readonly>
-        </div>
+    RW
+
+</label>
+
+
+<input
+    type="text"
+    class="w-full border rounded p-2 mt-1 bg-gray-100"
+    value="<?= htmlspecialchars(
+        $penduduk['rw'] ?? ''
+    ); ?>"
+    readonly>
 
         <div>
             <label class="font-semibold">
@@ -199,18 +201,8 @@
 
     <!-- JENIS SURAT -->
 
-    <h3 class="text-xl font-semibold mt-10 mb-6 text-gray-700 border-b pb-3">
-        Jenis Surat
-    </h3>
-
-    <select
-        name="jenis_surat_id"
-        id="jenis_surat"
-        class="w-full border rounded p-2">
-
-        <option value="">
-            -- Pilih Surat --
-        </option>
+<!-- =====================================================
+     JENIS SURAT
 
         <?php foreach($jenis_surat as $js): ?>
 
@@ -218,32 +210,33 @@
                 <?= $js['nama_surat']; ?>
             </option>
 
-        <?php endforeach; ?>
+<select
+    name="jenis_surat_id"
+    id="jenis_surat"
+    class="w-full border rounded p-2"
+    required>
 
     </select>
 
+<option value="">
 
-    <!-- PERSYARATAN -->
+    -- Pilih Surat --
 
-    <div id="persyaratan_container" class="mt-8"></div>
+</option>
 
 
     <!-- KEPERLUAN -->
 
-    <div class="mt-6">
+<?php foreach ($jenis_surat as $js): ?>
 
-        <label class="font-semibold">
-            Keperluan <span class="text-red-500">*</span>
-        </label>
+<option
+    value="<?= $js['id']; ?>">
 
-        <textarea
-            name="keperluan"
-            id="keperluan"
-            rows="4"
-            class="w-full border rounded-lg p-3 mt-2"
-            placeholder="Keperluan surat (Wajib diisi)"></textarea>
+    <?= htmlspecialchars(
+        $js['nama_surat']
+    ); ?>
 
-    </div>
+</option>
 
 
     <!-- CATATAN -->
@@ -261,12 +254,8 @@
             class="w-full border rounded-lg p-3 mt-2"
             placeholder="Catatan tambahan"></textarea>
 
-    </div>
-
-
-    <!-- CHECKBOX -->
-
-    <div class="mt-6">
+<!-- =====================================================
+     LOADING
 
         <label class="flex items-center">
 
@@ -278,21 +267,29 @@
 
             Saya menyatakan data yang saya isi benar.
 
-        </label>
-
-    </div>
-
+<!-- =====================================================
+     PERSYARATAN FILE
 
     <!-- BUTTON -->
 
     <div class="flex justify-end gap-4 mt-10 border-t pt-6">
 
-        <a href="<?= base_url('navbar/layanan_publik'); ?>"
-           class="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600">
+<label class="flex items-center">
 
             Batal
 
-        </a>
+<input
+    type="checkbox"
+    name="pernyataan"
+    value="1"
+    required
+    class="mr-2">
+
+
+Saya menyatakan data yang saya isi benar.
+
+
+</label>
 
         <button
             type="submit"
@@ -304,9 +301,42 @@
 
     </div>
 
+<!-- =====================================================
+     BUTTON
+
+<div
+    class="flex justify-end gap-4 mt-10
+           border-t pt-6">
+
+
+<a
+    href="<?= base_url('navbar/layanan_publik'); ?>"
+    class="px-6 py-3 bg-gray-500 text-white rounded-lg
+           hover:bg-gray-600">
+
+    Batal
+
+</a>
+
+
+
+<button
+    type="submit"
+    id="btnSubmit"
+    class="px-8 py-3 bg-green-600 text-white rounded-lg
+           hover:bg-green-700">
+
+    Ajukan Surat
+
+</button>
+
+
+</div>
+
+</main>
+
+
 </form>
-
-
 
 
 </div>
@@ -315,237 +345,508 @@
 
 
 
+<!-- =====================================================
+     JQUERY
 
-
+    let id =
+        $(this).val();
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    // kosongkan
+    $('#field_container').html('');
+
+    $('#persyaratan_container').html('');
 
 
-<script>
-
-$('#jenis_surat').change(function() {
-
-    let id = $(this).val();
-
-    if (id == '') {
-
-        $('#persyaratan_container').html('');
+    // tidak memilih
+    if (id === '') {
 
         return;
+
     }
+
+
+    // tampilkan loading
+    $('#loading_surat')
+        .removeClass('hidden');
 
     $.ajax({
 
-        url: "<?= base_url('surat/pengajuan/getPersyaratan/'); ?>" + id,
+    // ====================================================
+    // AJAX
+    // ====================================================
 
-        type: "GET",
+    $.ajax({
 
-        dataType: "json",
+        url:
+            "<?= base_url(
+                'surat/pengajuan/getPersyaratan/'
+            ); ?>"
+            + id,
 
-        success: function(data) {
+        type:
+            "GET",
 
-            let html = '';
+        dataType:
+            "json",
 
-            html += `
-                <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-700 border-b pb-2">
-                    Upload Persyaratan
-                </h3>
-            `;
 
-            $.each(data, function(i, row) {
+        success:
+            function(data) {
 
                 html += `
 
-                    <div class="mb-4">
+                // sembunyikan loading
+                $('#loading_surat')
+                    .addClass('hidden');
 
                         <label class="font-semibold">
                             ${row.nama_persyaratan}
                             <span class="text-red-500">*</span>
                         </label>
 
-                        <input
-                            type="file"
-                            name="persyaratan_${row.id}"
-                            id="persyaratan_${row.id}"
-                            class="w-full border rounded-lg p-3 mt-2"
-                            
+                // =================================================
+                // FIELD PEMOHON
+                // =================================================
 
-                    </div>
+                let fieldHtml = '';
 
                 `;
 
-            });
+                if (
+                    data.fields &&
+                    data.fields.length > 0
+                ) {
 
             $('#persyaratan_container').html(html);
 
-        }
+                    fieldHtml += `
 
-    });
+                    <h3
+                        class="text-xl font-semibold
+                               mb-4 text-gray-700
+                               border-b pb-3">
 
-});
+                        Data Tambahan
 
-</script>
+                    </h3>
 
-<script>
+                    `;
 
 document.getElementById('formPengajuan').addEventListener('submit', function(e) {
 
-    // ==========================================
-    // 1. NO HP
-    // ==========================================
+                    $.each(
+                        data.fields,
+                        function(i, row) {
 
     const hp = document.getElementById('hp');
 
-    if (hp.value.trim() === '') {
+                            fieldHtml += `
 
-        e.preventDefault();
+                            <div class="mb-5">
 
-        alert('No HP wajib diisi.');
+                                <label
+                                    class="font-semibold
+                                           block mb-2">
 
-        hp.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
+                                    ${escapeHtml(
+                                        row.label
+                                    )}
 
-        hp.focus();
+                                    ${
+                                        row.required == 1
+                                        ? '<span class="text-red-500">*</span>'
+                                        : ''
+                                    }
 
-        return false;
-    }
+                                </label>
+
+                            `;
 
 
-    // ==========================================
-    // 2. JENIS SURAT
-    // ==========================================
+                            // =================================
+                            // TEXTAREA
+                            // =================================
 
-    const jenisSurat = document.getElementById('jenis_surat');
+                            if (
+                                row.tipe ===
+                                'textarea'
+                            ) {
 
-    if (jenisSurat.value === '') {
 
-        e.preventDefault();
+                                fieldHtml += `
 
-        alert('Silakan pilih jenis surat terlebih dahulu.');
+                                <textarea
+                                    name="field[${row.id}]"
+                                    rows="4"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }></textarea>
 
-        jenisSurat.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
+                                `;
+
+                            }
+
+
+                            // =================================
+                            // NUMBER
+                            // =================================
+
+                            else if (
+                                row.tipe ===
+                                'number'
+                            ) {
+
+
+                                fieldHtml += `
+
+                                <input
+                                    type="number"
+                                    name="field[${row.id}]"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }>
+
+                                `;
+
+                            }
+
+
+                            // =================================
+                            // DATE
+                            // =================================
+
+                            else if (
+                                row.tipe ===
+                                'date'
+                            ) {
+
+
+                                fieldHtml += `
+
+                                <input
+                                    type="date"
+                                    name="field[${row.id}]"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }>
+
+                                `;
+
+                            }
 
         jenisSurat.focus();
 
-        return false;
-    }
+                            // =================================
+                            // TEXT
+                            // =================================
 
+                            else {
 
     // ==========================================
     // 3. UPLOAD PERSYARATAN
     // ==========================================
 
-    const files = document.querySelectorAll(
-        '#persyaratan_container input[type="file"]'
-    );
+                                fieldHtml += `
 
-    for (let i = 0; i < files.length; i++) {
+                                <input
+                                    type="text"
+                                    name="field[${row.id}]"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    ${
+                                        row.required == 1
+                                        ? 'required'
+                                        : ''
+                                    }>
 
-        if (files[i].files.length === 0) {
+                                `;
 
-            e.preventDefault();
-
-            const label = files[i]
-                .previousElementSibling
-                .textContent
-                .replace('*', '')
-                .trim();
-
-            alert('File persyaratan ' + label + ' wajib diupload.');
-
-            files[i].scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-
-            files[i].focus();
-
-            return false;
-        }
-    }
+                            }
 
 
-    // ==========================================
-    // 4. KEPERLUAN
-    // ==========================================
+                            fieldHtml += `
 
-    const keperluan = document.getElementById('keperluan');
+                            </div>
 
-    if (keperluan.value.trim() === '') {
+                            `;
+
+                        }
+                    );
+
+                }
+
+
+                // tampilkan field
+                $('#field_container')
+                    .html(fieldHtml);
+
 
         e.preventDefault();
 
-        alert('Keperluan wajib diisi.');
+                // =================================================
+                // FILE PERSYARATAN
+                // =================================================
 
-        keperluan.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-        });
-
-        keperluan.focus();
-
-        return false;
-    }
+                let fileHtml = '';
 
 
-    // ==========================================
-    // 5. CATATAN
-    // ==========================================
-    // Catatan OPSIONAL, jadi tidak divalidasi.
+                if (
+                    data.persyaratan &&
+                    data.persyaratan.length > 0
+                ) {
 
 
-    // ==========================================
-    // 6. CHECKBOX
-    // ==========================================
+                    fileHtml += `
 
-    const persetujuan = document.getElementById('persetujuan');
+                    <h3
+                        class="text-xl font-semibold
+                               mt-8 mb-4 text-gray-700
+                               border-b pb-3">
 
-    if (!persetujuan.checked) {
+                        Upload Persyaratan
+
+                    </h3>
+
+                    `;
 
         e.preventDefault();
 
-        alert('Anda harus menyatakan bahwa data yang Anda isi benar.');
+                    $.each(
+                        data.persyaratan,
+                        function(i, row) {
 
         persetujuan.scrollIntoView({
             behavior: 'smooth',
             block: 'center'
         });
 
-        persetujuan.focus();
+                            fileHtml += `
 
-        return false;
-    }
+                            <div class="mb-5">
 
+                                <label
+                                    class="font-semibold
+                                           block mb-2">
+
+                                    ${escapeHtml(
+                                        row.nama_persyaratan
+                                    )}
+
+                                    <span
+                                        class="text-red-500">
+
+                                        *
+
+                                    </span>
+
+                                </label>
+
+
+                                <input
+                                    type="file"
+                                    name="persyaratan_${row.id}"
+                                    class="w-full border
+                                           rounded-lg p-3"
+                                    accept=".jpg,.jpeg,.png,.pdf"
+                                    required>
+
+
+                                <p
+                                    class="text-sm text-gray-500
+                                           mt-1">
+
+                                    Format:
+                                    JPG, JPEG, PNG, atau PDF.
+                                    Maksimal 2 MB.
+
+                                </p>
+
+                            </div>
+
+                            `;
+
+                        }
+                    );
+
+                }
+                else {
+
+
+                    fileHtml += `
+
+                    <div
+                        class="bg-blue-50
+                               text-blue-700
+                               p-4 rounded-lg mt-6">
+
+                        Surat ini tidak memiliki
+                        persyaratan file.
+
+                    </div>
+
+                    `;
+
+                }
+
+
+                // tampilkan file
+                $('#persyaratan_container')
+                    .html(fileHtml);
+
+            },
 
     // ==========================================
     // SEMUA VALID
     // ==========================================
     // Form akan dikirim.
 
+        error:
+            function(xhr) {
+
+
+                $('#loading_surat')
+                    .addClass('hidden');
+
+
+                console.log(
+                    xhr.responseText
+                );
+
+
+                $('#field_container')
+                    .html('');
+
+
+                $('#persyaratan_container')
+                    .html(`
+
+                        <div
+                            class="bg-red-100
+                                   text-red-700
+                                   p-4 rounded-lg">
+
+                            Gagal mengambil data
+                            persyaratan surat.
+
+                        </div>
+
+                    `);
+
+            }
+
+    });
+
 });
 
-</script>
-<script>
+
+
+// ========================================================
+// ESCAPE HTML
+// Mencegah label dari database merusak HTML
+// ========================================================
+
+function escapeHtml(text)
+{
+
+    if (!text) {
+
+        return '';
+
+    }
+
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            '&amp;'
+        )
+
+        .replace(
+            /</g,
+            '&lt;'
+        )
+
+        .replace(
+            />/g,
+            '&gt;'
+        )
+
+        .replace(
+            /"/g,
+            '&quot;'
+        )
+
+        .replace(
+            /'/g,
+            '&#039;'
+        );
+
+}
+
+
+
+// ========================================================
+// CLOSE ALERT
+// ========================================================
 
 function closeAlert(id)
 {
 
-    let alert = document.getElementById(id);
+    let alert =
+        document.getElementById(id);
 
-    if(alert)
-    {
 
-        alert.style.display = 'none';
+    if (alert) {
+
+        alert.style.display =
+            'none';
 
     }
 
 }
+
+
+
+// ========================================================
+// CEGAH DOUBLE SUBMIT
+// ========================================================
+
+$('#formPengajuan').on(
+    'submit',
+    function() {
+
+
+        $('#btnSubmit')
+            .prop(
+                'disabled',
+                true
+            );
+
+
+        $('#btnSubmit')
+            .text(
+                'Mengirim...'
+            );
+
+
+    }
+);
+
 
 </script>
