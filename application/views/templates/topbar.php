@@ -98,6 +98,8 @@ $user_email =
 
                                 <?php elseif($this->session->userdata('role_id') == 2): ?>
                                     Admin
+                                <?php elseif($this->session->userdata('role_id') == 4): ?>
+                                    Kawil
 
                                 <?php else: ?>
                                     Masyarakat
